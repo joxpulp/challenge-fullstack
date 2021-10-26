@@ -3,9 +3,9 @@ import { productController } from '../controllers/products';
 
 const router = Router();
 
-router.get('/listar/:id?', productController.getProduct);
-router.post('/agregar', productController.addProduct);
-router.put('/actualizar/:id',productController.updateProduct);
-router.delete('/borrar/:id', productController.deleteProduct);
+router.get('/list/:id?', productController.getProduct);
+router.post('/add', productController.addProduct);
+router.put('/update/:id',productController.updateProduct);
+router.delete('/delete/:id', productController.deleteProduct);
 
 export default router;
