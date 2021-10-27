@@ -1,6 +1,7 @@
 import { productModel } from './product';
 import { cart, cartProducts } from './schemas/cartschema';
 import { CartI, ProductI } from './interfaces';
+import { userModel } from './schemas/userschema';
 
 class Cart {
 	async get(userId: string, id?: string): Promise<CartI[] | ProductI[]> {
@@ -33,7 +34,7 @@ class Cart {
 			readCart!.cartProducts.push(...findProduct);
 			await readCart!.save();
 			ouputNew.push(...findProduct);
-	
+
 			return ouputNew;
 		}
 		return ouputNew;

@@ -13,8 +13,6 @@ const userSchema = new Schema<UserI>(
 		email: { type: String, required: true, unique: true, max: 100 },
 		address: { type: String, required: true, max: 200 },
 		password: { type: String, required: true, max: 100 },
-		cart: [{ type: Schema.Types.ObjectId, ref: 'carritoproducto' }],
-		purchases: [{ type: Schema.Types.ObjectId, ref: 'carritoproducto' }],
 		isAdmin: { type: Boolean },
 	},
 	{ versionKey: false }

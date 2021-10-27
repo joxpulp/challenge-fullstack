@@ -6,6 +6,7 @@ import {
 	IStrategyOptionsWithRequest,
 } from 'passport-local';
 import { userModel } from '../models/schemas/userschema';
+import { cart } from '../models/schemas/cartschema';
 
 // Select passport strategy
 const localStrategy = Strategy;

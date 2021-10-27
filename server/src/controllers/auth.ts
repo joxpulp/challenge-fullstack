@@ -8,7 +8,7 @@ class AuthController {
 			if (user) {
 				req.login(user, () => {
 					return res.json({
-						user: user,
+						userId: user._id,
 						logged: true,
 					});
 				});

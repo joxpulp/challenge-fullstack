@@ -30,7 +30,7 @@ export interface UserI {
 	isValidPassword(password: string): Promise<boolean>;
 }
 export interface CartI {
-	_id: string;
+	_id: any;
 	userId: any;
 	timestamp: number;
 	products: ProductsCartI[];
