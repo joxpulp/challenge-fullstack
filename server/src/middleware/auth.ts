@@ -98,7 +98,8 @@ export const isAuth = (req: Request, res: Response, done: NextFunction) => {
 		done();
 	} else {
 		return res.status(401).json({
-			error: 'You are not an admin',
+			error: 'You are not logged',
+            logged: false
 		});
 	}
 };
