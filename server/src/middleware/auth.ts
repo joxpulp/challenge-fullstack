@@ -109,7 +109,7 @@ export const isAdmin = (req: Request, res: Response, done: NextFunction) => {
 		done();
 	} else {
 		return res.status(401).json({
-			error: 'You are not an admin',
+			error: 'Not authorized, login with admin privilegies',
 		});
 	}
 };

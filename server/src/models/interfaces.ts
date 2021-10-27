@@ -1,20 +1,10 @@
-export interface ProductsCart {
-	_id: string;
-}
-
-export interface CartI {
-	_id: string;
-	timestamp: number;
-	products: ProductI[];
-	cartProducts?: any;
-}
 export interface ProductI {
 	_id: string;
-	name: string;
-	description: string;
-	category: string;
-	thumbnail: string;
-	price: number;
+	name?: string;
+	description?: string;
+	category?: string;
+	thumbnail?: string;
+	price?: number;
 }
 
 export interface NewProductI {
@@ -39,6 +29,23 @@ export interface UserI {
 	isAdmin?: boolean;
 	isValidPassword(password: string): Promise<boolean>;
 }
+export interface CartI {
+	_id: string;
+	userId: any;
+	timestamp: number;
+	products: ProductsCartI[];
+	cartProducts?: any;
+}
+export interface ProductsCartI {
+	_id?: any;
+	name: string;
+	description: string;
+	category: string;
+	thumbnail: string;
+	price: number;
+	quantity: number;
+}
+
 
 export interface ProductQuery {
 	title?: string;
