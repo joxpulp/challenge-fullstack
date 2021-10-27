@@ -45,15 +45,7 @@ const signupFunc = async (
 	try {
 		const { name, lastname, age, cardId, email, address, password } = req.body;
 
-		if (
-			!name ||
-			!lastname ||
-			!age ||
-			!cardId ||
-			!email ||
-			!address ||
-			!password
-		) {
+		if ( !name || !lastname || !age || !cardId || !email || !address || !password) {
 			return done(null, false, { error: 'Missing fields' });
 		}
 
