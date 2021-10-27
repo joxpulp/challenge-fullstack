@@ -4,21 +4,24 @@ import { cartModel } from '../models/cart';
 class CartController {
 	async getProducts(req: Request, res: Response) {
 		try {
-			const { id_producto } = req.params;
-			if (id_producto) {
-				const singleProduct = await cartModel.get(id_producto);
-				if (singleProduct.length === 0) {
-					return res
-						.status(404)
-						.json({ error: 'No existe un producto con este id' });
+			const { id_product } = req.params;
+
+			if (id_product) {
+				const findById = await cartModel.get(req.user!._id!, id_product);
+
+				if (findById.length) {
+					return res.json({ product: findById });
 				}
-				return res.json({ product: singleProduct });
+				return res
+					.status(404)
+					.json({ error: 'No existe un producto con este id' });
 			} else {
-				const get = await cartModel.get(req.user!._id!);
-				if (get.length === 0) {
-					return res.status(404).json({ error: 'No hay un carrito creado' });
+				const findAll = await cartModel.get(req.user!._id!);
+
+				if (findAll.length) {
+					return res.json({ cart: findAll });
 				}
-				return res.json({ cart: get });
+				return res.status(404).json({ error: 'No hay un carrito creado' });
 			}
 		} catch (error) {
 			if (error instanceof Error) {
@@ -45,8 +48,8 @@ class CartController {
 
 	async deleteProducts(req: Request, res: Response) {
 		try {
-			const { id_producto } = req.params;
-			const deletedProduct = await cartModel.delete(id_producto);
+			const { id_product } = req.params;
+			const deletedProduct = await cartModel.delete(id_product, req.user!._id!);
 			return deletedProduct.length === 0
 				? res
 						.status(404)

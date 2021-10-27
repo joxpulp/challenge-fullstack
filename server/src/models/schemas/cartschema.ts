@@ -1,10 +1,10 @@
 import { Schema, model } from 'mongoose';
-import { CartI, ProductsCartI } from '../interfaces';
+import { CartI, ProductI } from '../interfaces';
 
 const cartCollection = 'carritos';
 const cartProductsCollection = 'carritoproductos';
 
-const cartProductSchema = new Schema<ProductsCartI>(
+const cartProductSchema = new Schema<ProductI>(
 	{
 		_id: { type: Schema.Types.ObjectId, ref: 'products' },
 		name: { type: String, max: 100 },
@@ -17,7 +17,6 @@ const cartProductSchema = new Schema<ProductsCartI>(
 			min: [100, `El valor es {VALUE}, debe ser como minimo 100`],
 			max: [3000000, `El valor es {VALUE}, debe ser como maximo 5000`],
 		},
-		quantity: { type: Number },
 	},
 	{ versionKey: false }
 );
@@ -30,7 +29,7 @@ const cartSchema = new Schema<CartI>(
 	{ versionKey: false, timestamps: true }
 );
 export const cart = model<CartI>(cartCollection, cartSchema);
-export const cartProducts = model<ProductsCartI>(
+export const cartProducts = model<ProductI>(
 	cartProductsCollection,
 	cartProductSchema
 );

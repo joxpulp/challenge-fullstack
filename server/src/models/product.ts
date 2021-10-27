@@ -41,21 +41,6 @@ export class Product {
 		deletedProduct && outputDelete.push(deletedProduct);
 		return outputDelete;
 	}
-
-	// async query(options: ProductQuery): Promise<Products[]> {
-	// 	const query: any = {};
-	// 	if (options.title) query.title = options.title;
-
-	// 	if (options.priceMin && options.priceMax)
-	// 		query.price = { $gte: options.priceMin, $lte: options.priceMax };
-
-	// 	if (options.stockMin && options.stockMax)
-	// 		query.stock = { $gte: options.stockMin, $lte: options.stockMax };
-
-	// 	if (options.code) query.code = options.code;
-
-	// 	return await products.find(query);
-	// }
 }
 
 export const productModel = new Product();

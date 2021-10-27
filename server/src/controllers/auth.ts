@@ -46,6 +46,7 @@ class AuthController {
 			.status(404)
 			.json({ error: 'The is no session started or is already logout' });
 	}
+	
 }
 
 export const authController = new AuthController();

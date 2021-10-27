@@ -1,5 +1,5 @@
 export interface ProductI {
-	_id: string;
+	_id?: any;
 	name?: string;
 	description?: string;
 	category?: string;
@@ -30,22 +30,10 @@ export interface UserI {
 	isValidPassword(password: string): Promise<boolean>;
 }
 export interface CartI {
-	_id: any;
-	userId: any;
-	timestamp: number;
-	products: ProductsCartI[];
-	cartProducts?: any;
-}
-export interface ProductsCartI {
 	_id?: any;
-	name: string;
-	description: string;
-	category: string;
-	thumbnail: string;
-	price: number;
-	quantity: number;
+	userId?: string;
+	cartProducts?: ProductI[];
 }
-
 
 export interface ProductQuery {
 	title?: string;
