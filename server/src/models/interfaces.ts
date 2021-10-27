@@ -25,6 +25,21 @@ export interface NewProductI {
 	price: number;
 }
 
+export interface UserI {
+	_id: string;
+	name: string;
+	lastname: string;
+	age: number;
+	cardId: number;
+	email: string;
+	address: string;
+	password: string;
+	cart?: any;
+	purchases?: any;
+	isAdmin?: boolean;
+	isValidPassword(password: string): Promise<boolean>;
+}
+
 export interface ProductQuery {
 	title?: string;
 	price?: number;
@@ -34,4 +49,12 @@ export interface ProductQuery {
 	priceMin?: number;
 	stockMax?: number;
 	stockMin?: number;
+}
+declare global {
+	namespace Express {
+		interface User {
+			_id?: string;
+			isAdmin?: boolean;
+		}
+	}
 }

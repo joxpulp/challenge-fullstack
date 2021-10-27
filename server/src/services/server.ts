@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
-import passport from 'passport';
+import passport from '../middleware/auth';
 import { mongoose } from './mongoose';
 import { CONFIG } from '../config/config';
 import apiRouter from '../routes/index'
@@ -27,7 +27,7 @@ app.use(
 	session({
 		store: connectMongo.create({ mongoUrl: CONFIG.MONGO_URL }),
 		secret: CONFIG.SECRET,
-		cookie: { sameSite: false ,secure: 'auto', maxAge: 1000 * 120 },
+		cookie: { sameSite: false , secure: 'auto', maxAge: 1000 * 120 },
 		saveUninitialized: false,
 		resave: true,
 		rolling: true,
