@@ -6,13 +6,13 @@ const userCollection = 'user';
 
 const userSchema = new Schema<UserI>(
 	{
-		name: { type: String, max: 100 },
-		lastname: { type: String,  max: 100 },
-		age: { type: Number,  },
-		cardId: { type: Number,  unique: true },
-		email: { type: String,  unique: true, max: 100 },
-		address: { type: String, max: 200 },
-		password: { type: String, max: 100 },
+		name: { type: String, required: true, max: 100 },
+		lastname: { type: String, required: true, max: 100 },
+		age: { type: Number, required: true },
+		cardId: { type: Number, required: true, unique: true },
+		email: { type: String, required: true, unique: true, max: 100 },
+		address: { type: String, required: true, max: 200 },
+		password: { type: String, required: true, max: 100 },
 		isAdmin: { type: Boolean },
 	},
 	{ versionKey: false }

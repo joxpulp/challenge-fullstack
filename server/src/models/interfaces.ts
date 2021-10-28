@@ -1,5 +1,7 @@
+import { ObjectId } from 'mongoose';
+
 export interface ProductI {
-	_id?: any;
+	_id: string | ObjectId;
 	name?: string;
 	description?: string;
 	category?: string;
@@ -31,7 +33,6 @@ export interface UserI {
 }
 
 export interface UpdateUserI {
-	_id?: string;
 	name?: string;
 	lastname?: string;
 	age?: number;
@@ -39,10 +40,9 @@ export interface UpdateUserI {
 	email?: string;
 	address?: string;
 	password?: string;
-	hash?: string;
 }
 export interface CartI {
-	_id?: any;
+	_id: string | ObjectId;
 	userId?: string;
 	cartProducts?: ProductI[];
 }
@@ -60,7 +60,7 @@ export interface ProductQuery {
 declare global {
 	namespace Express {
 		interface User {
-			_id?: string;
+			_id: string;
 			isAdmin?: boolean;
 		}
 	}

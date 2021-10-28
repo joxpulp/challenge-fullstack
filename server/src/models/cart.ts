@@ -1,11 +1,11 @@
 import { productModel } from './product';
-import { cart, cartProducts } from './schemas/cartschema';
+import { cart } from './schemas/cartschema';
 import { CartI, ProductI } from './interfaces';
 
 class Cart {
-	async get(userId: string, productId?: string): Promise<ProductI[]> {
+	async get(userId: string, productId?: string): Promise<ProductI[] | CartI[]> {
 		const findAll = await cart.findOne({ userId });
-		let outputGet: ProductI[] = [];
+		const outputGet: ProductI[] | CartI[] = [];
 
 		if (productId) {
 			const findById = await cart.findOne(
@@ -23,9 +23,9 @@ class Cart {
 		return outputGet;
 	}
 
-	async add(productId: string, userId: string): Promise<ProductI[]> {
+	async add(userId: string, productId: string): Promise<ProductI[]> {
 		const findProduct = await productModel.get(productId);
-		const findCart = await cart.findOne({ userId });
+		const findCart = await cart.findById(userId);
 		const ouputNew: ProductI[] = [];
 
 		if (findCart === null) {
@@ -44,7 +44,7 @@ class Cart {
 		return ouputNew;
 	}
 
-	async delete(productId: string, userId: string): Promise<ProductI[]> {
+	async delete(userId: string, productId: string): Promise<ProductI[]> {
 		const findProduct = await this.get(userId, productId);
 		const outputDelete: ProductI[] = [];
 

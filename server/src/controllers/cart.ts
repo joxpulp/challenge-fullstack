@@ -34,7 +34,7 @@ class CartController {
 		try {
 			const { id_product } = req.params;
 			if (id_product) {
-				const productAdded = await cartModel.add(id_product, req.user!._id!);
+				const productAdded = await cartModel.add(req.user!._id!, id_product);
 				return productAdded.length === 0
 					? res.status(404).json({ error: 'No existe producto con ese id' })
 					: res.json({ productAdded });
@@ -49,7 +49,7 @@ class CartController {
 	async deleteProducts(req: Request, res: Response) {
 		try {
 			const { id_product } = req.params;
-			const deletedProduct = await cartModel.delete(id_product, req.user!._id!);
+			const deletedProduct = await cartModel.delete(req.user!._id!, id_product);
 			return deletedProduct.length === 0
 				? res
 						.status(404)
