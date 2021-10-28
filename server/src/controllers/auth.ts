@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import passport, { editUser } from '../middleware/auth';
+import passport, { editUser } from '../middlewares/auth';
 import bcrypt from 'bcrypt';
 
 class AuthController {

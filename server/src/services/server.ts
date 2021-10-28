@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
-import passport from '../middleware/auth';
+import passport from '../middlewares/auth';
 import { mongoose } from './mongoose';
 import { CONFIG } from '../config/config';
 import apiRouter from '../routes/index'

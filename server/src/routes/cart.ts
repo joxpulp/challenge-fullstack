@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { cartController } from '../controllers/cart';
-import { isAuth } from '../middleware/auth';
-import { cartExist } from '../middleware/cartExist';
+import { isAuth } from '../middlewares/auth';
+import { cartExist } from '../middlewares/cartExist';
 
 const router = Router();
 
