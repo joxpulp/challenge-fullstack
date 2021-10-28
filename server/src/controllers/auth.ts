@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import passport from '../middleware/auth';
+import passport, { editUser } from '../middleware/auth';
+import bcrypt from 'bcrypt';
 
 class AuthController {
 	login(req: Request, res: Response, next: NextFunction) {
@@ -46,7 +47,21 @@ class AuthController {
 			.status(404)
 			.json({ error: 'The is no session started or is already logout' });
 	}
-	
+
+	async editUser(req: Request, res: Response) {
+		const { name, lastname, address, age, cardId, password } = req.body;
+		const hash = await bcrypt.hash(password, 10);
+
+		await editUser(req.user!._id!, {
+			name,
+			lastname,
+			address,
+			age,
+			cardId,
+			password: hash,
+		});
+		return res.json({ msg: 'User updated' });
+	}
 }
 
 export const authController = new AuthController();

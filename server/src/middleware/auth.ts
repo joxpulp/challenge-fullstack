@@ -7,6 +7,7 @@ import {
 } from 'passport-local';
 import { userModel } from '../models/schemas/userschema';
 import { cart } from '../models/schemas/cartschema';
+import { UserI, UpdateUserI } from '../models/interfaces';
 
 // Select passport strategy
 const localStrategy = Strategy;
@@ -46,7 +47,15 @@ const signupFunc = async (
 	try {
 		const { name, lastname, age, cardId, email, address, password } = req.body;
 
-		if ( !name || !lastname || !age || !cardId || !email || !address || !password) {
+		if (
+			!name ||
+			!lastname ||
+			!age ||
+			!cardId ||
+			!email ||
+			!address ||
+			!password
+		) {
 			return done(null, false, { error: 'Missing fields' });
 		}
 
@@ -100,7 +109,7 @@ export const isAuth = (req: Request, res: Response, done: NextFunction) => {
 	} else {
 		return res.status(401).json({
 			error: 'You are not logged',
-            logged: false
+			logged: false,
 		});
 	}
 };
@@ -113,6 +122,14 @@ export const isAdmin = (req: Request, res: Response, done: NextFunction) => {
 			error: 'Not authorized, login with admin privilegies',
 		});
 	}
+};
+
+export const editUser = async (_id: string, newData: UpdateUserI) => {
+	await userModel.findOneAndUpdate(
+		{ _id },
+		{ $set: newData },
+		{ runValidators: true }
+	);
 };
 
 export default passport;

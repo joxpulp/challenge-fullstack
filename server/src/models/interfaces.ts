@@ -29,6 +29,18 @@ export interface UserI {
 	isAdmin?: boolean;
 	isValidPassword(password: string): Promise<boolean>;
 }
+
+export interface UpdateUserI {
+	_id?: string;
+	name?: string;
+	lastname?: string;
+	age?: number;
+	cardId?: number;
+	email?: string;
+	address?: string;
+	password?: string;
+	hash?: string;
+}
 export interface CartI {
 	_id?: any;
 	userId?: string;
