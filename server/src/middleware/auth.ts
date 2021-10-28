@@ -130,6 +130,7 @@ export const editUser = async (_id: string, newData: UpdateUserI) => {
 		{ $set: newData },
 		{ runValidators: true }
 	);
+
 };
 
 export default passport;

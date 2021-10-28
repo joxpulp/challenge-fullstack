@@ -50,7 +50,6 @@ class AuthController {
 
 	async editUser(req: Request, res: Response) {
 		const { name, lastname, address, age, cardId, password } = req.body;
-		const hash = await bcrypt.hash(password, 10);
 
 		await editUser(req.user!._id!, {
 			name,
@@ -58,7 +57,7 @@ class AuthController {
 			address,
 			age,
 			cardId,
-			password: hash,
+			password,
 		});
 		return res.json({ msg: 'User updated' });
 	}

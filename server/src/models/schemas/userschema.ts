@@ -26,6 +26,15 @@ userSchema.pre('save', async function (next) {
 	next();
 });
 
+userSchema.pre('findOneAndUpdate', async function (next) {
+	const user = this as any;
+	if (user._update.$set.password) {
+		const hash = await bcrypt.hash(user._update.$set.password, 10);
+		user._update.$set.password = hash;
+	}
+	next();
+});
+
 // Compare if the password is valid with encrypted password stored in database.
 userSchema.methods.isValidPassword = async function (password) {
 	const user = this;
