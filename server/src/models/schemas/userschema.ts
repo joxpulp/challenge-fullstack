@@ -6,8 +6,8 @@ const userCollection = 'user';
 
 const userSchema = new Schema<UserI>(
 	{
-		avatar: {type: String, required: true},
-		avatar_id: {type: String, required:true},
+		avatar: {type: String },
+		avatar_id: {type: String },
 		name: { type: String, required: true, max: 100 },
 		lastname: { type: String, required: true, max: 100 },
 		age: { type: Number, required: true },
