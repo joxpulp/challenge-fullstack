@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { isAdmin } from '../middlewares/auth';
 import { checkBody } from '../middlewares/checkBody';
 import { productExist } from '../middlewares/productExist';
-import { uploadProduct } from '../config/cloudinary';
+import { uploadProduct } from '../services/cloudinary';
 import { productController } from '../controllers/products';
 
 const router = Router();

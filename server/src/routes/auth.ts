@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { uploadAvatar } from '../config/cloudinary';
+import { uploadAvatar } from '../services/cloudinary';
 import { authController } from '../controllers/auth';
 import { isAuth } from '../middlewares/auth';
 

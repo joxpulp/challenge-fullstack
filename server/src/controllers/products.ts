@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import cloudinary from '../config/cloudinary';
+import cloudinary from '../services/cloudinary';
 import { productModel } from '../models/product';
 
 class ProductController {

@@ -7,9 +7,7 @@ import {
 } from 'passport-local';
 import { userModel } from '../models/schemas/userschema';
 import { UpdateUserI } from '../models/interfaces';
-import cloudinary from '../config/cloudinary';
-import { createAvatar } from '@dicebear/avatars';
-import * as style from '@dicebear/avatars-bottts-sprites';
+import cloudinary from '../services/cloudinary';
 
 // Select passport strategy
 const localStrategy = Strategy;

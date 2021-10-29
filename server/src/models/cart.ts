@@ -59,12 +59,13 @@ class Cart {
 		return outputDelete;
 	}
 
-	async buy(id: string) {
-		if (id) {
-			const findCart = cart.findById(id);
-		}
-		await cart.findByIdAndDelete(id);
-	}
+	// TODO ADD BUY METHOD TO SIMULATE BUYS
+	// async buy(id: string) {
+	// 	if (id) {
+	// 		const findCart = cart.findById(id);
+	// 	}
+	// 	await cart.findByIdAndDelete(id);
+	// }
 }
 
 export const cartModel = new Cart();

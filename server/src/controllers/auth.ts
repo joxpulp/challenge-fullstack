@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import passport, { editUser } from '../middlewares/auth';
 import bcrypt from 'bcrypt';
-import cloudinary from '../config/cloudinary';
+import cloudinary from '../services/cloudinary';
 import { userModel } from '../models/schemas/userschema';
 
 class AuthController {

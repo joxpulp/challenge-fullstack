@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import cloudinary from '../config/cloudinary';
+import cloudinary from '../services/cloudinary';
 
 export const checkBody = async(req: Request, res: Response, next: NextFunction) => {
 	const { name, description, category, price } = req.body;
