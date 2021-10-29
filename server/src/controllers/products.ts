@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import cloudinary from '../config/cloudinary';
 import { productModel } from '../models/product';
 
 class ProductController {
@@ -8,17 +9,11 @@ class ProductController {
 
 			if (id) {
 				const singleProduct = await productModel.get(id);
-				if (singleProduct.length === 0) {
-					return res
-						.status(404)
-						.json({ error: 'No existe un producto con este id' });
-				}
+
 				return res.json({ product: singleProduct });
 			} else {
 				const getAll = await productModel.get();
-				if (getAll.length === 0) {
-					return res.status(404).json({ error: 'No hay productos cargados' });
-				}
+
 				return res.json({ products: getAll });
 			}
 		} catch (error) {
@@ -31,14 +26,14 @@ class ProductController {
 	async addProduct(req: Request, res: Response) {
 		try {
 			const body = req.body;
-			if (body) {
-				await productModel.add(body);
-				return res.json({ body });
-			}
-			return res.status(404).json({
-				error:
-					'Se debe enviar un body con title, description, code, price, thumbnail, stock',
+
+			const newProduct = await productModel.add({
+				...body,
+				thumbnail: req.file!.path!,
+				thumbnail_id: req.file!.filename!,
 			});
+
+			return res.json(newProduct);
 		} catch (error) {
 			if (error instanceof Error) {
 				res.status(500).json({ error: error.message });
@@ -49,12 +44,28 @@ class ProductController {
 	async updateProduct(req: Request, res: Response) {
 		try {
 			const { id } = req.params;
+			//* Find product by id to get product fields
+			const [product] = await productModel.get(id);
+
 			const body = req.body;
-			const updatedProduct = await productModel.update(id, body);
-			if (updatedProduct.length === 0) {
-				return res.status(404).json({ error: 'Producto no encontrado' });
+			let thumbnail = product.thumbnail;
+			let thumbnail_id = product.thumbnail_id;
+
+			//* If user upload a new image, previous image is destroyed by passing the thumbnail_id
+			//* Variables thumbnail and thumbnail_id are overwritten by the new image
+			if (req.file) {
+				thumbnail = req.file.path;
+				thumbnail_id = req.file.filename;
+				await cloudinary.uploader.destroy(product.thumbnail_id!);
 			}
-			return res.status(201).json({ product: updatedProduct });
+
+			const updatedProduct = await productModel.update(id, {
+				...body,
+				thumbnail,
+				thumbnail_id,
+			});
+
+			return res.status(201).json({ updatedProduct });
 		} catch (error) {
 			if (error instanceof Error) {
 				res.status(500).json({ error: error.message });
@@ -65,12 +76,12 @@ class ProductController {
 	async deleteProduct(req: Request, res: Response) {
 		try {
 			const { id } = req.params;
+
+			const [product] = await productModel.get(id);
+
+			await cloudinary.uploader.destroy(product.thumbnail_id!);
 			const deletedProduct = await productModel.delete(id);
-			if (deletedProduct.length === 0) {
-				return res.status(404).json({
-					error: 'Producto no encontrado o ya eliminado',
-				});
-			}
+
 			return res.json({ deletedProduct });
 		} catch (error) {
 			if (error instanceof Error) {

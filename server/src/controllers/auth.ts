@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import passport, { editUser } from '../middlewares/auth';
 import bcrypt from 'bcrypt';
+import cloudinary from '../config/cloudinary';
 
 class AuthController {
 	login(req: Request, res: Response, next: NextFunction) {
@@ -51,14 +52,27 @@ class AuthController {
 	async editUser(req: Request, res: Response) {
 		const { name, lastname, address, age, cardId, password } = req.body;
 
-		await editUser(req.user!._id!, {
-			name,
-			lastname,
-			address,
-			age,
-			cardId,
-			password,
-		});
+		if (req.file!) {
+			await editUser(req.user!._id!, {
+				name,
+				lastname,
+				address,
+				age,
+				cardId,
+				password,
+				avatar: req.file!.path!,
+				avatar_id: req.file!.filename!,
+			});
+		} else {
+			await editUser(req.user!._id!, {
+				name,
+				lastname,
+				address,
+				age,
+				cardId,
+				password,
+			});
+		}
 		return res.json({ msg: 'User updated' });
 	}
 }

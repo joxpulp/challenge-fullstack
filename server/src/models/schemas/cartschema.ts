@@ -11,6 +11,7 @@ const cartProductSchema = new Schema<ProductI>(
 		description: { type: String, required: true, max: 300 },
 		category: { type: String, required: true, max: 100 },
 		thumbnail: { type: String, required: true, max: 100 },
+		thumbnail_id: { type: String, required: true, max: 100 },
 		price: {
 			type: Number,
 			required: true,
