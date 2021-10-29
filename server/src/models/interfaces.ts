@@ -72,6 +72,8 @@ declare global {
 	namespace Express {
 		interface User {
 			_id: string;
+			avatar?: string;
+			avatar_id?: string;
 			isAdmin?: boolean;
 			thumbnail_id?: string;
 		}

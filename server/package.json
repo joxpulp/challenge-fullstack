@@ -13,6 +13,11 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
+		"@dicebear/adventurer-neutral": "^4.10.0",
+		"@dicebear/avatars": "^4.10.0",
+		"@dicebear/avatars-bottts-sprites": "^4.10.0",
+		"animal-avatar-generator": "^1.0.3",
+		"animal-avatars.js": "^0.0.2",
 		"bcrypt": "^5.0.1",
 		"bson-objectid": "^2.0.1",
 		"cloudinary": "^1.27.1",

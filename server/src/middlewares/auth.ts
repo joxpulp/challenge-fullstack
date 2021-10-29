@@ -6,8 +6,10 @@ import {
 	IStrategyOptionsWithRequest,
 } from 'passport-local';
 import { userModel } from '../models/schemas/userschema';
-import { cart } from '../models/schemas/cartschema';
-import { UserI, UpdateUserI } from '../models/interfaces';
+import { UpdateUserI } from '../models/interfaces';
+import cloudinary from '../config/cloudinary';
+import { createAvatar } from '@dicebear/avatars';
+import * as style from '@dicebear/avatars-bottts-sprites';
 
 // Select passport strategy
 const localStrategy = Strategy;
@@ -68,6 +70,11 @@ const signupFunc = async (
 				error: 'This email already exist, try with other option',
 			});
 		} else {
+			const randomAvatar = `https://avatars.dicebear.com/api/bottts/${Date.now()}.svg`;
+			const defaultAvatar = await cloudinary.uploader.upload(randomAvatar, {
+				folder: 'AVATARS',
+				format: 'jpg'
+			});
 			const newUser = new userModel({
 				name,
 				lastname,
@@ -76,6 +83,8 @@ const signupFunc = async (
 				email,
 				address,
 				password,
+				avatar: defaultAvatar.secure_url,
+				avatar_id: defaultAvatar.public_id,
 			});
 			await newUser.save();
 			return done(null, newUser);
@@ -130,7 +139,6 @@ export const editUser = async (_id: string, newData: UpdateUserI) => {
 		{ $set: newData },
 		{ runValidators: true }
 	);
-
 };
 
 export default passport;

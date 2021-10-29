@@ -1,7 +1,7 @@
 import { products } from './schemas/productschema';
 import { NewProductI, ProductI } from './interfaces';
 
-export class Product {
+class Product {
 
 	async get(id?: string): Promise<ProductI[]> {
 		let outputGet: ProductI[] = [];
