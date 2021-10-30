@@ -1,0 +1,26 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: ${(props) => props.theme.fonts.secondary};
+    font-size: 24px;
+}
+
+  body {
+    background-color: '#F9F9F9';
+  }
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+  }
+  ul, li, a, ol {
+    list-style-type: none;
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
+export default GlobalStyle;
