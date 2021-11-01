@@ -13,8 +13,8 @@ const productsSchema = new Schema<ProductI>(
 		price: {
 			type: Number,
 			required: true,
-			min: [100, `El valor es {VALUE}, debe ser como minimo 100`],
-			max: [3000000, `El valor es {VALUE}, debe ser como maximo 5000`],
+			min: [10, `El valor es {VALUE}, debe ser como minimo 10 USD`],
+			max: [300000, `El valor es {VALUE}, debe ser como maximo 30000 USD`],
 		},
 	},
 	{ versionKey: false }
