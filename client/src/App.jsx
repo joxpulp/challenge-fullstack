@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Textarea } from './components/Textarea/Textarea';
 import GlobalStyle from './globalStyles/globalStyles';
 

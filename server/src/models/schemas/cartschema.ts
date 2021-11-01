@@ -2,7 +2,6 @@ import { Schema, model } from 'mongoose';
 import { CartI, ProductI } from '../interfaces';
 
 const cartCollection = 'carritos';
-const cartProductsCollection = 'carritoproductos';
 
 const cartProductSchema = new Schema<ProductI>(
 	{
@@ -30,7 +29,4 @@ const cartSchema = new Schema<CartI>(
 	{ versionKey: false, timestamps: true }
 );
 export const cart = model<CartI>(cartCollection, cartSchema);
-export const cartProducts = model<ProductI>(
-	cartProductsCollection,
-	cartProductSchema
-);
+
