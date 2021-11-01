@@ -6,12 +6,11 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: ${(props) => props.theme.fonts.secondary};
-    font-size: 24px;
+    font-family: ${(props) => props.theme.fonts.lato};
 }
 
   body {
-    background-color: '#F9F9F9';
+    background-color: '#979797';
   }
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.1;

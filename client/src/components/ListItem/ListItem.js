@@ -12,7 +12,7 @@ import {
 } from 'styled-system';
 import { motion } from 'framer-motion';
 
-export const Title = styled(motion.h1)`
+export const ListItem = styled(motion.li)`
 	${space}
 	${color}
 	${typography}
@@ -22,7 +22,5 @@ export const Title = styled(motion.h1)`
 	${border}
 	${position}
 	${shadow}
-	font-family: ${props => props.theme.fonts.josefin};
-	transition: ${(props) => props.transition};
-	cursor: ${(props) => props.cursor};
+	cursor: pointer;
 `;

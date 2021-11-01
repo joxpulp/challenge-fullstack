@@ -3,14 +3,14 @@ import { ThemeProvider } from 'styled-components';
 
 const theme = {
 	colors: {
-		primary: '#FB2E86',
-		secondary: '#F1F0FF',
+		primary: '#0D0D0D',
+		secondary: '#979797',
 		text: '#151875',
 		subtext: '#9096B2',
 	},
 	fonts: {
-		primary: `'Josefin Sans', sans-serif`,
-		secondary: `'Lato', sans-serif`,
+		josefin: `'Josefin Sans', sans-serif`,
+		lato: `'Lato', sans-serif`,
 	},
 };
 
