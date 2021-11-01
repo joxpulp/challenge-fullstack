@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Box } from '../../components/Box/Box';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
+import { getProducts } from '../../redux/reducers/productsReducer';
 
 function Shop() {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getProducts())
+	}, [dispatch]);
+
 	return (
 		<Box as='main'>
 			<Box as='section' bg='black' color='white' height='216px' width='100%'>
@@ -19,6 +27,7 @@ function Shop() {
 					</Text>
 				</Box>
 			</Box>
+			<Box as='section'></Box>
 		</Box>
 	);
 }
