@@ -22,7 +22,7 @@ export const Title = styled(motion.h1)`
 	${border}
 	${position}
 	${shadow}
-	font-family: ${props => props.theme.fonts.josefin};
+	font-family: ${props => props.theme.fonts.chakra};
 	transition: ${(props) => props.transition};
 	cursor: ${(props) => props.cursor};
 `;

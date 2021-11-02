@@ -9,7 +9,7 @@ const theme = {
 		subtext: '#9096B2',
 	},
 	fonts: {
-		josefin: `'Josefin Sans', sans-serif`,
+		chakra: `'Chakra Petch', sans-serif`,
 		lato: `'Lato', sans-serif`,
 	},
 };

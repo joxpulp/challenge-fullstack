@@ -23,11 +23,11 @@ function Header() {
 			color='white'
 			borderBottom='1px solid white'
 		>
-			<Box mr='20px'>
-				<Link to='/'>
-					<Title cursor='pointer'>Heki</Title>
-				</Link>
-			</Box>
+			<Link to='/'>
+				<Title mr='20px' cursor='pointer'>
+					Heki
+				</Title>
+			</Link>
 			<Box as='nav' flex={1}>
 				<GroupList flex={1} justifyContent='space-evenly'>
 					<Link to='/'>
