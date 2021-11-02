@@ -1,17 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
 import { Image } from '../../components/Image/Image';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
+import { clearProduct } from '../../redux/reducers/productsReducer';
 
 function ProductCard({ name, price, thumbnail, id }) {
 	const history = useHistory();
+	const dispatch = useDispatch()
 
+	const handleClick = () => {
+		history.push(`/product/${id}`);
+		dispatch(clearProduct())
+	}
 
 	return (
 		<Box
-			onClick={() => history.push(`/product/${id}`)}
+			onClick={handleClick}
 			overflow='hidden'
 			flexDirection='column'
 			width='100%'

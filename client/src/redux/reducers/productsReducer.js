@@ -29,7 +29,14 @@ const initialState = {
 const productSlice = createSlice({
 	name: 'products',
 	initialState,
-	reducers: {},
+	reducers: {
+		clearProduct(state, action) {
+			return {
+				...state,
+				product: [],
+			};
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(getProducts.fulfilled, (state, action) => {
@@ -47,4 +54,5 @@ const productSlice = createSlice({
 	},
 });
 
+export const { clearProduct } = productSlice.actions;
 export default productSlice.reducer;
