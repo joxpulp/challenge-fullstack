@@ -13,11 +13,15 @@ export const getProducts = createAsyncThunk(
 
 export const getProductById = createAsyncThunk(
 	'products/getProductById',
-	async (id) => {
-		const {
-			data: { product },
-		} = await apiCommerce.get(`/api/products/list/${id}`);
-		return product;
+	async (id, { rejectWithValue }) => {
+		try {
+			const {
+				data: { product },
+			} = await apiCommerce.get(`/api/products/list/${id}`);
+			return product;
+		} catch ({ response: { data } }) {
+			return rejectWithValue(data.error);
+		}
 	}
 );
 
@@ -49,6 +53,12 @@ const productSlice = createSlice({
 				return {
 					...state,
 					product: action.payload,
+				};
+			})
+			.addCase(getProductById.rejected, (state, action) => {
+				return {
+					...state,
+					product: [],
 				};
 			});
 	},

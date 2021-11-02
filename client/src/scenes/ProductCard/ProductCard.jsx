@@ -6,6 +6,7 @@ import { Image } from '../../components/Image/Image';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 import { clearProduct } from '../../redux/reducers/productsReducer';
+import { clearErrorMsg } from '../../redux/reducers/uiReducer';
 
 function ProductCard({ name, price, thumbnail, id }) {
 	const history = useHistory();
@@ -14,6 +15,7 @@ function ProductCard({ name, price, thumbnail, id }) {
 	const handleClick = () => {
 		history.push(`/product/${id}`);
 		dispatch(clearProduct())
+		dispatch(clearErrorMsg())
 	}
 
 	return (

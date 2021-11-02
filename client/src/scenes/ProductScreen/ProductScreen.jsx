@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Redirect } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
 import { Button } from '../../components/Button/Button';
 import { Image } from '../../components/Image/Image';
@@ -12,14 +12,18 @@ import { CubeSpinner } from 'react-spinners-kit';
 function ProductScreen() {
 	const { id } = useParams();
 	const history = useHistory();
-    
+
 	const dispatch = useDispatch();
 	const { product } = useSelector((state) => state.products);
-	const { loading } = useSelector((state) => state.ui);
+	const { loading, errorMsg } = useSelector((state) => state.ui);
 
 	useEffect(() => {
 		dispatch(getProductById(id));
 	}, [dispatch, id]);
+
+	if (errorMsg) {
+		return <Redirect to='/*' />;
+	}
 
 	return (
 		<Box

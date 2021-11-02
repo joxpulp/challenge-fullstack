@@ -11,7 +11,14 @@ const initialState = {
 const uiSlice = createSlice({
     name: 'ui',
     initialState,
-    reducers: {},
+    reducers: {
+		clearErrorMsg(state, action) {
+			return {
+				...state,
+				errorMsg: null
+			}
+		}
+	},
     extraReducers: (builder) => {
         builder
 					.addCase(getProductById.pending, (state, action) => {
@@ -29,10 +36,12 @@ const uiSlice = createSlice({
 					.addCase(getProductById.rejected, (state, action) => {
 						return {
 							...state,
+							errorMsg: action.payload,
 							loading: false,
 						};
 					})
     }
 });
 
+export const {clearErrorMsg} = uiSlice.actions
 export default uiSlice.reducer;
