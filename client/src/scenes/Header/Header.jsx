@@ -44,7 +44,9 @@ function Header() {
 					<ListItem mr='20px'>
 						<Image src={cart} />
 					</ListItem>
-					<ListItem>Login</ListItem>
+					<Link to='/login'>
+						<ListItem>Login</ListItem>
+					</Link>
 				</GroupList>
 			</Box>
 		</Box>

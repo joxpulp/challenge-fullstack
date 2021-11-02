@@ -6,7 +6,7 @@ const theme = {
 		primary: '#0D0D0D',
 		secondary: '#979797',
 		text: '#151875',
-		subtext: '#9096B2',
+		subtext: '#A9ABBD',
 	},
 	fonts: {
 		chakra: `'Chakra Petch', sans-serif`,

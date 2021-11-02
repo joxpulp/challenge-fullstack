@@ -7,6 +7,9 @@ import About from './scenes/About/About';
 import Contact from './scenes/Contact/Contact';
 import NotFound from './scenes/NotFound/NotFound';
 import ProductScreen from './scenes/ProductScreen/ProductScreen';
+import Login from './scenes/Login/Login';
+import PublicRoute from './routers/PublicRoute/PublicRoute';
+import Signup from './scenes/Signup/Signup';
 
 function App() {
 	return (
@@ -14,21 +17,13 @@ function App() {
 			<GlobalStyle />
 			<Header />
 			<Switch>
-				<Route exact path='/'>
-					<Shop />
-				</Route>
-				<Route path='/product/:id'>
-					<ProductScreen />
-				</Route>
-				<Route path='/about'>
-					<About />
-				</Route>
-				<Route path='/contact'>
-					<Contact />
-				</Route>
-				<Route path='*'>
-					<NotFound />
-				</Route>
+				<Route exact path='/' component={Shop} />
+				<Route path='/product/:id' component={ProductScreen} />
+				<Route path='/about' component={About} />
+				<Route path='/contact' component={Contact} />
+				<PublicRoute path='/login' component={Login}/>
+				<PublicRoute path='/signup' component={Signup}/>
+				<Route path='*' component={NotFound} />
 			</Switch>
 		</>
 	);
