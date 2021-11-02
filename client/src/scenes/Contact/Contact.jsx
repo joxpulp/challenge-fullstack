@@ -4,6 +4,7 @@ import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 
 function Contact() {
+	
 	return (
 		<Box as='main'>
 			<Box as='section' bg='black' color='white' height='216px' width='100%'>

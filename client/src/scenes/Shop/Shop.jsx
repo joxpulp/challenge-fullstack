@@ -48,6 +48,7 @@ function Shop() {
 						name={product.name}
 						price={product.price}
 						thumbnail={product.thumbnail}
+						id={product._id}
 					/>
 				))}
 			</Box>

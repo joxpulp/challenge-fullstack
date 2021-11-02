@@ -6,6 +6,7 @@ import Shop from './scenes/Shop/Shop';
 import About from './scenes/About/About';
 import Contact from './scenes/Contact/Contact';
 import NotFound from './scenes/NotFound/NotFound';
+import ProductScreen from './scenes/ProductScreen/ProductScreen';
 
 function App() {
 	return (
@@ -16,10 +17,13 @@ function App() {
 				<Route exact path='/'>
 					<Shop />
 				</Route>
-				<Route exact path='/about'>
+				<Route path='/product/:id'>
+					<ProductScreen />
+				</Route>
+				<Route path='/about'>
 					<About />
 				</Route>
-				<Route exact path='/contact'>
+				<Route path='/contact'>
 					<Contact />
 				</Route>
 				<Route path='*'>
