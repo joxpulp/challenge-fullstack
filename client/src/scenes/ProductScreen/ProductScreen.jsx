@@ -12,6 +12,7 @@ import { CubeSpinner } from 'react-spinners-kit';
 function ProductScreen() {
 	const { id } = useParams();
 	const history = useHistory();
+    
 	const dispatch = useDispatch();
 	const { product } = useSelector((state) => state.products);
 	const { loading } = useSelector((state) => state.ui);
