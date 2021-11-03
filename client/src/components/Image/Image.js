@@ -11,6 +11,8 @@ export const Image = styled(motion.img)`
 	${position}
 	${border}
     height: ${(props) => (props.height ? props.height : 'auto')};
-	cursor: ${(props) => props.pointer && 'pointer'};
+	cursor: ${(props) => props.cursor && 'pointer'};
 	opacity: ${(props) => props.opacity};
+	background-size: cover;
+	background-position: center;
 `;

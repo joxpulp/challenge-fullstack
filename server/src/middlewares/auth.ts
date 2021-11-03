@@ -71,7 +71,7 @@ const signupFunc = async (
 			const randomAvatar = `https://avatars.dicebear.com/api/bottts/${Date.now()}.svg`;
 			const defaultAvatar = await cloudinary.uploader.upload(randomAvatar, {
 				folder: 'AVATARS',
-				format: 'jpg'
+				format: 'jpg',
 			});
 			const newUser = new userModel({
 				name,
@@ -137,6 +137,16 @@ export const editUser = async (_id: string, newData: UpdateUserI) => {
 		{ $set: newData },
 		{ runValidators: true }
 	);
+
+	const findUpdated = await userModel.findById(_id, {
+		name: 1,
+		lastname: 1,
+		age: 1,
+		address: 1,
+		avatar: 1,
+		cardId: 1,
+	});
+	return findUpdated;
 };
 
 export default passport;

@@ -10,7 +10,8 @@ export const BaseInput = styled(motion.input)`
 	${flexbox}
 	${position}
 	font-size: 20px;
-	color: ${(props) => (props.color ? props.color : props.theme.colors.secondary)};
+	color: ${(props) =>
+		props.color ? props.color : props.theme.colors.secondary};
 	padding: ${(props) => (props.padding ? props.padding : '10px')};
 	width: ${(props) => (props.width ? props.width : '50%')};
 	height: ${(props) => (props.height ? props.height : 'auto')};
@@ -23,9 +24,10 @@ export const BaseInput = styled(motion.input)`
 		box-shadow: 0px 0px 5px 2px rgb(29, 31, 39, 0.1);
 	}
 	&:invalid {
-		border: '1px solid #ff7d87';
+		border: 1px solid #ff7d87;
 	}
+
 	&::placeholder {
-		color: ${(props) => props.theme.colors.subtext}
+		color: ${(props) => props.theme.colors.subtext};
 	}
 `;

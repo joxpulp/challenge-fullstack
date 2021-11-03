@@ -33,7 +33,12 @@ export const Button = styled(motion.button)`
 	}
 	&:hover {
 		background-color: ${(props) => props.hover && props.focusColor};
-		color: ${(props) => (props.hover && props.bg)};
+		color: ${(props) => props.hover && props.bg};
 		${(props) => props.focusScale && 'transform: scale(1.2);'}
+	}
+
+	&:disabled {
+		background-color: ${(props) => props.theme.colors.subtext};
+		color: ${(props) => props.theme.colors.secondary};
 	}
 `;

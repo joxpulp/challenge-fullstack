@@ -7,9 +7,15 @@ import { Button } from '../../components/Button/Button';
 import { Title } from '../../components/Title/Title';
 import { Text } from '../../components/Text/Text';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/reducers/authReducer';
+import { ImpulseSpinner } from 'react-spinners-kit';
 
 function Login() {
 	const history = useHistory();
+
+	const dispatch = useDispatch();
+	const { loading } = useSelector((state) => state.ui);
 
 	return (
 		<Box
@@ -41,8 +47,8 @@ function Login() {
 							.min(8, 'Password must be 8 mininum characters')
 							.required('Required'),
 					})}
-					onSubmit={(values) => {
-						console.log(`Submitted ${values}`);
+					onSubmit={({ email, password }) => {
+						dispatch(login({ email, password }));
 					}}
 				>
 					<Form
@@ -63,12 +69,23 @@ function Login() {
 							placeholder='Password'
 						/>
 						<Box width='100%' justifyContent='center' mt='20px'>
-							<Button bg='black' color='white'type='submit' mr='10px'>
-								Login
+							<Button
+								bg='black'
+								color='white'
+								type='submit'
+								mr='10px'
+								disabled={loading}
+							>
+								{loading ? (
+									<ImpulseSpinner frontColor='#ffff' backColor='#666666' />
+								) : (
+									'Login'
+								)}
 							</Button>
 							<Button
 								onClick={() => history.push('/signup')}
 								type='button'
+								disabled={loading}
 							>
 								Signup
 							</Button>

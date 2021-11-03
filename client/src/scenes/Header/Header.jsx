@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ThemeContext } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
@@ -7,11 +7,19 @@ import { GroupList } from '../../components/GroupList/GroupList';
 import { ListItem } from '../../components/ListItem/ListItem';
 import { Image } from '../../components/Image/Image';
 import cart from '../../services/svg/cart.svg';
+import { useSelector } from 'react-redux';
 
 function Header() {
 	const {
 		colors: { primary },
 	} = useContext(ThemeContext);
+
+	const { userData, logged} = useSelector((state) => state.auth);
+	const { loading } = useSelector((state) => state.ui);
+
+	useEffect(() => {
+		localStorage.setItem('userData', JSON.stringify(userData));
+	}, [userData])
 
 	return (
 		<Box
@@ -45,7 +53,10 @@ function Header() {
 						<Image src={cart} />
 					</ListItem>
 					<Link to='/login'>
-						<ListItem>Login</ListItem>
+						<Box height='100%' alignItems='center'>
+							{logged && <Image borderRadius='100%' width='20px' mr='10px' src={userData.avatar} />}
+							<Link to='/profile'><ListItem>{logged ? userData.name : 'Login'}</ListItem></Link>
+						</Box>
 					</Link>
 				</GroupList>
 			</Box>

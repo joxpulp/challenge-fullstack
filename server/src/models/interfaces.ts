@@ -37,6 +37,7 @@ export interface UserI {
 }
 
 export interface UpdateUserI {
+	_id?: string;
 	avatar?: string;
 	avatar_id?: string;
 	name?: string;
@@ -74,8 +75,14 @@ declare global {
 			_id: string;
 			avatar?: string;
 			avatar_id?: string;
+			name?: string;
+			lastname?: string;
+			age?: number;
+			cardId?: number;
+			email?: string;
+			address?: string;
+			password?: string;
 			isAdmin?: boolean;
-			thumbnail_id?: string;
 		}
 	}
 }

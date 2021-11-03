@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { editUser, login } from "./authReducer";
 import { getProductById } from "./productsReducer";
 
 
@@ -39,6 +40,43 @@ const uiSlice = createSlice({
 							errorMsg: action.payload,
 							loading: false,
 						};
+					})
+					.addCase(login.pending, (state, action) => {
+						return {
+							...state,
+							loading: true,
+						};
+					})
+					.addCase(login.fulfilled, (state, action) => {
+						return {
+							...state,
+							loading: false,
+						};
+					})
+					.addCase(login.rejected, (state, action) => {
+						return {
+							...state,
+							errorMsg: action.payload,
+							loading: false,
+						};
+					})
+					.addCase(editUser.pending, (state, action) => {
+						return {
+							...state,
+							loading: true
+						}
+					})
+					.addCase(editUser.fulfilled, (state, action) => {
+						return {
+							...state,
+							loading: false
+						}
+					})
+					.addCase(editUser.rejected, (state, action) => {
+						return {
+							...state,
+							loading: false
+						}
 					})
     }
 });

@@ -11,7 +11,15 @@ class AuthController {
 			if (user) {
 				req.login(user, () => {
 					return res.json({
-						userId: user._id,
+						userData: {
+							_id: user._id,
+							name: user.name,
+							lastname: user.lastname,
+							age: user.age,
+							cardId: user.cardId,
+							address: user.address,
+							avatar: user.avatar,
+						},
 						logged: true,
 					});
 				});
@@ -58,16 +66,16 @@ class AuthController {
 		if (req.file) {
 			avatar = req.file.path;
 			avatar_id = req.file.filename;
-			await cloudinary.uploader.destroy(req.user!.avatar_id!)
+			await cloudinary.uploader.destroy(req.user!.avatar_id!);
 		}
 
-		await editUser(req.user!._id, {
+		const userUpdated = await editUser(req.user!._id, {
 			...body,
 			avatar,
 			avatar_id,
 		});
-		
-		return res.json({ msg: 'User updated' });
+
+		return res.json({ userUpdated });
 	}
 }
 
