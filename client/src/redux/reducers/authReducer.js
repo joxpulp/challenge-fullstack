@@ -12,6 +12,17 @@ export const login = createAsyncThunk(
 		}
 	}
 );
+export const logout = createAsyncThunk(
+	'auth/logout',
+	async (_, { rejectWithValue }) => {
+		try {
+			const { data: logout } = await apiCommerce.get('/api/auth/logout');
+			return logout;
+		} catch ({ response: { data } }) {
+			return rejectWithValue(data);
+		}
+	}
+);
 
 export const isLogged = createAsyncThunk(
 	'auth/isLogged',
@@ -61,6 +72,13 @@ const authSlice = createSlice({
 					userData: action.payload.userData,
 					logged: action.payload.logged,
 				};
+			})
+			.addCase(logout.fulfilled, (state, action) => {
+				return {
+					...state,
+					userData: {},
+					logged: action.payload.logged
+				}
 			})
 			.addCase(isLogged.fulfilled, (state, action) => {
 				return {

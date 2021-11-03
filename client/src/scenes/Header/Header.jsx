@@ -7,22 +7,30 @@ import { GroupList } from '../../components/GroupList/GroupList';
 import { ListItem } from '../../components/ListItem/ListItem';
 import { Image } from '../../components/Image/Image';
 import cart from '../../services/svg/cart.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import UserMenu from '../UserMenu/UserMenu';
+import { setUserMenu } from '../../redux/reducers/uiReducer';
 
 function Header() {
 	const {
 		colors: { primary },
 	} = useContext(ThemeContext);
 
-	const { userData, logged} = useSelector((state) => state.auth);
-	const { loading } = useSelector((state) => state.ui);
+	const dispatch = useDispatch();
+	const { userData, logged } = useSelector((state) => state.auth);
+	const { userMenu } = useSelector((state) => state.ui);
 
 	useEffect(() => {
 		localStorage.setItem('userData', JSON.stringify(userData));
-	}, [userData])
+	}, [userData]);
+
+	const handleUserMenu = () => {
+		dispatch(setUserMenu(false))
+	}
 
 	return (
 		<Box
+			position='relative'
 			as='header'
 			height='60px'
 			alignItems='center'
@@ -31,34 +39,48 @@ function Header() {
 			color='white'
 			borderBottom='1px solid white'
 		>
-			<Link to='/'>
+			<Link to='/' onClick={handleUserMenu}>
 				<Title mr='20px' cursor='pointer'>
 					Heki
 				</Title>
 			</Link>
 			<Box as='nav' flex={1}>
 				<GroupList flex={1} justifyContent='space-evenly'>
-					<Link to='/'>
+					<Link to='/' onClick={handleUserMenu}>
 						<ListItem>Shop</ListItem>
 					</Link>
-					<Link to='/about'>
+					<Link to='/about' onClick={handleUserMenu}>
 						<ListItem>About</ListItem>
 					</Link>
-					<Link to='/contact'>
+					<Link to='/contact' onClick={handleUserMenu}>
 						<ListItem>Contact</ListItem>
 					</Link>
 				</GroupList>
 				<GroupList justifyContent='space-evenly'>
-					<ListItem mr='20px'>
+					<ListItem mr='20px' onClick={handleUserMenu}>
 						<Image src={cart} />
 					</ListItem>
-					<Link to='/login'>
-						<Box height='100%' alignItems='center'>
-							{logged && <Image borderRadius='100%' width='20px' mr='10px' src={userData.avatar} />}
-							<Link to='/profile'><ListItem>{logged ? userData.name : 'Login'}</ListItem></Link>
-						</Box>
-					</Link>
+					<Box height='100%' alignItems='center'>
+						{logged ? (
+							<>
+								<Image
+									borderRadius='100%'
+									width='20px'
+									mr='10px'
+									src={userData.avatar}
+								/>
+								<ListItem onClick={() => dispatch(setUserMenu(!userMenu))}>
+									{userData.name}
+								</ListItem>
+							</>
+						) : (
+							<Link to='/login'>
+								<ListItem>Login</ListItem>
+							</Link>
+						)}
+					</Box>
 				</GroupList>
+				{userMenu && <UserMenu />}
 			</Box>
 		</Box>
 	);
