@@ -12,7 +12,7 @@ import { clearErrorMsg, clearSuccessMsg } from '../../redux/reducers/uiReducer';
 
 function Signup() {
 	const dispatch = useDispatch();
-	const { errorMsg, successMsg } = useSelector((state) => state.ui);
+	const { errorMsg, successMsg  } = useSelector((state) => state.ui);
 
 	return (
 		<Box
