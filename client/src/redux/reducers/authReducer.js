@@ -12,12 +12,25 @@ export const login = createAsyncThunk(
 		}
 	}
 );
+
 export const logout = createAsyncThunk(
 	'auth/logout',
 	async (_, { rejectWithValue }) => {
 		try {
 			const { data: logout } = await apiCommerce.get('/api/auth/logout');
 			return logout;
+		} catch ({ response: { data } }) {
+			return rejectWithValue(data);
+		}
+	}
+);
+
+export const signup = createAsyncThunk(
+	'auth/signup',
+	async (body, { rejectWithValue }) => {
+		try {
+			const { data: signup } = await apiCommerce.post('/api/auth/signup', body);
+			return signup;
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data);
 		}

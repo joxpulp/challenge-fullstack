@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { editUser, login, logout } from './authReducer';
+import { editUser, login, logout, signup } from './authReducer';
 import { getProductById } from './productsReducer';
 
 const initialState = {
@@ -17,6 +17,12 @@ const uiSlice = createSlice({
 			return {
 				...state,
 				errorMsg: null,
+			};
+		},
+		clearSuccessMsg(state, action) {
+			return {
+				...state,
+				successMsg: null,
 			};
 		},
 		setUserMenu(state, action) {
@@ -69,9 +75,10 @@ const uiSlice = createSlice({
 			.addCase(logout.fulfilled, (state, action) => {
 				return {
 					...state,
-					userMenu: false
-				}
+					userMenu: false,
+				};
 			})
+
 			.addCase(editUser.pending, (state, action) => {
 				return {
 					...state,
@@ -89,9 +96,29 @@ const uiSlice = createSlice({
 					...state,
 					loading: false,
 				};
+			})
+			.addCase(signup.pending, (state, action) => {
+				return {
+					...state,
+					loading: true,
+				};
+			})
+			.addCase(signup.fulfilled, (state, action) => {
+				return {
+					...state,
+					loading: false,
+					successMsg: action.payload.msg,
+				};
+			})
+			.addCase(signup.rejected, (state, action) => {
+				return {
+					...state,
+					loading: false,
+					errorMsg: action.payload.error,
+				};
 			});
 	},
 });
 
-export const { clearErrorMsg, setUserMenu } = uiSlice.actions;
+export const { clearErrorMsg, clearSuccessMsg, setUserMenu } = uiSlice.actions;
 export default uiSlice.reducer;
