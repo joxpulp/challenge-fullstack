@@ -68,7 +68,7 @@ const uiSlice = createSlice({
 			.addCase(login.rejected, (state, action) => {
 				return {
 					...state,
-					errorMsg: action.payload,
+					errorMsg: action.payload.error,
 					loading: false,
 				};
 			})

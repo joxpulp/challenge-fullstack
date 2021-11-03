@@ -10,12 +10,18 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/reducers/authReducer';
 import { ImpulseSpinner } from 'react-spinners-kit';
+import { clearErrorMsg } from '../../redux/reducers/uiReducer';
 
 function Login() {
 	const history = useHistory();
 
 	const dispatch = useDispatch();
-	const { loading } = useSelector((state) => state.ui);
+	const { loading, errorMsg } = useSelector((state) => state.ui);
+
+	const handleClickSignup = () => {
+		history.push('/signup');
+		dispatch(clearErrorMsg())
+	}
 
 	return (
 		<Box
@@ -48,6 +54,7 @@ function Login() {
 							.required('Required'),
 					})}
 					onSubmit={({ email, password }) => {
+						dispatch(clearErrorMsg());
 						dispatch(login({ email, password }));
 					}}
 				>
@@ -61,8 +68,20 @@ function Login() {
 					>
 						<Title my='10px'>Welcome Back</Title>
 						<Text color='#A9ABBD'>Login with your email:</Text>
-						<Input id='email' name='email' type='email' placeholder='Email' />
+						{errorMsg && (
+							<Text m='20px' color='#b62929'>
+								{errorMsg}
+							</Text>
+						)}
 						<Input
+							disabled={loading}
+							id='email'
+							name='email'
+							type='email'
+							placeholder='Email'
+						/>
+						<Input
+							disabled={loading}
 							id='password'
 							name='password'
 							type='password'
@@ -83,7 +102,7 @@ function Login() {
 								)}
 							</Button>
 							<Button
-								onClick={() => history.push('/signup')}
+								onClick={handleClickSignup}
 								type='button'
 								disabled={loading}
 							>
