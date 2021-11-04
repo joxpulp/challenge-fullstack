@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
-import { CartI, ProductI } from '../interfaces';
+import { ProductI, PurchaseI } from '../interfaces';
 
-const cartCollection = 'carritos';
+const pruchaseCollection = 'compras';
 
-const cartProductSchema = new Schema<ProductI>(
+const purchaseProductSchema = new Schema<ProductI>(
 	{
 		_id: { type: Schema.Types.ObjectId, ref: 'products' },
 		name: { type: String, required: true, max: 100 },
@@ -21,12 +21,12 @@ const cartProductSchema = new Schema<ProductI>(
 	{ versionKey: false }
 );
 
-const cartSchema = new Schema<CartI>(
+const purchaseSchema = new Schema<PurchaseI>(
 	{
 		userId: { type: Schema.Types.ObjectId, ref: 'users' },
 		total: { type: Number },
-		cartProducts: [cartProductSchema],
+		purchases: [purchaseProductSchema],
 	},
 	{ versionKey: false, timestamps: true }
 );
-export const cart = model<CartI>(cartCollection, cartSchema);
+export const purchase = model<PurchaseI>(pruchaseCollection, purchaseSchema);

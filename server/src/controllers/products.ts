@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import cloudinary from '../services/cloudinary';
 import { productModel } from '../models/product';
 import multer from 'multer';
+import { cartModel } from '../models/cart';
 
 class ProductController {
 	async getProduct(req: Request, res: Response) {
@@ -38,8 +39,6 @@ class ProductController {
 		} catch (error) {
 			if (error instanceof Error) {
 				res.status(500).json({ error: error.message });
-			} else if (error instanceof multer.MulterError) {
-				return res.status(500).json('Max file size 2MB allowed!');
 			}
 		}
 	}
@@ -79,7 +78,8 @@ class ProductController {
 	async deleteProduct(req: Request, res: Response) {
 		try {
 			const { id } = req.params;
-
+			// Delete product in cart if exist too
+			await cartModel.delete(req.user!._id, id);
 			const [product] = await productModel.get(id);
 
 			await cloudinary.uploader.destroy(product.thumbnail_id!);

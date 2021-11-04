@@ -8,20 +8,10 @@ class CartController {
 
 			if (id_product) {
 				const findById = await cartModel.get(req.user!._id!, id_product);
-
-				if (findById.length) {
-					return res.json({ product: findById });
-				}
-				return res
-					.status(404)
-					.json({ error: 'No existe un producto con este id' });
+				return res.json({ product: findById });
 			} else {
 				const findAll = await cartModel.get(req.user!._id!);
-
-				if (findAll.length) {
-					return res.json({ cart: findAll });
-				}
-				return res.status(404).json({ error: 'No hay un carrito creado' });
+				return res.json({ cart: findAll });
 			}
 		} catch (error) {
 			if (error instanceof Error) {
@@ -35,9 +25,7 @@ class CartController {
 			const { id_product } = req.params;
 			if (id_product) {
 				const productAdded = await cartModel.add(req.user!._id!, id_product);
-				return productAdded.length === 0
-					? res.status(404).json({ error: 'No existe producto con ese id' })
-					: res.json({ productAdded });
+				return res.json({ productAdded });
 			}
 		} catch (error) {
 			if (error instanceof Error) {
@@ -50,11 +38,7 @@ class CartController {
 		try {
 			const { id_product } = req.params;
 			const deletedProduct = await cartModel.delete(req.user!._id!, id_product);
-			return deletedProduct.length === 0
-				? res
-						.status(404)
-						.json({ error: 'Producto no encontrado o ya eliminado' })
-				: res.json({ deletedProduct });
+			return res.json({ deletedProduct });
 		} catch (error) {
 			if (error instanceof Error) {
 				res.status(500).json({ error: error.message });

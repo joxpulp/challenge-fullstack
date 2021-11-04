@@ -1,5 +1,6 @@
 import { products } from './schemas/productschema';
 import { NewProductI, ProductI } from './interfaces';
+import { cartModel } from './cart';
 
 class Product {
 
@@ -22,7 +23,7 @@ class Product {
 	}
 
 	async update(id: string, data: NewProductI): Promise<ProductI[]> {
-		let outputUpdate: ProductI[] = [];
+		const outputUpdate: ProductI[] = [];
 		await products.findByIdAndUpdate(
 			id,
 			{ $set: data },
@@ -36,7 +37,9 @@ class Product {
 	}
 
 	async delete(id: string): Promise<ProductI[]> {
-		let outputDelete: ProductI[] = [];
+		
+		const outputDelete: ProductI[] = [];
+
 		const deletedProduct = await products.findByIdAndDelete(id);
 		deletedProduct && outputDelete.push(deletedProduct);
 		return outputDelete;

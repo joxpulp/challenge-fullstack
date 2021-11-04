@@ -51,7 +51,14 @@ export interface UpdateUserI {
 export interface CartI {
 	_id: string | ObjectId;
 	userId?: string;
+	total?: number;
 	cartProducts?: ProductI[];
+}
+export interface PurchaseI {
+	_id: string | ObjectId;
+	userId?: string;
+	total?: number;
+	purchases?: ProductI[];
 }
 
 export declare interface CloudinaryOptions extends Options {
