@@ -78,8 +78,7 @@ class ProductController {
 	async deleteProduct(req: Request, res: Response) {
 		try {
 			const { id } = req.params;
-			// Delete product in cart if exist too
-			await cartModel.delete(req.user!._id, id);
+
 			const [product] = await productModel.get(id);
 
 			await cloudinary.uploader.destroy(product.thumbnail_id!);

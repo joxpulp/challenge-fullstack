@@ -1,9 +1,9 @@
 import { products } from './schemas/productschema';
 import { NewProductI, ProductI } from './interfaces';
 import { cartModel } from './cart';
+import { cart } from './schemas/cartschema';
 
 class Product {
-
 	async get(id?: string): Promise<ProductI[]> {
 		let outputGet: ProductI[] = [];
 
@@ -37,10 +37,21 @@ class Product {
 	}
 
 	async delete(id: string): Promise<ProductI[]> {
-		
 		const outputDelete: ProductI[] = [];
 
 		const deletedProduct = await products.findByIdAndDelete(id);
+
+		// * Deletes the product if is present on all user's cart
+		await cart.updateMany(
+			{},
+			{
+				$inc: { total: -deletedProduct!.price! },
+				$pull: {
+					cartProducts: { _id: id },
+				},
+			}
+		);
+
 		deletedProduct && outputDelete.push(deletedProduct);
 		return outputDelete;
 	}
