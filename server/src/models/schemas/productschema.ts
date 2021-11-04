@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { ProductI } from '../interfaces';
 
-const productsCollection = 'products';
+const productsCollection = 'product';
 
 const productsSchema = new Schema<ProductI>(
 	{
