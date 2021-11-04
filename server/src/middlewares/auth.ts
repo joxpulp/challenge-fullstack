@@ -43,24 +43,12 @@ const signupFunc = async (
 	username: string,
 	password: string,
 	done: any
-) => {
-	try {
-		const { name, lastname, age, cardId, email, address, password } = req.body;
-
-		if (
-			!name ||
-			!lastname ||
-			!age ||
-			!cardId ||
-			!email ||
-			!address ||
-			!password
-		) {
-			return done(null, false, { error: 'Missing fields' });
-		}
+): Promise<VerifyFunctionWithRequest> => {
+	
+		const body = req.body;
 
 		const user = await userModel.findOne({
-			$or: [{ email: email }, { cardId: cardId }],
+			$or: [{ email: body.email }, { cardId: body.cardId }],
 		});
 
 		if (user) {
@@ -74,22 +62,14 @@ const signupFunc = async (
 				format: 'jpg',
 			});
 			const newUser = new userModel({
-				name,
-				lastname,
-				age,
-				cardId,
-				email,
-				address,
-				password,
+				...body,
 				avatar: defaultAvatar.secure_url,
 				avatar_id: defaultAvatar.public_id,
 			});
 			await newUser.save();
 			return done(null, newUser);
 		}
-	} catch (error) {
-		done(error);
-	}
+	
 };
 
 // Create the login with the local strategy, we pass the strategy options and the login logic contained in loginFunc
