@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import cloudinary from '../services/cloudinary';
 import { productModel } from '../models/product';
+import multer from 'multer';
 
 class ProductController {
 	async getProduct(req: Request, res: Response) {
@@ -37,6 +38,8 @@ class ProductController {
 		} catch (error) {
 			if (error instanceof Error) {
 				res.status(500).json({ error: error.message });
+			} else if (error instanceof multer.MulterError) {
+				return res.status(500).json('Max file size 2MB allowed!');
 			}
 		}
 	}
@@ -51,7 +54,7 @@ class ProductController {
 			let thumbnail = product.thumbnail;
 			let thumbnail_id = product.thumbnail_id;
 
-			//* If user upload a new image, previous image is destroyed by passing the thumbnail_id
+			//* If user upload a new image, previous image is destroyed by passing the thumbnail_id,
 			//* Variables thumbnail and thumbnail_id are overwritten by the new image
 			if (req.file) {
 				thumbnail = req.file.path;

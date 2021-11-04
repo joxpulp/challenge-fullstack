@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editUser } from '../../redux/reducers/authReducer';
 import { Form, Formik } from 'formik';
-import * as Yup from 'yup';
 import { Box } from '../../components/Box/Box';
 import { Button } from '../../components/Button/Button';
 import { Text } from '../../components/Text/Text';
@@ -10,6 +9,7 @@ import { Title } from '../../components/Title/Title';
 import EditInput from '../../components/EditInput/EditInput';
 import EditImage from '../../components/EditImage/EditImage';
 import { ImpulseSpinner } from 'react-spinners-kit';
+import { editProfileValidation } from '../../helpers/yup';
 
 
 function UserScreen() {
@@ -44,20 +44,7 @@ function UserScreen() {
 						address: '',
 						avatar: null,
 					}}
-					validationSchema={Yup.object({
-						password: Yup.string().min(
-							8,
-							'Password must be 8 mininum characters'
-						),
-						name: Yup.string().min(3, 'Minium 3 letters'),
-						lastname: Yup.string().min(3, 'Minium 3 letters'),
-						age: Yup.number().min(16, 'You must have 16 or more to register'),
-						cardId: Yup.string().min(8, 'Card Id must be 8 characters'),
-						address: Yup.string().min(
-							10,
-							'Address must have 10 characters or more'
-						),
-					})}
+					validationSchema={editProfileValidation}
 					onSubmit={(values) => {
 						const formData = new FormData();
 						values.name !== '' && formData.append('name', values.name);

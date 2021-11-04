@@ -4,6 +4,8 @@ import { checkBody } from '../middlewares/checkBody';
 import { productExist } from '../middlewares/productExist';
 import { uploadProduct } from '../services/cloudinary';
 import { productController } from '../controllers/products';
+import { validate } from '../middlewares/validate';
+import { addProduct, editUser } from '../helpers/yup';
 
 const router = Router();
 
@@ -12,7 +14,7 @@ router.post(
 	'/add',
 	isAdmin,
 	uploadProduct.single('thumbnail'),
-    checkBody,
+	validate(addProduct),
 	productController.addProduct
 );
 router.put(
@@ -20,6 +22,7 @@ router.put(
 	isAdmin,
 	productExist,
 	uploadProduct.single('thumbnail'),
+	validate(editUser),
 	productController.updateProduct
 );
 router.delete(

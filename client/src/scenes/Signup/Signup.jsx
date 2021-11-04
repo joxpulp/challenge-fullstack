@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
-import * as Yup from 'yup';
 import { Box } from '../../components/Box/Box';
 import Input from '../../components/Input/Input';
 import { Button } from '../../components/Button/Button';
@@ -9,6 +8,7 @@ import { Text } from '../../components/Text/Text';
 import { signup } from '../../redux/reducers/authReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrorMsg, clearSuccessMsg } from '../../redux/reducers/uiReducer';
+import { signupValidation } from '../../helpers/yup';
 
 function Signup() {
 	const dispatch = useDispatch();
@@ -41,29 +41,7 @@ function Signup() {
 						cardId: '',
 						address: '',
 					}}
-					validationSchema={Yup.object({
-						email: Yup.string()
-							.email('The email address is invalid, try again')
-							.required('Email is required'),
-						password: Yup.string()
-							.min(8, 'Password must be 8 mininum characters')
-							.required('Password is required'),
-						name: Yup.string()
-							.min(3, 'Minium 3 letters')
-							.required('Name is Required'),
-						lastname: Yup.string()
-							.min(3, 'Minium 3 letters')
-							.required('Lastname is Required'),
-						age: Yup.number()
-							.min(16, 'You must have 16 or more to register')
-							.required('Age is required'),
-						cardId: Yup.string()
-							.matches(/^\d{8}$/, 'Card Id must be 8 characters')
-							.required('Card Id (DNI) is required'),
-						address: Yup.string()
-							.min(10, 'Address must have 10 characters or more')
-							.required('Address is required'),
-					})}
+					validationSchema={signupValidation}
 					onSubmit={(values) => {
 						dispatch(clearSuccessMsg());
 						dispatch(clearErrorMsg());

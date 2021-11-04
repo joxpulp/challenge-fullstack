@@ -24,7 +24,18 @@ const storageProduct: CloudinaryOptions = {
 	},
 };
 
+const whitelist = ['image/png', 'image/jpeg'];
+
 export const uploadAvatar = multer({ storage: new CloudinaryStorage(storageAvatar) });
-export const uploadProduct = multer({ storage: new CloudinaryStorage(storageProduct) });
+export const uploadProduct = multer({
+	storage: new CloudinaryStorage(storageProduct),
+	fileFilter: (req, file, cb) => {
+		if (!whitelist.includes(file.mimetype)) {
+			return cb(null, false);
+		}
+
+		cb(null, true);
+	},
+});
 
 export default cloudinary

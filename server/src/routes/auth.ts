@@ -2,18 +2,21 @@ import { Router } from 'express';
 import { uploadAvatar } from '../services/cloudinary';
 import { authController } from '../controllers/auth';
 import { isAuth } from '../middlewares/auth';
+import { validate } from '../middlewares/validate';
+import { editUser, login, signup } from '../helpers/yup';
 
 const router = Router();
 
-router.post('/login', authController.login);
+router.post('/login', validate(login), authController.login);
 router.put(
 	'/edituser',
 	isAuth,
 	uploadAvatar.single('avatar'),
+	validate(editUser),
 	authController.editUser
 );
 router.get('/logout', isAuth, authController.logout);
-router.post('/signup', authController.signup);
+router.post('/signup', validate(signup), authController.signup);
 router.get('/islogged', authController.isLogged);
 
 export default router;

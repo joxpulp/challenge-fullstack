@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
-import * as Yup from 'yup';
 import { Box } from '../../components/Box/Box';
 import Input from '../../components/Input/Input';
 import { Button } from '../../components/Button/Button';
@@ -11,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/reducers/authReducer';
 import { ImpulseSpinner } from 'react-spinners-kit';
 import { clearErrorMsg } from '../../redux/reducers/uiReducer';
+import { loginValidation } from '../../helpers/yup';
 
 function Login() {
 	const history = useHistory();
@@ -45,14 +45,7 @@ function Login() {
 						email: '',
 						password: '',
 					}}
-					validationSchema={Yup.object({
-						email: Yup.string()
-							.email('The email address is invalid, try again')
-							.required('Required'),
-						password: Yup.string()
-							.min(8, 'Password must be 8 mininum characters')
-							.required('Required'),
-					})}
+					validationSchema={loginValidation}
 					onSubmit={({ email, password }) => {
 						dispatch(clearErrorMsg());
 						dispatch(login({ email, password }));
