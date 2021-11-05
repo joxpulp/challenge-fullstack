@@ -99,6 +99,13 @@ const authSlice = createSlice({
 					logged: action.payload.logged,
 				};
 			})
+			.addCase(isLogged.rejected, (state, action) => {
+				return {
+					...state,
+					userData: {},
+					logged: action.payload.logged,
+				};
+			})
 			.addCase(editUser.fulfilled, (state, action) => {
 				return {
 					...state,

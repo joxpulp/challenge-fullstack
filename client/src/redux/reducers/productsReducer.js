@@ -24,6 +24,46 @@ export const getProductById = createAsyncThunk(
 		}
 	}
 );
+export const addProduct = createAsyncThunk(
+	'products/addProduct',
+	async (body, { rejectWithValue }) => {
+		try {
+			await apiCommerce.post(`/api/products/add`, body);
+			const {
+				data: { products },
+			} = await apiCommerce.get('/api/products/list');
+			return products;
+		} catch ({ response: { data } }) {
+			return rejectWithValue(data.error);
+		}
+	}
+);
+export const editProduct = createAsyncThunk(
+	'products/editProduct',
+	async (data, { rejectWithValue }) => {
+		try {
+			const {data: product} = await apiCommerce.put(`/api/products/update/${data.id}`, data.formData);
+			return product;
+		} catch ({ response: { data } }) {
+			return rejectWithValue(data.error);
+		}
+	}
+);
+export const deleteProduct = createAsyncThunk(
+	'products/deleteProduct',
+	async (id, { rejectWithValue }) => {
+		try {
+			await apiCommerce.delete(`/api/products/delete/${id}`);
+
+			const {
+				data: { products },
+			} = await apiCommerce.get('/api/products/list');
+			return products;
+		} catch ({ response: { data } }) {
+			return rejectWithValue(data.error);
+		}
+	}
+);
 
 const initialState = {
 	products: [],
@@ -65,6 +105,42 @@ const productSlice = createSlice({
 				return {
 					...state,
 					product: [],
+				};
+			})
+			.addCase(addProduct.fulfilled, (state, action) => {
+				return {
+					...state,
+					products: action.payload,
+				};
+			})
+			.addCase(addProduct.rejected, (state, action) => {
+				return {
+					...state,
+					products: [],
+				};
+			})
+			.addCase(editProduct.fulfilled, (state, action) => {
+				return {
+					...state,
+					product: action.payload.updatedProduct,
+				};
+			})
+			.addCase(editProduct.rejected, (state, action) => {
+				return {
+					...state,
+					products: [],
+				};
+			})
+			.addCase(deleteProduct.fulfilled, (state, action) => {
+				return {
+					...state,
+					products: action.payload,
+				};
+			})
+			.addCase(deleteProduct.rejected, (state, action) => {
+				return {
+					...state,
+					products: [],
 				};
 			});
 	},

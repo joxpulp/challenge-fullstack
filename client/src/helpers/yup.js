@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 
-
 export const loginValidation = Yup.object({
 	email: Yup.string()
 		.email('The email address is invalid, try again')
@@ -39,4 +38,32 @@ export const editProfileValidation = Yup.object({
 	age: Yup.number().min(16, 'You must have 16 or more to register'),
 	cardId: Yup.string().min(8, 'Card Id must be 8 characters'),
 	address: Yup.string().min(10, 'Address must have 10 characters or more'),
+});
+
+export const addProductValidation = Yup.object({
+	name: Yup.string()
+		.min(3, 'Minium 3 characters')
+		.required('Product name is required'),
+	description: Yup.string()
+		.min(50, 'Description must have 50 characters or more')
+		.required('Product description is required'),
+	category: Yup.string()
+		.min(3, 'Min 3 characters')
+		.required('Product category is required'),
+	price: Yup.number()
+		.min(10, 'Min price is 10')
+		.max(30000, 'Max price is 30000')
+		.required('Product price is required'),
+});
+
+export const editProductValidation = Yup.object({
+	name: Yup.string().min(3, 'Minium 3 characters'),
+	description: Yup.string().min(
+		50,
+		'Description must have 50 characters or more'
+	),
+	category: Yup.string().min(3, 'Min 3 characters'),
+	price: Yup.number()
+		.min(10, 'Min price is 10')
+		.max(30000, 'Max price is 30000'),
 });

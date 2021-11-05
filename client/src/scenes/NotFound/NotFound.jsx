@@ -5,11 +5,12 @@ import { Image } from '../../components/Image/Image';
 import { Button } from '../../components/Button/Button';
 import notfound from '../../services/svg/404.svg';
 import { useHistory } from 'react-router-dom';
+import { Section } from '../../components/Section/Section';
 
 function NotFound() {
 	const history = useHistory();
 	return (
-		<Box
+		<Section
 			flexDirection='column'
 			width='100%'
 			height='100vh'
@@ -26,7 +27,7 @@ function NotFound() {
 			>
 				Back to Shop
 			</Button>
-		</Box>
+		</Section>
 	);
 }
 

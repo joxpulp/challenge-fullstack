@@ -6,8 +6,11 @@ import { Title } from '../../components/Title/Title';
 import { getCart } from '../../redux/reducers/cartReducer';
 import { getProducts } from '../../redux/reducers/productsReducer';
 import ProductCard from '../ProductCard/ProductCard';
-import NoResults from '../../components/NoResults/NoResults'
+import NoResults from '../../components/NoResults/NoResults';
 import { CubeSpinner } from 'react-spinners-kit';
+import { AnimatePresence } from 'framer-motion';
+import { Main } from '../../components/Main/Main';
+import { Section } from '../../components/Section/Section';
 
 function Shop() {
 	const dispatch = useDispatch();
@@ -20,12 +23,21 @@ function Shop() {
 	}, [dispatch]);
 
 	if (products.length === 0) {
-		return (<NoResults>No products in db</NoResults>)
+		return (
+			<AnimatePresence exitBeforeEnter>
+				<NoResults>No products in db</NoResults>
+			</AnimatePresence>
+		);
 	}
 
 	return (
-		<Box as='main' flexDirection='column'>
-			<Box as='section' bg='black' color='white' height='216px' width='100%'>
+		<Main
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			flexDirection='column'
+		>
+			<Section bg='black' color='white' height='216px' width='100%'>
 				<Box
 					flexDirection='column'
 					justifyContent='center'
@@ -37,14 +49,13 @@ function Shop() {
 						latest releases
 					</Text>
 				</Box>
-			</Box>
+			</Section>
 			{loading ? (
 				<Box height='80vh' alignItems='center' justifyContent='center'>
 					<CubeSpinner size={100} frontColor='#aaaaaa' />
 				</Box>
 			) : (
-				<Box
-					as='section'
+				<Section
 					flexDirection='column'
 					display='grid'
 					gridTemplateColumns={[
@@ -55,8 +66,6 @@ function Shop() {
 					gridGap='30px'
 					py='54px'
 					px={['20px', '20px', '145px']}
-					initial={{opacity: 0}}
-					animate={{opacity: 1}}
 				>
 					{products.map((product) => (
 						<ProductCard
@@ -67,9 +76,9 @@ function Shop() {
 							id={product._id}
 						/>
 					))}
-				</Box>
+				</Section>
 			)}
-		</Box>
+		</Main>
 	);
 }
 

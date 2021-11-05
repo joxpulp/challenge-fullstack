@@ -11,6 +11,8 @@ import { login } from '../../redux/reducers/authReducer';
 import { ImpulseSpinner } from 'react-spinners-kit';
 import { clearErrorMsg, clearSuccessMsg } from '../../redux/reducers/uiReducer';
 import { loginValidation } from '../../helpers/yup';
+import { Main } from '../../components/Main/Main';
+import { Section } from '../../components/Section/Section';
 
 function Login() {
 	const history = useHistory();
@@ -25,24 +27,22 @@ function Login() {
 	};
 
 	return (
-		<Box
-			as='main'
+		<Main
 			alignItems='center'
 			justifyContent='center'
 			width='100%'
-			my='50px'
-			initial={{ opacity: 0, x: -100 }}
-			animate={{ opacity: 1, x: 0 }}
-			exit={{ opacity: 0, x: 100 }}
+			my='50px'	
 		>
-			<Box
-				as='section'
+			<Section
 				bg='white'
 				width={['90%', '90%', '50%']}
 				height='500px'
 				alignItems='center'
 				boxShadow='0px 0px 25px 10px #F6F4FD'
 				p='10px'
+				initial={{ opacity: 0, x: '-90%' }}
+				animate={{ opacity: 1, x: 0 }}
+				exit={{ opacity: 0, x: '-90%' }}
 			>
 				<Formik
 					initialValues={{
@@ -108,8 +108,8 @@ function Login() {
 						</Box>
 					</Form>
 				</Formik>
-			</Box>
-		</Box>
+			</Section>
+		</Main>
 	);
 }
 

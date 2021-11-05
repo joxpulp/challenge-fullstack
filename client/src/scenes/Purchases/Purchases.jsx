@@ -7,6 +7,8 @@ import { getCart } from '../../redux/reducers/cartReducer';
 import { getPurchase } from '../../redux/reducers/purchaseReducer';
 import PurchaseCard from '../PurchaseCard/PurchaseCard';
 import NoResults from '../../components/NoResults/NoResults';
+import { Main } from '../../components/Main/Main';
+import { Section } from '../../components/Section/Section';
 
 const Purchases = () => {
 	const dispatch = useDispatch();
@@ -22,8 +24,8 @@ const Purchases = () => {
 	}
 
 	return (
-		<Box as='main' flexDirection='column'>
-			<Box as='section' bg='black' color='white' height='216px' width='100%'>
+		<Main flexDirection='column'>
+			<Section bg='black' color='white' height='216px' width='100%'>
 				<Box
 					flexDirection='column'
 					justifyContent='center'
@@ -32,9 +34,8 @@ const Purchases = () => {
 					<Title>Your Purchases</Title>
 					<Text>This are your last purchases</Text>
 				</Box>
-			</Box>
-			<Box
-				as='section'
+			</Section>
+			<Section
 				flexDirection='column'
 				display='grid'
 				gridTemplateColumns={[
@@ -54,8 +55,8 @@ const Purchases = () => {
 						thumbnail={product.thumbnail}
 					/>
 				))}
-			</Box>
-		</Box>
+			</Section>
+		</Main>
 	);
 };
 

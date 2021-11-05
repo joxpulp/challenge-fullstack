@@ -9,27 +9,30 @@ import { signup } from '../../redux/reducers/authReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrorMsg, clearSuccessMsg } from '../../redux/reducers/uiReducer';
 import { signupValidation } from '../../helpers/yup';
+import { Main } from '../../components/Main/Main';
+import { Section } from '../../components/Section/Section';
+import { useHistory } from 'react-router-dom';
 
 function Signup() {
+
+	const history = useHistory();
+
 	const dispatch = useDispatch();
-	const { errorMsg, successMsg  } = useSelector((state) => state.ui);
+	const { errorMsg, successMsg } = useSelector((state) => state.ui);
 
 	return (
-		<Box
-			as='main'
-			alignItems='center'
-			justifyContent='center'
-			width='100%'
-			my='50px'
-		>
-			<Box
-				as='section'
+		<Main alignItems='center' justifyContent='center' width='100%' my='50px'>
+			<Section
 				bg='white'
+				overflow='hidden'
 				width={['90%', '90%', '50%']}
 				height='850px'
 				alignItems='center'
 				boxShadow='0px 0px 25px 10px #F6F4FD'
 				p='10px'
+				initial={{ opacity: 0, x: '80%' }}
+				animate={{ opacity: 1, x: 0 }}
+				exit={{ opacity: 0, x: '80%' }}
 			>
 				<Formik
 					initialValues={{
@@ -95,13 +98,18 @@ function Signup() {
 							type='text'
 							placeholder='Address*'
 						/>
-						<Button bg='black' color='white' my='20px' type='submit'>
-							Signup
-						</Button>
+						<Box alignItems='center'>
+							<Button bg='black' color='white' mr='10px' type='submit'>
+								Signup
+							</Button>
+							<Button onClick={() => history.push('/login')}   type='button'>
+								Go Back
+							</Button>
+						</Box>
 					</Form>
 				</Formik>
-			</Box>
-		</Box>
+			</Section>
+		</Main>
 	);
 }
 

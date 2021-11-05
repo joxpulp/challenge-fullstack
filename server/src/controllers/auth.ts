@@ -19,6 +19,7 @@ class AuthController {
 							cardId: user.cardId,
 							address: user.address,
 							avatar: user.avatar,
+							isAdmin: user.isAdmin
 						},
 						logged: true,
 					});

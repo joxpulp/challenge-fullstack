@@ -10,7 +10,8 @@ import EditInput from '../../components/EditInput/EditInput';
 import EditImage from '../../components/EditImage/EditImage';
 import { ImpulseSpinner } from 'react-spinners-kit';
 import { editProfileValidation } from '../../helpers/yup';
-
+import { Main } from '../../components/Main/Main';
+import { Section } from '../../components/Section/Section';
 
 function UserScreen() {
 	const dispatch = useDispatch();
@@ -18,14 +19,14 @@ function UserScreen() {
 	const { loading } = useSelector((state) => state.ui);
 
 	return (
-		<Box
-			as='main'
+		<Main
+			
 			alignItems='center'
 			justifyContent='center'
 			width='100%'
 			my='50px'
 		>
-			<Box
+			<Section
 				as='section'
 				bg='white'
 				width={['90%', '90%', '50%']}
@@ -76,6 +77,7 @@ function UserScreen() {
 								Click on the image to upload a new avatar
 							</Text>
 							<EditImage
+								currentImage={userData.avatar}
 								label='avatar'
 								file={values.avatar}
 								onCancel={() => setFieldValue('avatar', null)}
@@ -150,8 +152,8 @@ function UserScreen() {
 						</Form>
 					)}
 				</Formik>
-			</Box>
-		</Box>
+			</Section>
+		</Main>
 	);
 }
 

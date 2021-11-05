@@ -17,12 +17,19 @@ import UserScreen from './scenes/UserScreen/UserScreen';
 import CartScreen from './scenes/CartScreen/CartScreen';
 import Purchases from './scenes/Purchases/Purchases';
 import { AnimatePresence } from 'framer-motion';
+import AdminPanel from './scenes/AdminPanel/AdminPanel';
+import AdProductEdit from './scenes/AdProductEdit/AdProductEdit';
+import AdProductAdd from './scenes/AdProductAdd/AdProductAdd';
 
 function App() {
 	const dispatch = useDispatch();
 
 	const { logged } = useSelector((state) => state.auth);
+	const { userData } = useSelector((state) => state.auth);
+
 	const location = useLocation();
+
+	console.log(location);
 
 	useEffect(() => {
 		dispatch(isLogged());
@@ -52,6 +59,22 @@ function App() {
 						isAuth={logged}
 						path='/purchases'
 						component={Purchases}
+					/>
+					<PrivateRoute
+						exact
+						isAuth={userData.isAdmin || false}
+						path='/adminpanel'
+						component={AdminPanel}
+					/>
+					<PrivateRoute
+						isAuth={userData.isAdmin || false}
+						path='/adminpanel/productedit/:id'
+						component={AdProductEdit}
+					/>
+					<PrivateRoute
+						isAuth={userData.isAdmin || false}
+						path='/adminpanel/add'
+						component={AdProductAdd}
 					/>
 					<Route path='*' component={NotFound} />
 				</Switch>

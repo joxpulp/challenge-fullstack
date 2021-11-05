@@ -1,14 +1,15 @@
-import React from 'react';
 import { useField } from 'formik';
+import React from 'react';
 import { Box } from '../Box/Box';
-import { BaseInput } from './BaseInput/Input';
 import { Text } from '../Text/Text';
+import { BaseTextarea } from './BaseTextarea';
 
-function Input({ label, ...props }) {
+function Textarea({ label, ...props }) {
 	const [field, meta] = useField(props);
+
 	return (
 		<Box m='20px' flexDirection='column' width='100%' alignItems='center'>
-			<BaseInput width={['60%', '60%', '30%']}   {...field} {...props} />
+			<BaseTextarea width={['60%', '60%', '30%']} {...field} {...props} />
 			{meta.touched && meta.error && (
 				<Text mt='3px' color='red'>
 					{meta.error}
@@ -18,4 +19,4 @@ function Input({ label, ...props }) {
 	);
 }
 
-export default Input;
+export default Textarea;

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Box } from '../Box/Box';
 import { Image } from '../Image/Image';
 import cancel from '../../services/svg/cancel.svg';
 
-function EditImage({ file, label, onCancel }) {
+function EditImage({ currentImage, file, label, onCancel }) {
 	const [previewImage, setPreviewImage] = useState(null);
-	const { userData } = useSelector((state) => state.auth);
 
 	const reader = new FileReader();
 	file && reader.readAsDataURL(file);
@@ -38,7 +36,7 @@ function EditImage({ file, label, onCancel }) {
 					cursor='pointer'
 					width='150px'
 					m='10px'
-					src={previewImage ? previewImage : userData.avatar}
+					src={previewImage ? previewImage : currentImage}
 				/>
 			</label>
 		</Box>
