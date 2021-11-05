@@ -10,6 +10,7 @@ import cart from '../../services/svg/cart.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import UserMenu from '../UserMenu/UserMenu';
 import { setUserMenu } from '../../redux/reducers/uiReducer';
+import { Text } from '../../components/Text/Text';
 
 function Header() {
 	const {
@@ -18,15 +19,20 @@ function Header() {
 
 	const dispatch = useDispatch();
 	const { userData, logged } = useSelector((state) => state.auth);
+	const { cartData } = useSelector((state) => state.cart);
 	const { userMenu } = useSelector((state) => state.ui);
 
 	useEffect(() => {
 		localStorage.setItem('userData', JSON.stringify(userData));
 	}, [userData]);
 
+	useEffect(() => {
+		localStorage.setItem('cartData', JSON.stringify(cartData));
+	}, [cartData]);
+
 	const handleUserMenu = () => {
-		dispatch(setUserMenu(false))
-	}
+		dispatch(setUserMenu(false));
+	};
 
 	return (
 		<Box
@@ -57,9 +63,12 @@ function Header() {
 					</Link>
 				</GroupList>
 				<GroupList justifyContent='space-evenly'>
-					<ListItem mr='20px' onClick={handleUserMenu}>
-						<Image src={cart} />
-					</ListItem>
+					<Link to='/cart'>
+						<Box alignItems='center' mr='20px' onClick={handleUserMenu}>
+							<Image mr='5px' src={cart} />
+							<Text>{logged && cartData.length !== 0 && cartData.length}</Text>
+						</Box>
+					</Link>
 					<Box height='100%' alignItems='center'>
 						{logged ? (
 							<>

@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { editUser, login, logout, signup } from './authReducer';
+import { addProductCart, getCart, removeProductCart } from './cartReducer';
 import { getProductById } from './productsReducer';
+import { getPurchase, purchase } from './purchaseReducer';
 
 const initialState = {
 	loading: false,
@@ -115,6 +117,90 @@ const uiSlice = createSlice({
 					...state,
 					loading: false,
 					errorMsg: action.payload.error,
+				};
+			})
+			.addCase(getCart.pending, (state, action) => {
+				return {
+					...state,
+					loading: true,
+				};
+			})
+			.addCase(getCart.fulfilled, (state, action) => {
+				return {
+					...state,
+					loading: false,
+				};
+			})
+			.addCase(getCart.rejected, (state, action) => {
+				return {
+					...state,
+					loading: false,
+				};
+			})
+			.addCase(addProductCart.rejected, (state, action) => {
+				return {
+					...state,
+					loading: false,
+					errorMsg: action.payload.error,
+				};
+			})
+			.addCase(addProductCart.pending, (state, action) => {
+				return {
+					...state,
+					loading: true,
+				};
+			})
+			.addCase(addProductCart.fulfilled, (state, action) => {
+				return {
+					...state,
+					successMsg: 'Product added to cart',
+					loading: false,
+				};
+			})
+			.addCase(removeProductCart.rejected, (state, action) => {
+				return {
+					...state,
+					errorMsg: action.payload.error,
+					loading: false,
+				};
+			})
+			.addCase(getPurchase.pending, (state, action) => {
+				return {
+					...state,
+					loading: true,
+				};
+			})
+			.addCase(getPurchase.fulfilled, (state, action) => {
+				return {
+					...state,
+					loading: false,
+				};
+			})
+			.addCase(getPurchase.rejected, (state, action) => {
+				return {
+					...state,
+					errorMsg: action.payload.error,
+					loading: false,
+				};
+			})
+			.addCase(purchase.pending, (state, action) => {
+				return {
+					...state,
+					loading: true,
+				};
+			})
+			.addCase(purchase.fulfilled, (state, action) => {
+				return {
+					...state,
+					successMsg: 'Purchase Completed',
+					loading: false,
+				};
+			})
+			.addCase(purchase.rejected, (state, action) => {
+				return {
+					...state,
+					errorMsg: action.payload.error,
+					loading: false,
 				};
 			});
 	},

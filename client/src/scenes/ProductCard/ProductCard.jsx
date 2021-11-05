@@ -25,6 +25,8 @@ function ProductCard({ name, price, thumbnail, id }) {
 			flexDirection='column'
 			width='100%'
 			cursor='pointer'
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
 		>
 			<Image borderRadius='5px' width='100%' src={thumbnail} alt='productImg' />
 			<Title my='15px'>{name}</Title>

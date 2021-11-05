@@ -10,8 +10,8 @@ class CartController {
 				const findById = await cartModel.get(req.user!._id!, id_product);
 				return res.json({ product: findById });
 			} else {
-				const findAll = await cartModel.get(req.user!._id!);
-				return res.json({ cart: findAll });
+				const [findAll] = await cartModel.get(req.user!._id!);
+				return res.json(findAll);
 			}
 		} catch (error) {
 			if (error instanceof Error) {

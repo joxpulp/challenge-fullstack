@@ -8,6 +8,7 @@ import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 import { getProductById } from '../../redux/reducers/productsReducer';
 import { CubeSpinner } from 'react-spinners-kit';
+import { addProductCart } from '../../redux/reducers/cartReducer';
 
 function ProductScreen() {
 	const { id } = useParams();
@@ -17,12 +18,16 @@ function ProductScreen() {
 	const { product } = useSelector((state) => state.products);
 	const { loading, errorMsg } = useSelector((state) => state.ui);
 
+	const handleCart = () => {
+		dispatch(addProductCart(id));
+	};
+
 	useEffect(() => {
 		dispatch(getProductById(id));
 	}, [dispatch, id]);
 
 	if (errorMsg) {
-		return <Redirect to='/*' />;
+		return <Redirect to='/login' />;
 	}
 
 	return (
@@ -48,11 +53,14 @@ function ProductScreen() {
 						boxShadow='0px 0px 25px 10px #F6F4FD'
 						p='5px'
 						key={product._id}
+						initial={{ opacity: 0, x: -100 }}
+						animate={{ opacity: 1, x: 0 }}
+						exit={{ opacity: 0, x: 100 }}
 					>
-						<Image width='100%' src={product.thumbnail} />
+						<Image width={['100%', '100%', '50%']} src={product.thumbnail} />
 						<Box
 							width='100%'
-							p={['5px', '5px', '20px']}
+							p={['5px', '5px', '10px', '20px']}
 							flexDirection='column'
 							justifyContent='center'
 						>
@@ -63,7 +71,7 @@ function ProductScreen() {
 							</Text>
 							<Text fontSize='12px'>{product.description}</Text>
 							<Box mt='20px'>
-								<Button mr='10px' bg='black' color='white'>
+								<Button onClick={handleCart} mr='10px' bg='black' color='white'>
 									Add to cart
 								</Button>
 								<Button onClick={() => history.push('/')}>Go Back</Button>

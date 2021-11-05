@@ -5,11 +5,17 @@ import { Box } from '../../components/Box/Box';
 import { GroupList } from '../../components/GroupList/GroupList';
 import { ListItem } from '../../components/ListItem/ListItem';
 import { logout } from '../../redux/reducers/authReducer';
-import { setUserMenu } from '../../redux/reducers/uiReducer';
+import { clearErrorMsg, clearSuccessMsg, setUserMenu } from '../../redux/reducers/uiReducer';
 
 const UserMenu = () => {
 
     const dispatch = useDispatch()
+	
+	const handleLogout = () => {
+		dispatch(logout());
+		dispatch(clearSuccessMsg())
+		dispatch(clearErrorMsg())
+	}
 
 	return (
 		<Box
@@ -21,14 +27,17 @@ const UserMenu = () => {
 			justifyContent='center'
 			bg='#1d1d1dfd'
 			color='#e4e4e4'
-			height='100px'
+			height='150px'
 			boxShadow='0px 0px 5px 2px #636363'
 		>
 			<GroupList display='flex' flexDirection='column' alignItems='center'>
 				<Link to='/profile' onClick={() => dispatch(setUserMenu(false))}>
 					<ListItem mb='20px'>Edit User</ListItem>
 				</Link>
-				<ListItem onClick={() => dispatch(logout())}>Logout</ListItem>
+				<Link to='/purchases' onClick={() => dispatch(setUserMenu(false))}>
+					<ListItem mb='20px'>Purchases</ListItem>
+				</Link>
+				<ListItem onClick={handleLogout}>Logout</ListItem>
 			</GroupList>
 		</Box>
 	);

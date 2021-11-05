@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/reducers/authReducer';
 import { ImpulseSpinner } from 'react-spinners-kit';
-import { clearErrorMsg } from '../../redux/reducers/uiReducer';
+import { clearErrorMsg, clearSuccessMsg } from '../../redux/reducers/uiReducer';
 import { loginValidation } from '../../helpers/yup';
 
 function Login() {
@@ -20,8 +20,9 @@ function Login() {
 
 	const handleClickSignup = () => {
 		history.push('/signup');
-		dispatch(clearErrorMsg())
-	}
+		dispatch(clearErrorMsg());
+		dispatch(clearSuccessMsg());
+	};
 
 	return (
 		<Box
@@ -30,6 +31,9 @@ function Login() {
 			justifyContent='center'
 			width='100%'
 			my='50px'
+			initial={{ opacity: 0, x: -100 }}
+			animate={{ opacity: 1, x: 0 }}
+			exit={{ opacity: 0, x: 100 }}
 		>
 			<Box
 				as='section'

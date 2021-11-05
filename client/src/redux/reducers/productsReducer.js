@@ -49,6 +49,12 @@ const productSlice = createSlice({
 					products: action.payload,
 				};
 			})
+			.addCase(getProducts.rejected, (state, action) => {
+				return {
+					...state,
+					products: [],
+				};
+			})
 			.addCase(getProductById.fulfilled, (state, action) => {
 				return {
 					...state,
