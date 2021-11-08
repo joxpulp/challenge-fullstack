@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from 'react';
 import { ThemeContext } from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserMenu } from '../../reducers/uiReducer';
 import { Link } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
 import { Title } from '../../components/Title/Title';
 import { GroupList } from '../../components/GroupList/GroupList';
 import { ListItem } from '../../components/ListItem/ListItem';
+import { Text } from '../../components/Text/Text';
 import { Image } from '../../components/Image/Image';
 import cart from '../../services/svg/cart.svg';
-import { useDispatch, useSelector } from 'react-redux';
 import UserMenu from '../UserMenu/UserMenu';
-import { setUserMenu } from '../../redux/reducers/uiReducer';
-import { Text } from '../../components/Text/Text';
 
 function Header() {
 	const {

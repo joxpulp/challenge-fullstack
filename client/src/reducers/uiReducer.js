@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { editUser, login, logout, signup } from './authReducer';
-import { addProductCart, getCart, removeProductCart } from './cartReducer';
-import { getProductById } from './productsReducer';
-import { getPurchase, purchase } from './purchaseReducer';
+import { editUser, login, logout, signup } from './auth/authReducer';
+import { addProductCart, getCart, removeProductCart } from './cart/cartReducer';
+import { getProductById } from './products/productsReducer';
+import { getPurchase, purchase } from './purchase/purchaseReducer';
 
 const initialState = {
 	loading: false,

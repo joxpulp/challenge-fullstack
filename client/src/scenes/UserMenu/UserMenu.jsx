@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../reducers/auth/authReducer';
+import { clearSuccessMsg, setUserMenu } from '../../reducers/uiReducer';
 import { Link, Redirect } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
 import { GroupList } from '../../components/GroupList/GroupList';
 import { ListItem } from '../../components/ListItem/ListItem';
-import { logout } from '../../redux/reducers/authReducer';
-import { clearSuccessMsg, setUserMenu } from '../../redux/reducers/uiReducer';
 
 const UserMenu = () => {
 	const dispatch = useDispatch();

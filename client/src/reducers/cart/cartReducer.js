@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { apiCommerce } from '../../services/api/ecommerce';
-import { logout } from './authReducer';
+import { logout } from '../auth/authReducer';
 
 export const getCart = createAsyncThunk(
 	'cart/getCart',

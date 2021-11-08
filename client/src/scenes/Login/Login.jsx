@@ -1,18 +1,18 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../reducers/auth/authReducer';
+import { clearErrorMsg, clearSuccessMsg } from '../../reducers/uiReducer';
 import { Form, Formik } from 'formik';
+import { loginValidation } from '../../helpers/yup';
 import { Box } from '../../components/Box/Box';
-import Input from '../../components/Input/Input';
 import { Button } from '../../components/Button/Button';
 import { Title } from '../../components/Title/Title';
 import { Text } from '../../components/Text/Text';
-import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../redux/reducers/authReducer';
-import { ImpulseSpinner } from 'react-spinners-kit';
-import { clearErrorMsg, clearSuccessMsg } from '../../redux/reducers/uiReducer';
-import { loginValidation } from '../../helpers/yup';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
+import Input from '../../components/Input/Input';
+import { ImpulseSpinner } from 'react-spinners-kit';
 
 function Login() {
 	const history = useHistory();

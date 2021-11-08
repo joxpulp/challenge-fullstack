@@ -1,17 +1,17 @@
 import React from 'react';
-import { Form, Formik } from 'formik';
-import { Box } from '../../components/Box/Box';
-import Input from '../../components/Input/Input';
-import { Button } from '../../components/Button/Button';
-import { Title } from '../../components/Title/Title';
-import { Text } from '../../components/Text/Text';
-import { signup } from '../../redux/reducers/authReducer';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearErrorMsg, clearSuccessMsg } from '../../redux/reducers/uiReducer';
+import { signup } from '../../reducers/auth/authReducer';
+import { clearErrorMsg, clearSuccessMsg } from '../../reducers/uiReducer';
+import { Form, Formik } from 'formik';
 import { signupValidation } from '../../helpers/yup';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
-import { useHistory } from 'react-router-dom';
+import { Box } from '../../components/Box/Box';
+import { Title } from '../../components/Title/Title';
+import { Text } from '../../components/Text/Text';
+import { Button } from '../../components/Button/Button';
+import Input from '../../components/Input/Input';
 
 function Signup() {
 

@@ -3,18 +3,18 @@ import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
 import { addProductValidation } from '../../helpers/yup';
-import { addProduct } from '../../redux/reducers/productsReducer';
+import { addProduct } from '../../reducers/products/productsReducer';
+import { Main } from '../../components/Main/Main';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 import { ImpulseSpinner } from 'react-spinners-kit';
+import { Section } from '../../components/Section/Section';
 import { Box } from '../../components/Box/Box';
 import { Button } from '../../components/Button/Button';
-import EditImage from '../../components/EditImage/EditImage';
-import { Main } from '../../components/Main/Main';
-import { Section } from '../../components/Section/Section';
-import uploadphoto from '../../services/svg/uploadphoto.svg';
 import Input from '../../components/Input/Input';
+import EditImage from '../../components/EditImage/EditImage';
 import Textarea from '../../components/Textarea/Textarea';
+import uploadphoto from '../../services/svg/uploadphoto.svg';
 
 const AdProductAdd = () => {
 	const history = useHistory();
@@ -70,11 +70,9 @@ const AdProductAdd = () => {
 							}}
 						>
 							<Title my='10px'>Add a new product</Title>
-
 							<Text color='#A9ABBD'>
 								Click on the image to upload a new thumbnail
 							</Text>
-
 							<EditImage
 								currentImage={uploadphoto}
 								label='thumbnail'
@@ -94,7 +92,6 @@ const AdProductAdd = () => {
                                 type='text'
 								placeholder='Description*'
 							/>
-
 							<Input
 								id='category'
 								name='category'

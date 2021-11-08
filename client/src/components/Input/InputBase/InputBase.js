@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { space, color, typography, layout, flexbox, position } from 'styled-system';
 import { motion } from 'framer-motion';
 
-export const BaseInput = styled(motion.input)`
+export const InputBase = styled(motion.input)`
 	${space}
 	${color}
 	${typography}

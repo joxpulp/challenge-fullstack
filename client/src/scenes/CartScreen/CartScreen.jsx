@@ -10,8 +10,8 @@ import NoResults from '../../components/NoResults/NoResults';
 import { Section } from '../../components/Section/Section';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
-import { getCart } from '../../redux/reducers/cartReducer';
-import { purchase } from '../../redux/reducers/purchaseReducer';
+import { getCart } from '../../reducers/cart/cartReducer';
+import { purchase } from '../../reducers/purchase/purchaseReducer';
 import CartCard from '../CartCard/CartCard';
 
 function CartScreen() {

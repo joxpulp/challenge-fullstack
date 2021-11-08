@@ -6,7 +6,7 @@ import { editProductValidation } from '../../helpers/yup';
 import {
 	editProduct,
 	getProductById,
-} from '../../redux/reducers/productsReducer';
+} from '../../reducers/products/productsReducer';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 import { ImpulseSpinner } from 'react-spinners-kit';

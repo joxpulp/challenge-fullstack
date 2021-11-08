@@ -66,6 +66,7 @@ export const editUser = createAsyncThunk(
 
 const initialState = {
 	userData: JSON.parse(localStorage.getItem('userData')) || {},
+	logged: false,
 };
 
 const authSlice = createSlice({
@@ -90,8 +91,8 @@ const authSlice = createSlice({
 				return {
 					...state,
 					userData: {},
-					logged: action.payload.logged
-				}
+					logged: action.payload.logged,
+				};
 			})
 			.addCase(isLogged.fulfilled, (state, action) => {
 				return {

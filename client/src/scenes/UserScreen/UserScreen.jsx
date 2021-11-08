@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editUser } from '../../redux/reducers/authReducer';
+import { editUser } from '../../reducers/auth/authReducer';
 import { Form, Formik } from 'formik';
 import { Box } from '../../components/Box/Box';
 import { Button } from '../../components/Button/Button';

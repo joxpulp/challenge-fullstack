@@ -6,7 +6,7 @@ import { Button } from '../../components/Button/Button';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
 import { Title } from '../../components/Title/Title';
-import { getProducts } from '../../redux/reducers/productsReducer';
+import { getProducts } from '../../reducers/products/productsReducer';
 import AdProductCard from '../AdProductCard/AdProductCard';
 
 function AdminPanel() {

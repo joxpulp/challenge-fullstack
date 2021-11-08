@@ -5,7 +5,7 @@ import { Box } from '../../components/Box/Box';
 import { Button } from '../../components/Button/Button';
 import { Image } from '../../components/Image/Image';
 import { Title } from '../../components/Title/Title';
-import { clearProduct, deleteProduct } from '../../redux/reducers/productsReducer';
+import { clearProduct, deleteProduct } from '../../reducers/products/productsReducer';
 
 function AdProductCard({ name, thumbnail, id}) {
 

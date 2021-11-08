@@ -4,7 +4,7 @@ import { Box } from '../../components/Box/Box';
 import { Image } from '../../components/Image/Image';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
-import { removeProductCart } from '../../redux/reducers/cartReducer';
+import { removeProductCart } from '../../reducers/cart/cartReducer';
 
 const CartCard = ({ name, price, thumbnail, productId }) => {
 

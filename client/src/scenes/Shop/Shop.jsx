@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
+import { getCart } from '../../reducers/cart/cartReducer';
+import { getProducts } from '../../reducers/products/productsReducer';
 import { Box } from '../../components/Box/Box';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
-import { getCart } from '../../redux/reducers/cartReducer';
-import { getProducts } from '../../redux/reducers/productsReducer';
-import ProductCard from '../ProductCard/ProductCard';
-import NoResults from '../../components/NoResults/NoResults';
-import { CubeSpinner } from 'react-spinners-kit';
-import { AnimatePresence } from 'framer-motion';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
+import { CubeSpinner } from 'react-spinners-kit';
+import ProductCard from '../ProductCard/ProductCard';
+import NoResults from '../../components/NoResults/NoResults';
 
 function Shop() {
 	const dispatch = useDispatch();

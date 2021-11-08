@@ -12,7 +12,7 @@ import Signup from './scenes/Signup/Signup';
 import PublicRoute from './routers/PublicRoute/PublicRoute';
 import PrivateRoute from './routers/PrivateRoute/PrivateRoute';
 import { useDispatch, useSelector } from 'react-redux';
-import { isLogged } from './redux/reducers/authReducer';
+import { isLogged } from './reducers/auth/authReducer';
 import UserScreen from './scenes/UserScreen/UserScreen';
 import CartScreen from './scenes/CartScreen/CartScreen';
 import Purchases from './scenes/Purchases/Purchases';

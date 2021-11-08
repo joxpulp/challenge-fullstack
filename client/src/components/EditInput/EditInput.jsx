@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useField } from 'formik';
 import { Box } from '../Box/Box';
-import { BaseInput } from '../Input/BaseInput/Input';
+import { InputBase } from '../Input/InputBase/InputBase';
 import { Button } from '../Button/Button';
 import { Title } from '../Title/Title';
 import { Text } from '../Text/Text';
@@ -27,7 +27,7 @@ function EditInput({ onCancel, currentValue, width, ...props }) {
 		<Box flexDirection='column' m='5px'>
 			<Box mb='5px'>
 				{edit ? (
-					<BaseInput width={width ? width : '80%'} {...field} {...props} />
+					<InputBase width={width ? width : '80%'} {...field} {...props} />
 				) : (
 					<Box
 						p='10px'
