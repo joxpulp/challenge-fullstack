@@ -11,13 +11,11 @@ class Cart {
 				{ userId },
 				{ cartProducts: { $elemMatch: { _id: productId } } }
 			);
-			outputGet.push(...findById!.cartProducts!);
+			if (findById) outputGet.push(...findById.cartProducts!);
 			return outputGet;
 		} else {
 			const findAll = await cart.findOne({ userId });
-			if (findAll) {
-				outputGet.push(findAll);
-			}
+			if (findAll) outputGet.push(findAll);
 		}
 
 		return outputGet;
@@ -33,17 +31,16 @@ class Cart {
 			await newCart.save();
 		}
 
-		if (findProduct) {
-			await cart.updateOne(
-				{ userId },
-				{
-					$inc: { total: findProduct.price },
-					$push: { cartProducts: findProduct },
-				}
-			);
-			ouputNew.push(findProduct);
-			return ouputNew;
-		}
+		await cart.updateOne(
+			{ userId },
+			{
+				$inc: { total: findProduct.price },
+				$push: { cartProducts: findProduct },
+			}
+		);
+
+		ouputNew.push(findProduct);
+
 		return ouputNew;
 	}
 
@@ -51,25 +48,22 @@ class Cart {
 		const [findProduct] = await this.get(userId, productId);
 		const outputDelete: ProductI[] = [];
 
-		if (findProduct) {
-			await cart.updateMany(
-				{ userId },
-				{
-					$inc: { total: -findProduct.price! },
-					$pull: {
-						cartProducts: { _id: productId },
-					},
-				}
-			);
-
-			//* If there is no product in cart, the entire cart is deleted
-			const findById = await cart.findOne({ userId }, 'cartProducts');
-
-			if (findById!.cartProducts!.length === 0) {
-				await cart.findOneAndDelete({ userId });
+		await cart.updateMany(
+			{ userId },
+			{
+				$inc: { total: -findProduct.price! },
+				$pull: {
+					cartProducts: { _id: productId },
+				},
 			}
-			outputDelete.push(findProduct);
-		}
+		);
+
+		//* If there is no product in cart, the entire cart is deleted
+		const findById = await cart.findOne({ userId }, 'cartProducts');
+		if (findById!.cartProducts!.length === 0)
+			await cart.findOneAndDelete({ userId });
+
+		outputDelete.push(findProduct);
 
 		return outputDelete;
 	}

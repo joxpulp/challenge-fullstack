@@ -7,10 +7,11 @@ export const cartExist = async (
 	next: NextFunction
 ) => {
 	try {
-		const { id_product } = req.params;
+		const { id } = req.params;
 
-		if (id_product) {
-			const findById = await cartModel.get(req.user!._id, id_product);
+		if (id) {
+			const findById = await cartModel.get(req.user!._id, id);
+
 			if (findById.length !== 0) {
 				return next();
 			}
@@ -19,6 +20,7 @@ export const cartExist = async (
 			});
 		} else {
 			const findAll = await cartModel.get(req.user!._id);
+
 			if (findAll.length !== 0) {
 				return next();
 			}

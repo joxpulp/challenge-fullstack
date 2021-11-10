@@ -9,7 +9,7 @@ class Product {
 
 		if (id) {
 			const singleProduct = await products.findById(id);
-			singleProduct && outputGet.push(singleProduct);
+			if (singleProduct) outputGet.push(singleProduct);
 		} else {
 			outputGet = await products.find();
 		}
@@ -24,6 +24,7 @@ class Product {
 
 	async update(id: string, data: NewProductI): Promise<ProductI[]> {
 		const outputUpdate: ProductI[] = [];
+
 		await products.findByIdAndUpdate(
 			id,
 			{ $set: data },
@@ -31,7 +32,7 @@ class Product {
 		);
 
 		const updatedProduct = await products.findById(id);
-		updatedProduct && outputUpdate.push(updatedProduct);
+		if (updatedProduct) outputUpdate.push(updatedProduct);
 
 		return outputUpdate;
 	}
@@ -40,6 +41,7 @@ class Product {
 		const outputDelete: ProductI[] = [];
 
 		const deletedProduct = await products.findByIdAndDelete(id);
+		if (deletedProduct) outputDelete.push(deletedProduct);
 
 		// * Deletes the product if is present on all user's cart
 		await cart.updateMany(
@@ -52,7 +54,6 @@ class Product {
 			}
 		);
 
-		deletedProduct && outputDelete.push(deletedProduct);
 		return outputDelete;
 	}
 }

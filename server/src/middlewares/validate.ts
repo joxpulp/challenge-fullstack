@@ -14,8 +14,6 @@ export const validate =
 				{ abortEarly: false, strict: true }
 			);
 
-			console.log(req.files);
-
 			// Validate file extension
 			if (req.files) {
 				const mimeType = ['image/png', 'image/jpeg', 'image/jpg'];
