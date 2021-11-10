@@ -53,7 +53,7 @@ Protected Route: `USER` needs to be logged to access this route
 | ------ | :--------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------------: |
 | PUT    | https://apipassredux.herokuapp.com/api/auth/edituser | Update user fields by passing a form-data body (optional fields - if you want to update user's name just pass the name field and so on) |
 
-Product's form-data body template:
+User's form-data body template:
 
 | Field Type | Field Name |                     Description |
 | ---------- | :--------: | ------------------------------: |
