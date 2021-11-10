@@ -15,8 +15,6 @@ Frontend and Backend: https://apipassredux.herokuapp.com
 
 ## Endpoints:
 
-##
-
 Auth:
 
 | Method |                         Route                         |                                    Description |
