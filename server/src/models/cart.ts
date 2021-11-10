@@ -23,21 +23,32 @@ class Cart {
 
 	async add(userId: string, productId: string): Promise<ProductI[]> {
 		const [findProduct] = await productModel.get(productId);
-		const findCart = await cart.findOne({ userId });
+		const findProductCart = await this.get(userId, productId);
 		const ouputNew: ProductI[] = [];
 
-		if (findCart === null) {
-			const newCart = new cart({ userId });
-			await newCart.save();
+		if (findProductCart.length === 0) {
+			await cart.updateOne(
+				{ userId },
+				{
+					$inc: { total: findProduct.price },
+					$addToSet: {
+						cartProducts: findProduct,
+					},
+				},
+				{ upsert: true }
+			);
+		} else {
+			await cart.updateOne(
+				{ userId, 'cartProducts._id': findProduct._id },
+				{
+					$inc: {
+						total: findProduct.price,
+						'cartProducts.$.quantity': 1,
+						'cartProducts.$.price': findProduct.price,
+					},
+				}
+			);
 		}
-
-		await cart.updateOne(
-			{ userId },
-			{
-				$inc: { total: findProduct.price },
-				$push: { cartProducts: findProduct },
-			}
-		);
 
 		ouputNew.push(findProduct);
 

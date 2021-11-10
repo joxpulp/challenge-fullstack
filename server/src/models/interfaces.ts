@@ -7,6 +7,7 @@ export interface ProductI  {
 	thumbnail?: string;
 	thumbnail_id?: string;
 	price?: number;
+	quantity?: number;
 }
 
 export interface NewProductI {
