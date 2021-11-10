@@ -21,7 +21,7 @@ Frontend and Backend: https://apipassredux.herokuapp.com
 | ------ | :---------------------------------------------------: | ---------------------------------------------------------: |
 | POST   |   https://apipassredux.herokuapp.com/api/auth/login   |                                 Login by passing JSON body |
 | GET    |  https://apipassredux.herokuapp.com/api/auth/logout/  |                                 Logout the current session |
-| POST   |  https://apipassredux.herokuapp.com/api/auth/signup   | Signup by passing JSON body, default avatar image is added |
+| POST   |  https://apipassredux.herokuapp.com/api/auth/signup   | Signup by passing JSON body (default `AVATAR` image is created) |
 | GET    | https://apipassredux.herokuapp.com/api/auth/islogged/ |             Check if the user is logged, returns a boolean |
 
 Login JSON body template:
