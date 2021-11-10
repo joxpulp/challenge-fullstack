@@ -46,6 +46,25 @@ Signup JSON body template:
     "address": "string"
 }
 ```
+
+Protected Route: `USER` needs to be logged to access this route
+
+| Method |                        Route                         |                                                          Description |
+| ------ | :--------------------------------------------------: | -------------------------------------------------------------------: |
+| PUT    | https://apipassredux.herokuapp.com/api/auth/edituser | Update user fields by passing a form-data body with fields to update |
+
+Product's form-data body template:
+
+| Field Type | Field Name |                     Description |
+| ---------- | :--------: | ------------------------------: |
+| Text       |    name    |           User's name, (string) |
+| Text       |  lastname  |        User's lastname (string) |
+| Text       |    age     |             User's age (number) |
+| Text       |   cardId   |          User's cardId (string) |
+| Text       |  address   |         User's address (string) |
+| Text       |  password  |        User's password (string) |
+| File       |   avatar   | User's image (png, jpeg or jpg) |
+
 ## Products:
 
 Public Routes:
@@ -65,12 +84,12 @@ Protected Routes: `USER` needs to be logged with `ADMIN` role to access this rou
 
 Product's form-data body template:
 
-| Field Type | Field Name  |                         Description |
-| ---------- | :---------: | ----------------------------------: |
-| Text       |    name     |            Product's name, (string) |
-| Text       | description |       Product's descripton (string) |
-| Text       |  category   |         Product's category (string) |
-| Text       |    price    |            Product's price (number) |
-| File       |  thumbnail  | Product's image, (png, jpeg or jpg) |
+| Field Type | Field Name  |                        Description |
+| ---------- | :---------: | ---------------------------------: |
+| Text       |    name     |            Product's name (string) |
+| Text       | description |     Product's description (string) |
+| Text       |  category   |        Product's category (string) |
+| Text       |    price    |           Product's price (number) |
+| File       |  thumbnail  | Product's image (png, jpeg or jpg) |
 
 ##
