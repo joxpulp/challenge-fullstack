@@ -1,7 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { UploadedFile } from 'express-fileupload';
 import { OptionalObjectSchema } from 'yup/lib/object';
-import cloudinary from '../services/cloudinary';
 
 export const validate =
 	(schema: OptionalObjectSchema<{}>) =>
@@ -10,11 +8,11 @@ export const validate =
 			await schema.validate(
 				{
 					body: req.body,
-					files: req.files
+					files: req.files,
 				},
-				{ abortEarly: false}
+				{ abortEarly: false, stripUnknown: false }
 			);
-			
+
 			return next();
 		} catch (err) {
 			if (err instanceof Error) {

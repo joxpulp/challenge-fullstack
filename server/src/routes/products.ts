@@ -3,7 +3,7 @@ import { isAdmin } from '../middlewares/auth';
 import { productExist } from '../middlewares/productExist';
 import { productController } from '../controllers/products';
 import { validate } from '../middlewares/validate';
-import { addProduct, editProduct, editUser } from '../helpers/yup';
+import { addProduct, editProduct } from '../helpers/yup';
 
 const router = Router();
 
