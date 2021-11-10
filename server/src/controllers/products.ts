@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import cloudinary from '../services/cloudinary';
 import { productModel } from '../models/product';
-import multer from 'multer';
 import { cartModel } from '../models/cart';
+import { UploadedFile } from 'express-fileupload';
 
 class ProductController {
 	async getProduct(req: Request, res: Response) {
@@ -10,13 +10,11 @@ class ProductController {
 			const { id } = req.params;
 
 			if (id) {
-				const singleProduct = await productModel.get(id);
-
-				return res.json({ product: singleProduct });
+				const findById = await productModel.get(id);
+				return res.json({ product: findById });
 			} else {
-				const getAll = await productModel.get();
-
-				return res.json({ products: getAll });
+				const findAll = await productModel.get();
+				return res.json({ products: findAll });
 			}
 		} catch (error) {
 			if (error instanceof Error) {
@@ -27,15 +25,24 @@ class ProductController {
 
 	async addProduct(req: Request, res: Response) {
 		try {
-			const body = req.body;
+			const data = {
+				...req.body,
+			};
 
-			const newProduct = await productModel.add({
-				...body,
-				thumbnail: req.file!.path!,
-				thumbnail_id: req.file!.filename!,
-			});
+			if (req.files) {
+				const { tempFilePath } = req.files.thumbnail as UploadedFile;
+				const { secure_url, public_id } = await cloudinary.uploader.upload(
+					tempFilePath,
+					{ folder: 'PRODUCTS' }
+				);
 
+				data.thumbnail = secure_url;
+				data.thumbnail_id = public_id;
+			}
+
+			const newProduct = await productModel.add(data);
 			return res.json(newProduct);
+
 		} catch (error) {
 			if (error instanceof Error) {
 				res.status(500).json({ error: error.message });
@@ -49,25 +56,26 @@ class ProductController {
 			//* Find product by id to get product fields
 			const [product] = await productModel.get(id);
 
-			const body = req.body;
-			let thumbnail = product.thumbnail;
-			let thumbnail_id = product.thumbnail_id;
+			const data = {
+				...req.body,
+			};
 
 			//* If user upload a new image, previous image is destroyed by passing the thumbnail_id,
 			//* Variables thumbnail and thumbnail_id are overwritten by the new image
-			if (req.file) {
-				thumbnail = req.file.path;
-				thumbnail_id = req.file.filename;
+			if (req.files) {
 				await cloudinary.uploader.destroy(product.thumbnail_id!);
+				const { tempFilePath } = req.files.thumbnail as UploadedFile;
+				const { secure_url, public_id } = await cloudinary.uploader.upload(
+					tempFilePath,
+					{ folder: 'PRODUCTS' }
+				);
+				data.thumbnail = secure_url;
+				data.thumbnail_id = public_id;
 			}
 
-			const updatedProduct = await productModel.update(id, {
-				...body,
-				thumbnail,
-				thumbnail_id,
-			});
+			const updatedProduct = await productModel.update(id, data);
+			return res.status(201).json({ updatedProduct, msg: 'Product Updated' });
 
-			return res.status(201).json({ updatedProduct });
 		} catch (error) {
 			if (error instanceof Error) {
 				res.status(500).json({ error: error.message });
@@ -82,9 +90,10 @@ class ProductController {
 			const [product] = await productModel.get(id);
 
 			await cloudinary.uploader.destroy(product.thumbnail_id!);
-			const deletedProduct = await productModel.delete(id);
 
-			return res.json({ deletedProduct });
+			const deletedProduct = await productModel.delete(id);
+			return res.json({ deletedProduct, msg: 'Product Deleted' });
+			
 		} catch (error) {
 			if (error instanceof Error) {
 				res.status(500).json({ error: error.message });

@@ -6,8 +6,8 @@ import { productExist } from '../middlewares/productExist';
 
 const router = Router();
 
-router.get('/list/:id_product?', isAuth, cartExist, cartController.getProducts);
-router.post('/add/:id_product', isAuth, productExist, cartController.addProducts);
-router.delete('/delete/:id_product', isAuth, cartExist, cartController.deleteProducts);
+router.get('/list/:id?', isAuth, cartExist, cartController.getProducts);
+router.post('/add/:id', isAuth, productExist, cartController.addProducts);
+router.delete('/delete/:id', isAuth, cartExist, cartController.deleteProducts);
 
 export default router;

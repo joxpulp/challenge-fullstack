@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { uploadAvatar } from '../services/cloudinary';
 import { authController } from '../controllers/auth';
 import { isAuth } from '../middlewares/auth';
 import { validate } from '../middlewares/validate';
@@ -11,7 +10,6 @@ router.post('/login', validate(login), authController.login);
 router.put(
 	'/edituser',
 	isAuth,
-	uploadAvatar.single('avatar'),
 	validate(editUser),
 	authController.editUser
 );

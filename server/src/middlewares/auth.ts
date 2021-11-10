@@ -44,32 +44,33 @@ const signupFunc = async (
 	password: string,
 	done: any
 ): Promise<VerifyFunctionWithRequest> => {
-	
-		const body = req.body;
+	const body = req.body;
 
-		const user = await userModel.findOne({
-			$or: [{ email: body.email }, { cardId: body.cardId }],
+	const user = await userModel.findOne({
+		$or: [{ email: body.email }, { cardId: body.cardId }],
+	});
+
+	if (user) {
+		return done(null, false, {
+			error: 'This email already exist, try with other option',
 		});
-
-		if (user) {
-			return done(null, false, {
-				error: 'This email already exist, try with other option',
-			});
-		} else {
-			const randomAvatar = `https://avatars.dicebear.com/api/bottts/${Date.now()}.svg`;
-			const defaultAvatar = await cloudinary.uploader.upload(randomAvatar, {
+	} else {
+		const randomAvatar = `https://avatars.dicebear.com/api/bottts/${Date.now()}.svg`;
+		const { secure_url, public_id } = await cloudinary.uploader.upload(
+			randomAvatar,
+			{
 				folder: 'AVATARS',
 				format: 'jpg',
-			});
-			const newUser = new userModel({
-				...body,
-				avatar: defaultAvatar.secure_url,
-				avatar_id: defaultAvatar.public_id,
-			});
-			await newUser.save();
-			return done(null, newUser);
-		}
-	
+			}
+		);
+		const newUser = new userModel({
+			...body,
+			avatar: secure_url,
+			avatar_id: public_id,
+		});
+		await newUser.save();
+		return done(null, newUser);
+	}
 };
 
 // Create the login with the local strategy, we pass the strategy options and the login logic contained in loginFunc

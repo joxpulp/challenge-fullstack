@@ -11,12 +11,10 @@ class PurchaseController {
 		return res.status(404).json({ error: 'No purchases for this user' });
 	}
 
-    async purchaseProducts(req: Request, res: Response) {
-        const purchase = await purchaseModel.purchase(req.user!._id)
-        return res.json({msg: purchase})
-    }
-
+	async purchaseProducts(req: Request, res: Response) {
+		const purchase = await purchaseModel.purchase(req.user!._id);
+		return res.json({ msg: purchase });
+	}
 }
 
-
-export const purchaseController = new PurchaseController()
+export const purchaseController = new PurchaseController();

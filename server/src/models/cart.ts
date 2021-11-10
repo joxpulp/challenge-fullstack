@@ -4,8 +4,7 @@ import { CartI, ProductI } from './interfaces';
 
 class Cart {
 	async get(userId: string, productId?: string): Promise<ProductI[] & CartI[]> {
-		const findAll = await cart.findOne({ userId });
-		const outputGet: ProductI[] & CartI[] = [];
+		let outputGet: ProductI[] & CartI[] = [];
 
 		if (productId) {
 			const findById = await cart.findOne(
@@ -14,10 +13,11 @@ class Cart {
 			);
 			outputGet.push(...findById!.cartProducts!);
 			return outputGet;
-		}
-
-		if (findAll) {
-			outputGet.push(findAll);
+		} else {
+			const findAll = await cart.findOne({ userId });
+			if (findAll) {
+				outputGet.push(findAll);
+			}
 		}
 
 		return outputGet;
@@ -73,7 +73,6 @@ class Cart {
 
 		return outputDelete;
 	}
-
 }
 
 export const cartModel = new Cart();

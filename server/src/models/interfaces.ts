@@ -1,7 +1,5 @@
 import { ObjectId } from 'mongoose';
-import { Options } from 'multer-storage-cloudinary';
-
-export interface ProductI {
+export interface ProductI  {
 	_id: string | ObjectId;
 	name?: string;
 	description?: string;
@@ -61,27 +59,12 @@ export interface PurchaseI {
 	purchases?: ProductI[];
 }
 
-export declare interface CloudinaryOptions extends Options {
-	params: { folder?: string };
-}
-
-export interface ProductQuery {
-	title?: string;
-	price?: number;
-	code?: string;
-	stock?: number;
-	priceMax?: number;
-	priceMin?: number;
-	stockMax?: number;
-	stockMin?: number;
-}
-
 declare global {
 	namespace Express {
 		interface User {
 			_id: string;
 			avatar?: string;
-			avatar_id?: string;
+			avatar_id: string;
 			name?: string;
 			lastname?: string;
 			age?: number;
@@ -91,5 +74,9 @@ declare global {
 			password?: string;
 			isAdmin?: boolean;
 		}
+	}
+
+	interface Error {
+		errors: string[];
 	}
 }

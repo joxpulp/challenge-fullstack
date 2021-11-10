@@ -5,7 +5,7 @@ export const login = createAsyncThunk(
 	'auth/login',
 	async (body, { rejectWithValue }) => {
 		try {
-			const { data: user } = await apiCommerce.post('/api/auth/login', body);
+			const { data: user } = await  apiCommerce.post('/api/auth/login', body);
 			return user;
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data);

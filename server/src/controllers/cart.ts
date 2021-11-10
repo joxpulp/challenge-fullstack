@@ -4,13 +4,13 @@ import { cartModel } from '../models/cart';
 class CartController {
 	async getProducts(req: Request, res: Response) {
 		try {
-			const { id_product } = req.params;
+			const { id } = req.params;
 
-			if (id_product) {
-				const findById = await cartModel.get(req.user!._id!, id_product);
+			if (id) {
+				const findById = await cartModel.get(req.user!._id, id);
 				return res.json({ product: findById });
 			} else {
-				const [findAll] = await cartModel.get(req.user!._id!);
+				const findAll = await cartModel.get(req.user!._id);
 				return res.json(findAll);
 			}
 		} catch (error) {
@@ -22,11 +22,10 @@ class CartController {
 
 	async addProducts(req: Request, res: Response) {
 		try {
-			const { id_product } = req.params;
-			if (id_product) {
-				const productAdded = await cartModel.add(req.user!._id!, id_product);
-				return res.json({ productAdded });
-			}
+			const { id } = req.params;
+
+			const productAdded = await cartModel.add(req.user!._id, id);
+			return res.json({ productAdded, msg: 'Product added to the cart' });
 		} catch (error) {
 			if (error instanceof Error) {
 				res.status(500).json({ error: error.message });
@@ -36,9 +35,10 @@ class CartController {
 
 	async deleteProducts(req: Request, res: Response) {
 		try {
-			const { id_product } = req.params;
-			const deletedProduct = await cartModel.delete(req.user!._id!, id_product);
-			return res.json({ deletedProduct });
+			const { id } = req.params;
+
+			const deletedProduct = await cartModel.delete(req.user!._id, id);
+			return res.json({ deletedProduct, msg: 'Product deleted from cart' });
 		} catch (error) {
 			if (error instanceof Error) {
 				res.status(500).json({ error: error.message });
