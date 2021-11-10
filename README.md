@@ -15,8 +15,8 @@ Frontend and Backend: https://apipassredux.herokuapp.com
 
 ## Endpoints:
 
-Auth:
-#
+## Auth:
+
 | Method |                         Route                         |                                    Description |
 | ------ | :---------------------------------------------------: | ---------------------------------------------: |
 | POST   |   https://apipassredux.herokuapp.com/api/auth/login   |                     Login by passing JSON body |
@@ -46,8 +46,8 @@ Signup JSON body template:
     "address": "string"
 }
 ```
-Products:
-#
+## Products:
+
 Public Routes:
 
 | Method |                          Route                          |                                                              Description |
