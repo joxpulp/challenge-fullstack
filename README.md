@@ -49,9 +49,9 @@ Signup JSON body template:
 
 Protected Route: `USER` needs to be logged to access this route
 
-| Method |                        Route                         |                                                          Description |
-| ------ | :--------------------------------------------------: | -------------------------------------------------------------------: |
-| PUT    | https://apipassredux.herokuapp.com/api/auth/edituser | Update user fields by passing a form-data body with fields to update |
+| Method |                        Route                         |                                                                                                                             Description |
+| ------ | :--------------------------------------------------: | --------------------------------------------------------------------------------------------------------------------------------------: |
+| PUT    | https://apipassredux.herokuapp.com/api/auth/edituser | Update user fields by passing a form-data body (optional fields - if you want to update user's name just pass the name field and so on) |
 
 Product's form-data body template:
 
