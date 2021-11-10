@@ -10,23 +10,11 @@ export const validate =
 			await schema.validate(
 				{
 					body: req.body,
+					files: req.files
 				},
-				{ abortEarly: false, strict: true }
+				{ abortEarly: false}
 			);
-
-			// Validate file extension
-			if (req.files) {
-				const mimeType = ['image/png', 'image/jpeg', 'image/jpg'];
-				const { mimetype } = req.files.avatar as UploadedFile;
-				if (!mimeType.includes(mimetype)) {
-					return res
-						.status(400)
-						.json({
-							error: 'File type not supported, only .png | .jpeg | .jpg',
-						});
-				}
-			}
-
+			
 			return next();
 		} catch (err) {
 			if (err instanceof Error) {

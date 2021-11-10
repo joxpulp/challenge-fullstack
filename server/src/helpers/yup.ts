@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+const mimeType = ['image/png', 'image/jpeg', 'image/jpg'];
 
 export const login = Yup.object({
 	body: Yup.object({
@@ -10,7 +11,7 @@ export const login = Yup.object({
 			.required('password field is required'),
 	})
 		.noUnknown(true)
-		.required(),
+		.strict(true),
 });
 
 export const signup = Yup.object({
@@ -36,9 +37,7 @@ export const signup = Yup.object({
 		address: Yup.string()
 			.min(10, 'address field must at least 10 characters or more')
 			.required('address field is required'),
-	})
-		.noUnknown(true)
-		.required(),
+	}),
 });
 
 export const addProduct = Yup.object({
@@ -56,9 +55,16 @@ export const addProduct = Yup.object({
 			.min(10, 'price field min is 10')
 			.max(30000, 'price field max is 30000')
 			.required('price field is required'),
+	}),
+	files: Yup.object({
+		thumbnail: Yup.mixed().test(
+			'fileType',
+			'File type not supported only .png .jpg .jpeg',
+			(value) => mimeType.includes(value.mimetype)
+		),
 	})
-		.noUnknown(true)
-		.required(),
+		.nullable()
+		.required('thumbnail image is required'),
 });
 
 export const editUser = Yup.object({
@@ -82,9 +88,14 @@ export const editUser = Yup.object({
 			10,
 			'address field must at least 10 characters or more'
 		),
-	})
-		.noUnknown(true)
-		.required(),
+	}),
+	files: Yup.object({
+		avatar: Yup.mixed().test(
+			'fileType',
+			'File type not supported only .png .jpg .jpeg',
+			(value) => mimeType.includes(value.mimetype)
+		),
+	}).nullable(),
 });
 
 export const editProduct = Yup.object({
@@ -101,7 +112,13 @@ export const editProduct = Yup.object({
 		price: Yup.number()
 			.min(10, 'price field min is 10')
 			.max(30000, 'price field max is 30000'),
+	}),
+	files: Yup.object({
+		thumbnail: Yup.mixed().test(
+			'fileType',
+			'File type not supported only .png .jpg .jpeg',
+			(value) => mimeType.includes(value.mimetype)
+		),
 	})
-		.noUnknown(true)
-		.required(),
+	.nullable(),
 });
