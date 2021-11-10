@@ -15,7 +15,7 @@ Go to the project directory
   cd challenge-fullstack
 ```
 
-- Frontend Doc
+- [Frontend Doc](https://github.com/joxpulp/challenge-fullstack/tree/main/client#readme)
 - [Backend Doc](https://github.com/joxpulp/challenge-fullstack/tree/main/server#readme)
 
 
