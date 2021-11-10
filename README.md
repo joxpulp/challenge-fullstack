@@ -92,4 +92,13 @@ Product's form-data body template:
 | Text       |    price    |           Product's price (number) |
 | File       |  thumbnail  | Product's image (png, jpeg or jpg) |
 
-##
+## Cart:
+
+Protected Routes: `USER` needs to be logged to access this routes
+
+| Method |                         Route                         |                                                                                                    Description |
+| ------ | :---------------------------------------------------: | -------------------------------------------------------------------------------------------------------------: |
+| GET    |   https://apipassredux.herokuapp.com/api/cart/list/   |                                                                                           List the user's cart |
+| GET    |  https://apipassredux.herokuapp.com/api/cart/list/id  |                List a product inside the user's cart by id, if a product doesn't exist return an error message |
+| POST   |  https://apipassredux.herokuapp.com/api/cart/add/id   | Add a product to the user's cart by the product id, if the same product is added the quantity field increments |
+| DELETE | https://apipassredux.herokuapp.com/api/cart/delete/id |                                Delete a product from the user's cart by the product id, no matter the quantity |
