@@ -17,12 +17,12 @@ Frontend and Backend: https://apipassredux.herokuapp.com
 
 ## Auth:
 
-| Method |                         Route                         |                                    Description |
-| ------ | :---------------------------------------------------: | ---------------------------------------------: |
-| POST   |   https://apipassredux.herokuapp.com/api/auth/login   |                     Login by passing JSON body |
-| GET    |  https://apipassredux.herokuapp.com/api/auth/logout/  |                     Logout the current session |
-| POST   |  https://apipassredux.herokuapp.com/api/auth/signup   |                    Signup by passing JSON body |
-| GET    | https://apipassredux.herokuapp.com/api/auth/islogged/ | Check if the user is logged, returns a boolean |
+| Method |                         Route                         |                                                Description |
+| ------ | :---------------------------------------------------: | ---------------------------------------------------------: |
+| POST   |   https://apipassredux.herokuapp.com/api/auth/login   |                                 Login by passing JSON body |
+| GET    |  https://apipassredux.herokuapp.com/api/auth/logout/  |                                 Logout the current session |
+| POST   |  https://apipassredux.herokuapp.com/api/auth/signup   | Signup by passing JSON body, default avatar image is added |
+| GET    | https://apipassredux.herokuapp.com/api/auth/islogged/ |             Check if the user is logged, returns a boolean |
 
 Login JSON body template:
 
@@ -82,7 +82,7 @@ Protected Routes: `USER` needs to be logged with `ADMIN` role to access this rou
 | PUT    | https://apipassredux.herokuapp.com/api/products/update/id | Updates a product by passing the product's id and a form-data body with the fields to update |
 | DELETE | https://apipassredux.herokuapp.com/api/products/delete/id |                           Delete a product from the product list by passing the product's id |
 
-Product's form-data body template:
+Product's form-data body (`POST` and `PUT`) template:
 
 | Field Type | Field Name  |                        Description |
 | ---------- | :---------: | ---------------------------------: |
