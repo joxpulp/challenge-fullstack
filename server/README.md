@@ -6,13 +6,29 @@ Backend: https://apipassredux.herokuapp.com
 
 ## Local Setup:
 
-| Script      | Description                              |
-| ----------- | ---------------------------------------- |
-| npm install | Install dependencies                     |
-| npm run dev | Execute ts files with nodemoon           |
-| tsc         | Transpile ts files to /dist folder       |
-| npm start   | Execute transpiled files in /dist folder |
+Install dependencies
 
+```bash
+  npm install
+```
+
+Start the in dev mode with nodemoon
+
+```bash
+  npm run dev
+```
+
+Transpile ts files to /dist folder
+
+```bash
+  tsc
+```
+
+Start the server with transpiled files in /dist folder
+
+```bash
+  npm run start
+```
 ## Endpoints:
 
 ## Auth:
