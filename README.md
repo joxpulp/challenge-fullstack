@@ -46,9 +46,6 @@ Signup JSON body template:
     "address": "string"
 }
 ```
-
-##
-
 ## Products:
 
 Public Routes:
