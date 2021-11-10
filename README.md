@@ -1,7 +1,7 @@
 # Challenge Fullstack
 
 ## E-commerce Backend Doc
-## Run Locally
+## Local Setup:
 
 Clone the project
 
