@@ -19,21 +19,17 @@ function UserScreen() {
 	const { loading } = useSelector((state) => state.ui);
 
 	return (
-		<Main
-			
-			alignItems='center'
-			justifyContent='center'
-			width='100%'
-			my='50px'
-		>
+		<Main alignItems='center' justifyContent='center' width='100%' my='50px'>
 			<Section
-				as='section'
 				bg='white'
 				width={['90%', '90%', '50%']}
 				height='850px'
 				alignItems='center'
 				boxShadow='0px 0px 25px 10px #F6F4FD'
 				p='10px'
+				initial={{ opacity: 0, x: '-90%' }}
+				animate={{ opacity: 1, x: 0 }}
+				exit={{ opacity: 0, x: '-90%' }}
 			>
 				<Formik
 					initialValues={{

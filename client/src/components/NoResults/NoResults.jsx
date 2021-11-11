@@ -7,6 +7,9 @@ import empty from '../../services/svg/emptycart.svg'
 function NoResults({children}) {
     return (
 			<Box
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				exit={{ opacity: 0 }}
 				height='100vh'
 				flexDirection='column'
 				alignItems='center'

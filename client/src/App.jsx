@@ -47,7 +47,7 @@ function App() {
 			<Header />
 			<IdleTimer
 				ref={idleRef}
-				timeout={10 * 1000}
+				timeout={1000 * 120}
 				onIdle={() => dispatch(logout())}
 				crossTab={{
 					emitOnAllTabs: true,
@@ -56,7 +56,7 @@ function App() {
 			<AnimatePresence exitBeforeEnter>
 				{successMsg && <Popup>{successMsg}</Popup>}
 			</AnimatePresence>
-			<AnimatePresence exitBeforeEnter initial={false}>
+			<AnimatePresence exitBeforeEnter>
 				<Switch location={location} key={location.pathname}>
 					<Route exact path='/' component={Shop} />
 					<Route path='/product/:id'>

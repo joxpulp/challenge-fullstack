@@ -24,9 +24,10 @@ function Shop() {
 
 	if (products.length === 0) {
 		return (
-			<AnimatePresence exitBeforeEnter>
-				<NoResults>No products in db</NoResults>
-			</AnimatePresence>
+			<NoResults
+			>
+				No products in db
+			</NoResults>
 		);
 	}
 
@@ -37,46 +38,48 @@ function Shop() {
 			exit={{ opacity: 0 }}
 			flexDirection='column'
 		>
-			<Section bg='black' color='white' height='216px' width='100%'>
-				<Box
-					flexDirection='column'
-					justifyContent='center'
-					mx={['20px', '20px', '145px']}
-				>
-					<Title>Shop Tech</Title>
-					<Text>
-						Everything you want, everything fresh and new be always updated with
-						latest releases
-					</Text>
-				</Box>
-			</Section>
 			{loading ? (
 				<Box height='80vh' alignItems='center' justifyContent='center'>
 					<CubeSpinner size={100} frontColor='#aaaaaa' />
 				</Box>
 			) : (
-				<Section
-					flexDirection='column'
-					display='grid'
-					gridTemplateColumns={[
-						'repeat(1, minmax(100px, 1fr))',
-						'repeat(2, minmax(100px, 1fr))',
-						'repeat(4, minmax(100px, 1fr))',
-					]}
-					gridGap='30px'
-					py='54px'
-					px={['20px', '20px', '145px']}
-				>
-					{products.map((product) => (
-						<ProductCard
-							key={product._id}
-							name={product.name}
-							price={product.price}
-							thumbnail={product.thumbnail}
-							id={product._id}
-						/>
-					))}
-				</Section>
+				<>
+					<Section bg='black' color='white' height='216px' width='100%'>
+						<Box
+							flexDirection='column'
+							justifyContent='center'
+							mx={['20px', '20px', '145px']}
+						>
+							<Title>Shop Tech</Title>
+							<Text>
+								Everything you want, everything fresh and new be always updated
+								with latest releases
+							</Text>
+						</Box>
+					</Section>
+					<Section
+						flexDirection='column'
+						display='grid'
+						gridTemplateColumns={[
+							'repeat(1, minmax(100px, 1fr))',
+							'repeat(2, minmax(100px, 1fr))',
+							'repeat(4, minmax(100px, 1fr))',
+						]}
+						gridGap='30px'
+						py='54px'
+						px={['20px', '20px', '145px']}
+					>
+						{products.map((product) => (
+							<ProductCard
+								key={product._id}
+								name={product.name}
+								price={product.price}
+								thumbnail={product.thumbnail}
+								id={product._id}
+							/>
+						))}
+					</Section>
+				</>
 			)}
 		</Main>
 	);

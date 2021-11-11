@@ -24,7 +24,12 @@ const Purchases = () => {
 	}
 
 	return (
-		<Main flexDirection='column'>
+		<Main
+			flexDirection='column'
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+		>
 			<Section bg='black' color='white' height='216px' width='100%'>
 				<Box
 					flexDirection='column'
