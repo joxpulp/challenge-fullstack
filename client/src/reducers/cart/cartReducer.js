@@ -6,7 +6,7 @@ export const getCart = createAsyncThunk(
 	'cart/getCart',
 	async (_, { rejectWithValue }) => {
 		try {
-			const { data: cart } = await apiCommerce.get('/api/cart/list');
+			const { data: [cart] } = await apiCommerce.get('/api/cart/list');
 			return cart;
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data);
@@ -20,7 +20,7 @@ export const addProductCart = createAsyncThunk(
 		try {
 			await apiCommerce.post(`/api/cart/add/${productId}`);
 
-			const { data: cart } = await apiCommerce.get('/api/cart/list');
+			const { data: [cart] } = await apiCommerce.get('/api/cart/list');
 			return cart;
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data);
@@ -34,7 +34,7 @@ export const removeProductCart = createAsyncThunk(
 		try {
 			await apiCommerce.delete(`/api/cart/delete/${productId}`);
 
-			const { data: cart } = await apiCommerce.get('/api/cart/list');
+			const { data: [cart] } = await apiCommerce.get('/api/cart/list');
 			return cart;
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data);

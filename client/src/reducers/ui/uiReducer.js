@@ -51,8 +51,8 @@ const uiSlice = createSlice({
 			.addCase(getProductById.rejected, (state, action) => {
 				return {
 					...state,
-					errorMsg: action.payload,
 					loading: false,
+					errorMsg: action.payload,
 				};
 			})
 			.addCase(login.pending, (state, action) => {
@@ -70,8 +70,8 @@ const uiSlice = createSlice({
 			.addCase(login.rejected, (state, action) => {
 				return {
 					...state,
-					errorMsg: action.payload.error,
 					loading: false,
+					errorMsg: action.payload.error,
 				};
 			})
 			.addCase(logout.fulfilled, (state, action) => {
@@ -80,7 +80,6 @@ const uiSlice = createSlice({
 					userMenu: false,
 				};
 			})
-
 			.addCase(editUser.pending, (state, action) => {
 				return {
 					...state,
@@ -137,13 +136,6 @@ const uiSlice = createSlice({
 					loading: false,
 				};
 			})
-			.addCase(addProductCart.rejected, (state, action) => {
-				return {
-					...state,
-					loading: false,
-					errorMsg: action.payload.error,
-				};
-			})
 			.addCase(addProductCart.pending, (state, action) => {
 				return {
 					...state,
@@ -153,15 +145,22 @@ const uiSlice = createSlice({
 			.addCase(addProductCart.fulfilled, (state, action) => {
 				return {
 					...state,
-					successMsg: 'Product added to cart',
 					loading: false,
+					successMsg: 'Product added to cart',
+				};
+			})
+			.addCase(addProductCart.rejected, (state, action) => {
+				return {
+					...state,
+					loading: false,
+					errorMsg: action.payload.error,
 				};
 			})
 			.addCase(removeProductCart.rejected, (state, action) => {
 				return {
 					...state,
-					errorMsg: action.payload.error,
 					loading: false,
+					errorMsg: action.payload.error,
 				};
 			})
 			.addCase(getPurchase.pending, (state, action) => {
@@ -179,8 +178,8 @@ const uiSlice = createSlice({
 			.addCase(getPurchase.rejected, (state, action) => {
 				return {
 					...state,
-					errorMsg: action.payload.error,
 					loading: false,
+					errorMsg: action.payload.error,
 				};
 			})
 			.addCase(purchase.pending, (state, action) => {
@@ -192,15 +191,15 @@ const uiSlice = createSlice({
 			.addCase(purchase.fulfilled, (state, action) => {
 				return {
 					...state,
-					successMsg: 'Purchase Completed',
 					loading: false,
+					successMsg: 'Purchase Completed',
 				};
 			})
 			.addCase(purchase.rejected, (state, action) => {
 				return {
 					...state,
-					errorMsg: action.payload.error,
 					loading: false,
+					errorMsg: action.payload.error,
 				};
 			});
 	},

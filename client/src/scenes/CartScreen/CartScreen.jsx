@@ -1,7 +1,6 @@
-import { AnimatePresence } from 'framer-motion';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { ImpulseSpinner } from 'react-spinners-kit';
 import { Box } from '../../components/Box/Box';
 import { Button } from '../../components/Button/Button';
@@ -71,6 +70,7 @@ function CartScreen() {
 								price={cartProduct.price}
 								thumbnail={cartProduct.thumbnail}
 								productId={cartProduct._id}
+								quantity={cartProduct.quantity}
 							/>
 						))}
 					</Box>

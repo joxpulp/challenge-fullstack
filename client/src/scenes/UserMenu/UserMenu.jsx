@@ -1,11 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../reducers/auth/authReducer';
-import { clearSuccessMsg, setUserMenu } from '../../reducers/uiReducer';
+import { clearSuccessMsg, setUserMenu } from '../../reducers/ui/uiReducer';
 import { Link, Redirect } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
 import { GroupList } from '../../components/GroupList/GroupList';
 import { ListItem } from '../../components/ListItem/ListItem';
+import { getCart } from '../../reducers/cart/cartReducer';
 
 const UserMenu = () => {
 	const dispatch = useDispatch();
@@ -14,9 +15,14 @@ const UserMenu = () => {
 
 	const handleLogout = () => {
 		dispatch(logout());
+		dispatch(getCart())
 		dispatch(setUserMenu(false));
 		dispatch(clearSuccessMsg());
 	};
+
+	const handleUserMenu = () => {
+		dispatch(setUserMenu(false));
+	}
 
 	if (errorMsg) {
 		return <Redirect to='/login' />;
@@ -25,7 +31,7 @@ const UserMenu = () => {
 	return (
 		<Box
 			position='absolute'
-			width='100px'
+			width='120px'
 			alignItems='center'
 			right={['10px', '10px', '110px']}
 			top='5'
@@ -33,17 +39,17 @@ const UserMenu = () => {
 			bg='#1d1d1dfd'
 			color='#e4e4e4'
 			height='160px'
-			boxShadow='0px 0px 5px 2px #636363'
+			zIndex={100}
 		>
 			<GroupList display='flex' flexDirection='column' alignItems='center'>
-				<Link to='/profile' onClick={() => dispatch(setUserMenu(false))}>
+				<Link to='/profile' onClick={handleUserMenu}>
 					<ListItem mb='20px'>Edit User</ListItem>
 				</Link>
-				<Link to='/purchases' onClick={() => dispatch(setUserMenu(false))}>
+				<Link to='/purchases' onClick={handleUserMenu}>
 					<ListItem mb='20px'>Purchases</ListItem>
 				</Link>
 				{userData.isAdmin && (
-					<Link to='/adminpanel' onClick={() => dispatch(setUserMenu(false))}>
+					<Link to='/adminpanel' onClick={handleUserMenu}>
 						<ListItem mb='20px'>Admin Panel</ListItem>
 					</Link>
 				)}

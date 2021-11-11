@@ -5,7 +5,7 @@ export const login = createAsyncThunk(
 	'auth/login',
 	async (body, { rejectWithValue }) => {
 		try {
-			const { data: user } = await  apiCommerce.post('/api/auth/login', body);
+			const { data: user } = await apiCommerce.post('/api/auth/login', body);
 			return user;
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data);
@@ -94,6 +94,13 @@ const authSlice = createSlice({
 					logged: action.payload.logged,
 				};
 			})
+			.addCase(logout.rejected, (state, action) => {
+				return {
+					...state,
+					userData: {},
+					logged: false,
+				};
+			})
 			.addCase(isLogged.fulfilled, (state, action) => {
 				return {
 					...state,
@@ -112,7 +119,7 @@ const authSlice = createSlice({
 					...state,
 					userData: action.payload.userUpdated,
 				};
-			});
+			})
 	},
 });
 

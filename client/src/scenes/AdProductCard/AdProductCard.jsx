@@ -4,18 +4,19 @@ import { useHistory } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
 import { Button } from '../../components/Button/Button';
 import { Image } from '../../components/Image/Image';
-import { Title } from '../../components/Title/Title';
-import { clearProduct, deleteProduct } from '../../reducers/products/productsReducer';
+import {
+	clearProduct,
+	deleteProduct,
+} from '../../reducers/products/productsReducer';
 
-function AdProductCard({ name, thumbnail, id}) {
+function AdProductCard({ thumbnail, id }) {
+	const history = useHistory();
+	const dispatch = useDispatch();
 
-    const history = useHistory();
-	const dispatch = useDispatch()
-
-    const handleEdit = () => {
-        history.push(`adminpanel/productedit/${id}`);
-		dispatch(clearProduct())
-    }
+	const handleEdit = () => {
+		history.push(`adminpanel/productedit/${id}`);
+		dispatch(clearProduct());
+	};
 
 	return (
 		<Box
@@ -27,10 +28,13 @@ function AdProductCard({ name, thumbnail, id}) {
 			alignItems='center'
 		>
 			<Image width='100%' src={thumbnail} alt='productImg' />
-			<Title my='15px'>{name}</Title>
-			<Box my='15px'>
-				<Button onClick={handleEdit} mr='10px'>Edit</Button>
-				<Button onClick={() => dispatch(deleteProduct(id))}>Delete</Button>
+			<Box width='100%' alignItems='center' justifyContent='center' my='15px'>
+				<Button width='30%' onClick={handleEdit} mr='10px'>
+					Edit
+				</Button>
+				<Button width='30%' onClick={() => dispatch(deleteProduct(id))}>
+					Delete
+				</Button>
 			</Box>
 		</Box>
 	);

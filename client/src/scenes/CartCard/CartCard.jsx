@@ -6,9 +6,8 @@ import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 import { removeProductCart } from '../../reducers/cart/cartReducer';
 
-const CartCard = ({ name, price, thumbnail, productId }) => {
-
-    const dispatch = useDispatch()
+const CartCard = ({ name, price, thumbnail, productId, quantity }) => {
+	const dispatch = useDispatch();
 
 	return (
 		<Box
@@ -17,13 +16,24 @@ const CartCard = ({ name, price, thumbnail, productId }) => {
 			width={['100%', '100%', '80%']}
 			borderBottom='1px solid black'
 		>
-			<Image borderRadius='5px' width={['30%','30%','25%']} src={thumbnail} alt='productImg' />
+			<Image
+				borderRadius='5px'
+				width={['30%', '30%', '25%']}
+				src={thumbnail}
+				alt='productImg'
+			/>
 			<Box mx='30px' flexDirection='column'>
-				<Title my='15px'>{name}</Title>
-				<Text>USD {price}</Text>
+				<Title>{name}</Title>
+				<Text my='15px'>USD {price}</Text>
+				<Text>Quantity: {quantity}</Text>
 			</Box>
 			<Box flex={1} justifyContent='end' alignItems='end'>
-				<Text onClick={() => dispatch(removeProductCart(productId))} cursor='pointer'>Remove</Text>
+				<Text
+					onClick={() => dispatch(removeProductCart(productId))}
+					cursor='pointer'
+				>
+					Remove
+				</Text>
 			</Box>
 		</Box>
 	);

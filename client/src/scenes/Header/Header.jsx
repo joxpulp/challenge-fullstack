@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { ThemeContext } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUserMenu } from '../../reducers/uiReducer';
+import { setUserMenu } from '../../reducers/ui/uiReducer';
 import { Link } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
 import { Title } from '../../components/Title/Title';
@@ -71,17 +71,15 @@ function Header() {
 					</Link>
 					<Box height='100%' alignItems='center'>
 						{logged ? (
-							<>
+							<Box onClick={() => dispatch(setUserMenu(!userMenu))}>
 								<Image
 									borderRadius='100%'
 									width='20px'
 									mr='10px'
 									src={userData.avatar}
 								/>
-								<ListItem onClick={() => dispatch(setUserMenu(!userMenu))}>
-									{userData.name}
-								</ListItem>
-							</>
+								<ListItem>{userData.name}</ListItem>
+							</Box>
 						) : (
 							<Link to='/login'>
 								<ListItem>Login</ListItem>

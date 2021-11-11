@@ -6,7 +6,7 @@ import { Image } from '../../components/Image/Image';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 import { clearProduct } from '../../reducers/products/productsReducer';
-import { clearErrorMsg } from '../../reducers/uiReducer';
+import { clearErrorMsg } from '../../reducers/ui/uiReducer';
 
 function ProductCard({ name, price, thumbnail, id }) {
 	const history = useHistory();

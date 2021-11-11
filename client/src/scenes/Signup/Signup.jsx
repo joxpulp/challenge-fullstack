@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../reducers/auth/authReducer';
-import { clearErrorMsg, clearSuccessMsg } from '../../reducers/uiReducer';
+import { clearErrorMsg, clearSuccessMsg } from '../../reducers/ui/uiReducer';
 import { Form, Formik } from 'formik';
 import { signupValidation } from '../../helpers/yup';
 import { Main } from '../../components/Main/Main';
