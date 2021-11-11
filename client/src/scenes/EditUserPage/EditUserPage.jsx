@@ -12,7 +12,7 @@ import { editProfileValidation } from '../../helpers/yup';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
 
-function UserScreen() {
+function EditUserPage() {
 	const dispatch = useDispatch();
 	const { userData } = useSelector((state) => state.auth);
 	const { loading } = useSelector((state) => state.ui);
@@ -152,4 +152,4 @@ function UserScreen() {
 	);
 }
 
-export default UserScreen;
+export default EditUserPage;

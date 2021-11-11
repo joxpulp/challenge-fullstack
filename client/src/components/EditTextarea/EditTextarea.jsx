@@ -4,7 +4,7 @@ import { useField } from 'formik';
 import { Box } from '../Box/Box';
 import { Button } from '../Button/Button';
 import { Text } from '../Text/Text';
-import { BaseTextarea } from '../Textarea/BaseTextarea';
+import { BaseTextarea } from '../Textarea/TexareaBase/TextareaBase';
 
 function EditInput({ onCancel, currentValue, width, ...props }) {
 	const [field, meta] = useField(props);

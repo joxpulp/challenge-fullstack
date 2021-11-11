@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { ImpulseSpinner } from 'react-spinners-kit';
 import { Box } from '../../components/Box/Box';
 import { Button } from '../../components/Button/Button';
@@ -13,7 +13,7 @@ import { getCart } from '../../reducers/cart/cartReducer';
 import { purchase } from '../../reducers/purchase/purchaseReducer';
 import CartCard from '../CartCard/CartCard';
 
-function CartScreen() {
+function CartScreenPage() {
 	const { cartData, total } = useSelector((state) => state.cart);
 	const { purchases } = useSelector((state) => state.purchase);
 	const { loading } = useSelector((state) => state.ui);
@@ -104,4 +104,4 @@ function CartScreen() {
 	);
 }
 
-export default CartScreen;
+export default CartScreenPage;

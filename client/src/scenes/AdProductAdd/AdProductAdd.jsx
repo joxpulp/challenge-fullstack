@@ -56,7 +56,7 @@ const AdProductAdd = () => {
 							formData.append('category', values.category);
 						values.price !== '' && formData.append('price', values.price);
 						values.thumbnail && formData.append('thumbnail', values.thumbnail);
-                        console.log(values)
+						console.log(values);
 						dispatch(addProduct(formData));
 					}}
 				>
@@ -89,7 +89,7 @@ const AdProductAdd = () => {
 							<Textarea
 								id='description'
 								name='description'
-                                type='text'
+								type='text'
 								placeholder='Description*'
 							/>
 							<Input

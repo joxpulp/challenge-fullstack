@@ -10,7 +10,7 @@ import {
 } from 'styled-system';
 import { motion } from 'framer-motion';
 
-export const BaseTextarea = styled(motion.textarea)`
+export const TextareaBase = styled(motion.textarea)`
 	${space}
 	${color}
 	${border}

@@ -6,7 +6,7 @@ import notfound from '../../services/svg/404.svg';
 import { useHistory } from 'react-router-dom';
 import { Section } from '../../components/Section/Section';
 
-function NotFound() {
+function NotFoundPage() {
 	const history = useHistory();
 	return (
 		<Section
@@ -38,4 +38,4 @@ function NotFound() {
 	);
 }
 
-export default NotFound;
+export default NotFoundPage;

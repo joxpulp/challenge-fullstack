@@ -14,7 +14,7 @@ import { Section } from '../../components/Section/Section';
 import Input from '../../components/Input/Input';
 import { ImpulseSpinner } from 'react-spinners-kit';
 
-function Login() {
+function LoginPage() {
 	const history = useHistory();
 
 	const dispatch = useDispatch();
@@ -113,4 +113,4 @@ function Login() {
 	);
 }
 
-export default Login;
+export default LoginPage;

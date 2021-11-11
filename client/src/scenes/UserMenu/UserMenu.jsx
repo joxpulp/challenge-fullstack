@@ -6,7 +6,6 @@ import { Link, Redirect } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
 import { GroupList } from '../../components/GroupList/GroupList';
 import { ListItem } from '../../components/ListItem/ListItem';
-import { getCart } from '../../reducers/cart/cartReducer';
 
 const UserMenu = () => {
 	const dispatch = useDispatch();
@@ -15,7 +14,6 @@ const UserMenu = () => {
 
 	const handleLogout = () => {
 		dispatch(logout());
-		dispatch(getCart())
 		dispatch(setUserMenu(false));
 		dispatch(clearSuccessMsg());
 	};

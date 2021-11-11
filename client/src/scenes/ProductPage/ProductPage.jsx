@@ -13,7 +13,7 @@ import { AnimatePresence } from 'framer-motion';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
 
-function ProductScreen() {
+function ProductPage() {
 	const { id } = useParams();
 	const history = useHistory();
 
@@ -109,4 +109,4 @@ function ProductScreen() {
 	);
 }
 
-export default ProductScreen;
+export default ProductPage;
