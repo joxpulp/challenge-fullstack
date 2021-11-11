@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCart } from '../../reducers/cart/cartReducer';
 import { getProducts } from '../../reducers/products/productsReducer';
