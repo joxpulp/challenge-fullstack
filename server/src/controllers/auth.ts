@@ -38,7 +38,7 @@ class AuthController {
 			if (user) {
 				return res.json({ msg: 'User created' });
 			} else {
-				return res.status(401).json({ ...info });
+				return res.status(409).json({ ...info });
 			}
 		})(req, res, next);
 	}
@@ -83,7 +83,7 @@ class AuthController {
 		}
 
 		const userUpdated = await editUser(req.user!._id, data);
-		return res.json({ userUpdated });
+		return res.status(201).json({ userUpdated, msg: 'User Updated' });
 	}
 }
 

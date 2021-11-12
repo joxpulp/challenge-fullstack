@@ -19,7 +19,7 @@ function Header() {
 
 	const dispatch = useDispatch();
 	const { userData, logged } = useSelector((state) => state.auth);
-	const { cartData } = useSelector((state) => state.cart);
+	const { cartData, totalItems } = useSelector((state) => state.cart);
 	const { userMenu } = useSelector((state) => state.ui);
 
 	useEffect(() => {
@@ -66,7 +66,7 @@ function Header() {
 					<Link to='/cart'>
 						<Box alignItems='center' mr='20px' onClick={handleUserMenu}>
 							<Image mr='5px' src={cart} />
-							<Text>{logged && cartData.length !== 0 && cartData.length}</Text>
+							<Text>{logged && cartData.length !== 0 && totalItems}</Text>
 						</Box>
 					</Link>
 					<Box height='100%' alignItems='center'>

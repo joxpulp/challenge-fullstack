@@ -1,4 +1,7 @@
 import express, { Request, Response } from 'express';
+import { mongoose } from './mongoose';
+import { CONFIG } from '../config/config';
+import { specs } from '../config/swagger';
 import fileupload from 'express-fileupload';
 import path from 'path';
 import cookieParser from 'cookie-parser';
@@ -6,22 +9,22 @@ import cors from 'cors';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import sslRedirect from 'heroku-ssl-redirect';
-
 import passport from '../middlewares/auth';
-import { mongoose } from './mongoose';
-import { CONFIG } from '../config/config';
 import apiRouter from '../routes/index';
+import swaggerUi from 'swagger-ui-express';
 
-mongoose();
 const app = express();
+mongoose();
 
+app.use(express.static(path.resolve('public')));
+app.use(
+	'/documentation',
+	swaggerUi.serve,
+	swaggerUi.setup(specs, { customSiteTitle: 'Edrans Ecommerce Challenge Docs' })
+);
 app.set('json spaces', 2);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(sslRedirect());
-
-
 // File upload middleware with temp dir
 app.use(
 	fileupload({
@@ -29,8 +32,7 @@ app.use(
 		tempFileDir: '/tmp/',
 	})
 );
-app.use(express.static(path.resolve('public')));
-
+app.use(sslRedirect());
 app.use(cookieParser());
 app.use(
 	cors({

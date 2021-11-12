@@ -45,6 +45,7 @@ export const removeProductCart = createAsyncThunk(
 const initialState = {
 	cartData: JSON.parse(localStorage.getItem('cartData')) || [],
 	total: JSON.parse(localStorage.getItem('total')) || null,
+	totalItems: JSON.parse(localStorage.getItem('totalItems')) || null,
 };
 
 const cartSlice = createSlice({
@@ -58,12 +59,14 @@ const cartSlice = createSlice({
 					...state,
 					cartData: action.payload.cartProducts,
 					total: action.payload.total,
+					totalItems: action.payload.totalItems
 				};
 			})
 			.addCase(getCart.rejected, (state, action) => {
 				return {
 					cartData: [],
 					total: null,
+					totalItems: null
 				};
 			})
 			.addCase(addProductCart.fulfilled, (state, action) => {
@@ -71,6 +74,7 @@ const cartSlice = createSlice({
 					...state,
 					cartData: action.payload.cartProducts,
 					total: action.payload.total,
+					totalItems: action.payload.totalItems,
 				};
 			})
 			.addCase(removeProductCart.fulfilled, (state, action) => {
@@ -78,6 +82,7 @@ const cartSlice = createSlice({
 					...state,
 					cartData: action.payload.cartProducts,
 					total: action.payload.total,
+					totalItems: action.payload.totalItems,
 				};
 			})
 			.addCase(removeProductCart.rejected, (state, action) => {
@@ -85,12 +90,14 @@ const cartSlice = createSlice({
 					...state,
 					cartData: [],
 					total: null,
+					totalItems: null,
 				};
 			})
 			.addCase(logout.fulfilled, (state, action) => {
 				return {
 					cartData: [],
 					total: null,
+					totalItems: null,
 				};
 			});
 	},

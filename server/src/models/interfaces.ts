@@ -51,6 +51,7 @@ export interface CartI {
 	_id: string | ObjectId;
 	userId?: string;
 	total?: number;
+	totalItems?: number;
 	cartProducts?: ProductI[];
 }
 export interface PurchaseI {

@@ -30,7 +30,7 @@ class Cart {
 			await cart.updateOne(
 				{ userId },
 				{
-					$inc: { total: findProduct.price },
+					$inc: { total: findProduct.price, totalItems: 1 },
 					$addToSet: {
 						cartProducts: findProduct,
 					},
@@ -43,6 +43,7 @@ class Cart {
 				{
 					$inc: {
 						total: findProduct.price,
+						totalItems: 1,
 						'cartProducts.$.quantity': 1,
 						'cartProducts.$.price': findProduct.price,
 					},
@@ -62,7 +63,7 @@ class Cart {
 		await cart.updateMany(
 			{ userId },
 			{
-				$inc: { total: -findProduct.price! },
+				$inc: { total: -findProduct.price!, totalItems: -findProduct.quantity! },
 				$pull: {
 					cartProducts: { _id: productId },
 				},

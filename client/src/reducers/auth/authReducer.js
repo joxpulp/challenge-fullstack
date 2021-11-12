@@ -53,7 +53,7 @@ export const editUser = createAsyncThunk(
 	'auth/editUser',
 	async (formData, { rejectWithValue }) => {
 		try {
-			const { data: user } = await apiCommerce.put(
+			const { data: user } = await apiCommerce.patch(
 				'/api/auth/edituser',
 				formData
 			);
