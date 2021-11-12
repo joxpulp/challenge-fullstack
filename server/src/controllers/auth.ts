@@ -22,7 +22,7 @@ class AuthController {
 							avatar: user.avatar,
 							isAdmin: user.isAdmin,
 						},
-						logged: true,
+						loggedIn: true,
 					});
 				});
 			} else {
@@ -43,12 +43,12 @@ class AuthController {
 		})(req, res, next);
 	}
 
-	isLogged(req: Request, res: Response) {
+	isLoggedIn(req: Request, res: Response) {
 
 		if (req.user) {
-			return res.json({ logged: true });
+			return res.json({ loggedIn: true });
 		} else {
-			return res.status(404).json({ logged: false });
+			return res.status(404).json({ loggedIn: false });
 		}
 
 	}
@@ -57,7 +57,7 @@ class AuthController {
 
 		if (req.user) {
 			req.logout();
-			return res.json({ msg: 'Session ended', logged: false });
+			return res.json({ msg: 'Session ended', loggedIn: false });
 		}
 
 		return res

@@ -68,7 +68,7 @@ import { editUser, login, signup } from '../helpers/yup';
  *           type: String
  *           description: User's avatar url
  *       example: 
- *         _id:  6174e458c79d9be056c0fa2s
+ *         _id:  6182191a7d9034b287c54c12
  *         name: Pepito
  *         lastname:  Bombonera   
  *         age:  27  
@@ -82,9 +82,9 @@ import { editUser, login, signup } from '../helpers/yup';
  *           type: String
  *           description: Error message
  *           example: Invalid email or password, try again
- *         logged:
+ *         loggedIn:
  *           type: Boolean
- *           description: True or false if user is logged or not
+ *           description: True or false if user is logged in or not
  *           example: false
  *     LogoutResponse:
  *       type: object
@@ -93,7 +93,7 @@ import { editUser, login, signup } from '../helpers/yup';
  *           type: String
  *           description: Message
  *           example: Session ended
- *         logged:
+ *         loggedIn:
  *           type: Boolean
  *           description: True or false if user is logged or not
  *           example: false
@@ -177,7 +177,7 @@ const router = Router();
  *             $ref: '#/components/schemas/LoginBody'
  *     responses:
  *       200:
- *         description: Ok, Returns 'userData' (if the user is an admin returns a isAdmin field) and 'logged' key with true
+ *         description: Ok, Returns 'userData' (if the user is an admin returns a isAdmin field) and 'loggedIn' key with true
  *         content:
  *           application/json:
  *             schema:
@@ -185,7 +185,7 @@ const router = Router();
  *               properties:
  *                 userData:
  *                   $ref: '#/components/schemas/LoginResponse'
- *                 logged: 
+ *                 loggedIn: 
  *                   type: Boolean
  *                   example: true
  *       401:
@@ -237,6 +237,7 @@ router.post('/login', validate(login), authController.login);
  *             schema: 
  *               $ref: '#/components/schemas/ValidationErrors'
  */
+
 router.patch(
 	'/edituser',
 	isAuth,
@@ -310,34 +311,34 @@ router.post('/signup', validate(signup), authController.signup);
 
 /**
  * @swagger
- * /api/auth/islogged:
+ * /api/auth/isloggedin:
  *   get:
- *     summary: Check if the user is logged
+ *     summary: Check if the user is logged in or not
  *     tags:
  *     - Auth
  *     responses:
  *       200:
- *         description: Ok, Returns logged boolean with true if the user is logged
+ *         description: Ok, Returns logged boolean with true because the user is logged in
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 logged: 
+ *                 loggedIn: 
  *                   type: Boolean
  *                   example: true
  *       404:
- *         description: Not Found, Returns logged boolean with false if the user is not logged
+ *         description: Not Found, Returns logged boolean with false because the user is not logged in
  *         content:
  *           application/json:
  *             schema:
  *               type: object
  *               properties:
- *                 logged: 
+ *                 loggedIn: 
  *                   type: Boolean
  *                   example: false
  */
 
-router.get('/islogged', authController.isLogged);
+router.get('/isloggedin', authController.isLoggedIn);
 
 export default router;
