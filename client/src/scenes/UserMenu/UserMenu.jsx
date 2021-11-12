@@ -10,7 +10,6 @@ import { ListItem } from '../../components/ListItem/ListItem';
 const UserMenu = () => {
 	const dispatch = useDispatch();
 	const { userData } = useSelector((state) => state.auth);
-	const { errorMsg } = useSelector((state) => state.ui);
 
 	const handleLogout = () => {
 		dispatch(logout());
@@ -20,10 +19,6 @@ const UserMenu = () => {
 
 	const handleUserMenu = () => {
 		dispatch(setUserMenu(false));
-	}
-
-	if (errorMsg) {
-		return <Redirect to='/login' />;
 	}
 
 	return (

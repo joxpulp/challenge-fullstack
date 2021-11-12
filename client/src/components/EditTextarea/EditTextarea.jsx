@@ -4,7 +4,7 @@ import { useField } from 'formik';
 import { Box } from '../Box/Box';
 import { Button } from '../Button/Button';
 import { Text } from '../Text/Text';
-import { BaseTextarea } from '../Textarea/TexareaBase/TextareaBase';
+import { TextareaBase } from '../Textarea/TexareaBase/TextareaBase';
 
 function EditInput({ onCancel, currentValue, width, ...props }) {
 	const [field, meta] = useField(props);
@@ -25,7 +25,7 @@ function EditInput({ onCancel, currentValue, width, ...props }) {
 		<Box flexDirection='column' m='5px'>
 			<Box mb='5px'>
 				{edit ? (
-					<BaseTextarea width={width ? width : '80%'} {...field} {...props} />
+					<TextareaBase width={width ? width : '80%'} {...field} {...props} />
 				) : (
 					<Box
 						p='10px'

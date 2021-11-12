@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
+import sslRedirect from 'heroku-ssl-redirect';
+
 import passport from '../middlewares/auth';
 import { mongoose } from './mongoose';
 import { CONFIG } from '../config/config';
@@ -16,6 +18,9 @@ const app = express();
 app.set('json spaces', 2);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(sslRedirect());
+
 
 // File upload middleware with temp dir
 app.use(
@@ -38,7 +43,7 @@ app.use(
 	session({
 		store: connectMongo.create({ mongoUrl: CONFIG.MONGO_URL }),
 		secret: CONFIG.SECRET,
-		cookie: { sameSite: false, secure: 'auto', maxAge: 1000 * 120 },
+		cookie: { sameSite: true, secure: 'auto', maxAge: 1000 * 120 },
 		saveUninitialized: false,
 		resave: true,
 		rolling: true,

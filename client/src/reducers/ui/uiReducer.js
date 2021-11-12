@@ -160,7 +160,6 @@ const uiSlice = createSlice({
 				return {
 					...state,
 					loading: false,
-					errorMsg: action.payload.error,
 				};
 			})
 			.addCase(getPurchase.pending, (state, action) => {
@@ -179,7 +178,6 @@ const uiSlice = createSlice({
 				return {
 					...state,
 					loading: false,
-					errorMsg: action.payload.error,
 				};
 			})
 			.addCase(purchase.pending, (state, action) => {

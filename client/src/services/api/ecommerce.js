@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export const apiCommerce = axios.create({
-	baseURL: 'http://localhost:8080',
+	baseURL: 'https://hekitech.herokuapp.com',
 	withCredentials: true,
 });
