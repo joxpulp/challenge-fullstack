@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { cartController } from '../controllers/cart';
 import { isAuth } from '../middlewares/auth';
 import { cartExist } from '../middlewares/cartExist';
 import { productExist } from '../middlewares/productExist';
+import { cartController } from '../controllers/cart';
 
 /**
  * @swagger
@@ -173,13 +173,6 @@ import { productExist } from '../middlewares/productExist';
  *           type: String
  *           description: Success message
  *           example: Product added to the cart
- *     ProductAddToCartError:
- *       type: object
- *       properties: 
- *         error:
- *           type: string
- *           description: Error message
- *           example: This product does not exist in db or was deleted
  *     ProductDeleteFromCartResponse:
  *       type: object
  *       properties: 
@@ -257,7 +250,7 @@ const router = Router();
  *     - Cart (Protected routes, user must be logged in)
  *     responses:
  *       200:
- *         description: Ok, Returns the cart of the currently logged in user
+ *         description: OK, Returns the cart of the currently logged in user
  *         content:
  *           application/json:
  *             schema:
@@ -294,7 +287,7 @@ const router = Router();
  *     - Cart (Protected routes, user must be logged in)
  *     responses:
  *       200:
- *         description: Ok, Returns a product that matches with the id
+ *         description: OK, Returns a product that matches with the id
  *         content:
  *           application/json:
  *             schema:
@@ -331,7 +324,7 @@ router.get('/list/:id?', isAuth, cartExist, cartController.getProducts);
  *     - Cart (Protected routes, user must be logged in)
  *     responses:
  *       200:
- *         description: Ok, Returns added product and a msg
+ *         description: OK, Returns added product and a msg
  *         content:
  *           application/json:
  *             schema:
@@ -347,7 +340,7 @@ router.get('/list/:id?', isAuth, cartExist, cartController.getProducts);
  *         content:
  *           application/json:
  *             schema: 
- *               $ref: '#/components/schemas/ProductAddToCartError'
+ *               $ref: '#/components/schemas/ProductError'
  *
  */
 
@@ -368,7 +361,7 @@ router.post('/add/:id', isAuth, productExist, cartController.addProducts);
  *     - Cart (Protected routes, user must be logged in)
  *     responses:
  *       200:
- *         description: Ok, Returns deleted product from cart and a msg
+ *         description: OK, Returns deleted product from cart and a msg
  *         content:
  *           application/json:
  *             schema:

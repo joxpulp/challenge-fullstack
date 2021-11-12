@@ -24,6 +24,10 @@ import { editUser, login, signup } from '../helpers/yup';
  *     EditUser:
  *       type: object
  *       properties: 
+ *         avatar:
+ *           type: file
+ *           format: binary
+ *           description: User's avatar img (Only .png jpeg jpg)
  *         name:
  *           type: String
  *           description: User's name
@@ -39,10 +43,6 @@ import { editUser, login, signup } from '../helpers/yup';
  *         address:
  *           type: String
  *           description: User's address
- *         avatar:
- *           type: file
- *           format: binary
- *           description: User's avatar img (Only .png jpeg jpg)
  *     LoginResponse:
  *       type: object
  *       properties: 
@@ -177,7 +177,7 @@ const router = Router();
  *             $ref: '#/components/schemas/LoginBody'
  *     responses:
  *       200:
- *         description: Ok, Returns 'userData' (if the user is an admin returns a isAdmin field) and 'loggedIn' key with true
+ *         description: OK, Returns 'userData' (if the user is an admin returns a isAdmin field) and 'loggedIn' key with true
  *         content:
  *           application/json:
  *             schema:
@@ -218,8 +218,8 @@ router.post('/login', validate(login), authController.login);
  *           schema:
  *             $ref: '#/components/schemas/EditUser'
  *     responses:
- *       200:
- *         description: Ok, Returns updated user fields and a message
+ *       201:
+ *         description: Created, Returns updated user fields and a message
  *         content:
  *           application/json:
  *             schema:
@@ -254,7 +254,7 @@ router.patch(
  *     - Auth
  *     responses:
  *       200:
- *         description: Ok, Returns a message and logged boolean with false
+ *         description: OK, Returns a message and logged boolean with false
  *         content:
  *           application/json:
  *             schema:
@@ -284,7 +284,7 @@ router.get('/logout', authController.logout);
  *             $ref: '#/components/schemas/SignupBody'
  *     responses:
  *       200:
- *         description: Ok, Returns a message saying that user was created
+ *         description: OK, Returns a message saying that user was created
  *         content:
  *           application/json:
  *             schema:
@@ -318,7 +318,7 @@ router.post('/signup', validate(signup), authController.signup);
  *     - Auth
  *     responses:
  *       200:
- *         description: Ok, Returns logged boolean with true because the user is logged in
+ *         description: OK, Returns logged boolean with true because the user is logged in
  *         content:
  *           application/json:
  *             schema:
