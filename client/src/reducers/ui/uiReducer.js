@@ -235,7 +235,7 @@ const uiSlice = createSlice({
 				return {
 					...state,
 					loading: false,
-					successMsg: action.payload.msg,
+					successMsg: action.payload,
 				};
 			})
 			.addCase(purchase.rejected, (state, action) => {

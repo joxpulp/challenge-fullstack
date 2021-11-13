@@ -14,7 +14,7 @@ import CartCard from '../CartCard/CartCard';
 
 function CartScreenPage() {
 	const { cartData, total } = useSelector((state) => state.cart);
-	const { purchases } = useSelector((state) => state.purchase);
+	const { successMsg } = useSelector((state) => state.ui);
 
 	const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ function CartScreenPage() {
 
 	useEffect(() => {
 		dispatch(getCart());
-	}, [dispatch, purchases]);
+	}, [dispatch, successMsg]);
 
 	if (cartData.length === 0) {
 		return <NoResults>Your cart is empty :(</NoResults>;

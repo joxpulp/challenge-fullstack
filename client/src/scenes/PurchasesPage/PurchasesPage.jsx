@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCart } from '../../reducers/cart/cartReducer';
 import { getPurchase } from '../../reducers/purchase/purchaseReducer';
 import { Title } from '../../components/Title/Title';
 import { Text } from '../../components/Text/Text';
@@ -16,7 +15,6 @@ function PurchasesPage() {
 
 	useEffect(() => {
 		dispatch(getPurchase());
-		dispatch(getCart());
 	}, [dispatch]);
 
 	if (purchases.length === 0) {

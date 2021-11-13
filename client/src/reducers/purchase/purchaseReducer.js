@@ -51,13 +51,6 @@ const purchaseSlice = createSlice({
 					total: null,
 				};
 			})
-			.addCase(purchase.fulfilled, (state, action) => {
-				return {
-					...state,
-					purchases: action.payload.purchases,
-					totalPaid: action.payload.total,
-				};
-			})
 			.addCase(logout.fulfilled, (state, action) => {
 				return {
 					purchases: [],
