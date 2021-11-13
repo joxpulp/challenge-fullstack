@@ -35,9 +35,41 @@ export const signup = Yup.object({
 			.matches(/^\d{8}$/, 'cardId field must be 8 digits only')
 			.required('cardId field is required'),
 		address: Yup.string()
-			.min(10, 'address field must at least 10 characters or more')
+			.min(10, 'address field must have at least 10 characters or more')
 			.required('address field is required'),
 	}).noUnknown(true),
+});
+
+export const editUser = Yup.object({
+	body: Yup.object({
+		name: Yup.string().min(3, 'name field must be at least 3 characters'),
+		lastname: Yup.string().min(
+			3,
+			'lastname field must be at least 3 characters'
+		),
+		password: Yup.string().min(
+			8,
+			'password field must be at least 8 characters'
+		),
+		age: Yup.number().min(16, 'age field must be at least 16 or more'),
+		cardId: Yup.string().matches(
+			/^\d{8}$/,
+			'cardId field must be 8 digits only'
+		),
+		address: Yup.string().min(
+			10,
+			'address field must at least 10 characters'
+		),
+	}).noUnknown(true),
+	files: Yup.object({
+		avatar: Yup.mixed().test(
+			'fileType',
+			'File type not supported only .png .jpg .jpeg',
+			(value) => mimeType.includes(value.mimetype)
+		),
+	})
+		.noUnknown(true)
+		.nullable(),
 });
 
 export const addProduct = Yup.object({
@@ -49,7 +81,7 @@ export const addProduct = Yup.object({
 			.min(20, 'description field must be at least 20 characters')
 			.required('description field is required'),
 		category: Yup.string()
-			.min(8, 'category field must be at least 8 characters')
+			.min(4, 'category field must be at least 4 characters')
 			.required('category field is required'),
 		price: Yup.number()
 			.min(10, 'price field min is 10')
@@ -68,38 +100,6 @@ export const addProduct = Yup.object({
 		.required('thumbnail image is required'),
 });
 
-export const editUser = Yup.object({
-	body: Yup.object({
-		email: Yup.string().email('email field is invalid'),
-		password: Yup.string().min(
-			8,
-			'password field must be at least 8 characters'
-		),
-		name: Yup.string().min(3, 'name field must be at least 3 characters'),
-		lastname: Yup.string().min(
-			3,
-			'lastname field must be at least 3 characters'
-		),
-		age: Yup.number().min(16, 'age field must be at least 16 or more'),
-		cardId: Yup.string().matches(
-			/^\d{8}$/,
-			'cardId field must be 8 digits only'
-		),
-		address: Yup.string().min(
-			10,
-			'address field must at least 10 characters or more'
-		),
-	}).noUnknown(true),
-	files: Yup.object({
-		avatar: Yup.mixed().test(
-			'fileType',
-			'File type not supported only .png .jpg .jpeg',
-			(value) => mimeType.includes(value.mimetype)
-		),
-	})
-		.noUnknown(true)
-		.nullable(),
-});
 
 export const editProduct = Yup.object({
 	body: Yup.object({
@@ -109,8 +109,8 @@ export const editProduct = Yup.object({
 			'description field must be at least 20 characters'
 		),
 		category: Yup.string().min(
-			8,
-			'category field must be at least 8 characters'
+			4,
+			'category field must be at least 4 characters'
 		),
 		price: Yup.number()
 			.min(10, 'price field min is 10')
