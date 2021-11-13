@@ -2,7 +2,7 @@
 
 E-commerce Backend Doc
 
-[API](https://hekitech.herokuapp.com/api/products/list)
+[API Live Demo](https://hekitech.herokuapp.com/api/products/list)
 
 ## Local Setup:
 
