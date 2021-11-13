@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { editProductValidation } from '../../helpers/yup';
 import {
 	editProduct,
@@ -11,12 +11,13 @@ import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 import { ImpulseSpinner } from 'react-spinners-kit';
 import { Box } from '../../components/Box/Box';
-import { Button } from '../../components/Button/Button';
+import Button from '../../components/Button/Button';
 import EditImage from '../../components/EditImage/EditImage';
 import EditInput from '../../components/EditInput/EditInput';
 import EditTextarea from '../../components/EditTextarea/EditTextarea';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
+import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
 
 const AdProductEdit = () => {
 	const { id } = useParams();
@@ -24,15 +25,11 @@ const AdProductEdit = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const { product } = useSelector((state) => state.products);
-	const { loading, errorMsg } = useSelector((state) => state.ui);
+	const { loading } = useSelector((state) => state.ui);
 
 	useEffect(() => {
 		dispatch(getProductById(id));
 	}, [dispatch, id]);
-
-    if (errorMsg) {
-        return <Redirect to='/login'/>
-    }
 
 	return (
 		<Main alignItems='center' justifyContent='center' width='100%' my='50px'>
@@ -139,20 +136,8 @@ const AdProductEdit = () => {
 								</>
 							))}
 							<Box alignItems='center'>
-								<Button
-									disabled={loading}
-									bg='black'
-									color='white'
-									mr='10px'
-									type='submit'
-								>
-									{loading ? (
-										<ImpulseSpinner frontColor='#ffff' backColor='#666666' />
-									) : (
-										'Save'
-									)}
-								</Button>
-								<Button onClick={() => history.go(-1)}>Go Back</Button>
+								<Button>Save</Button>
+								<ButtonBase onClick={() => history.go(-1)}>Go Back</ButtonBase>
 							</Box>
 						</Form>
 					)}

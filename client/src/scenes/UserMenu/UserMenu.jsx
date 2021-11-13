@@ -19,7 +19,7 @@ const UserMenu = () => {
 
 	const handleUserMenu = () => {
 		dispatch(setUserMenu(false));
-	}
+	};
 
 	return (
 		<Box

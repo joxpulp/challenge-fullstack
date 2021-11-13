@@ -17,11 +17,6 @@ const app = express();
 mongoose();
 
 app.use(express.static(path.resolve('public')));
-app.use(
-	'/documentation',
-	swaggerUi.serve,
-	swaggerUi.setup(specs, { customSiteTitle: 'Edrans Ecommerce Challenge Docs' })
-);
 app.set('json spaces', 2);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -54,6 +49,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// API DOCS
+app.use(
+	'/docs',
+	swaggerUi.serve,
+	swaggerUi.setup(specs, { customSiteTitle: 'Edrans Ecommerce Challenge Docs' })
+);
 // Routes and serve static files
 app.use('/api', apiRouter);
 app.get('/*', (req: Request, res: Response) => {

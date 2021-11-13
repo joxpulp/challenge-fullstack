@@ -2,7 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
-import { Button } from '../../components/Button/Button';
+// import { Button } from '../../components/Button/Button';
+import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
 import { Image } from '../../components/Image/Image';
 import {
 	clearProduct,
@@ -29,12 +30,12 @@ function AdProductCard({ thumbnail, id }) {
 		>
 			<Image width='100%' src={thumbnail} alt='productImg' />
 			<Box width='100%' alignItems='center' justifyContent='center' my='15px'>
-				<Button width='30%' onClick={handleEdit} mr='10px'>
+				<ButtonBase width='30%' onClick={handleEdit} mr='10px'>
 					Edit
-				</Button>
-				<Button width='30%' onClick={() => dispatch(deleteProduct(id))}>
+				</ButtonBase>
+				<ButtonBase width='30%' onClick={() => dispatch(deleteProduct(id))}>
 					Delete
-				</Button>
+				</ButtonBase>
 			</Box>
 		</Box>
 	);

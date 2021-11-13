@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editUser } from '../../reducers/auth/authReducer';
 import { Form, Formik } from 'formik';
-import { Button } from '../../components/Button/Button';
+import Button from '../../components/Button/Button';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 import EditInput from '../../components/EditInput/EditInput';
@@ -131,19 +131,7 @@ function EditUserPage() {
 								placeholder='Address'
 								onCancel={() => setFieldValue('address', '')}
 							/>
-							<Button
-								disabled={loading}
-								bg='black'
-								color='white'
-								my='20px'
-								type='submit'
-							>
-								{loading ? (
-									<ImpulseSpinner frontColor='#ffff' backColor='#666666' />
-								) : (
-									'Save profile'
-								)}
-							</Button>
+							<Button>Save profile</Button>
 						</Form>
 					)}
 				</Formik>

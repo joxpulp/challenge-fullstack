@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { addProductValidation } from '../../helpers/yup';
 import { addProduct } from '../../reducers/products/productsReducer';
 import { Main } from '../../components/Main/Main';
@@ -10,20 +10,17 @@ import { Title } from '../../components/Title/Title';
 import { ImpulseSpinner } from 'react-spinners-kit';
 import { Section } from '../../components/Section/Section';
 import { Box } from '../../components/Box/Box';
-import { Button } from '../../components/Button/Button';
+import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import EditImage from '../../components/EditImage/EditImage';
 import Textarea from '../../components/Textarea/Textarea';
 import uploadphoto from '../../services/svg/uploadphoto.svg';
+import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
 
 const AdProductAdd = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const { loading, errorMsg } = useSelector((state) => state.ui);
-
-	if (errorMsg) {
-		return <Redirect to='/login' />;
-	}
+	const { loading } = useSelector((state) => state.ui);
 
 	return (
 		<Main alignItems='center' justifyContent='center' width='100%' my='50px'>
@@ -105,20 +102,8 @@ const AdProductAdd = () => {
 								placeholder='Price*'
 							/>
 							<Box alignItems='center'>
-								<Button
-									disabled={loading}
-									bg='black'
-									color='white'
-									mr='10px'
-									type='submit'
-								>
-									{loading ? (
-										<ImpulseSpinner frontColor='#ffff' backColor='#666666' />
-									) : (
-										'Add Product'
-									)}
-								</Button>
-								<Button onClick={() => history.go(-1)}>Go Back</Button>
+								<Button>Add Product</Button>
+								<ButtonBase onClick={() => history.go(-1)}>Go Back</ButtonBase>
 							</Box>
 						</Form>
 					)}

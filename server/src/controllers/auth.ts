@@ -26,7 +26,7 @@ class AuthController {
 					});
 				});
 			} else {
-				return res.status(401).json({ ...info, logged: false });
+				return res.status(401).json({ ...info, loggedIn: false });
 			}
 		})(req, res, next);
 	}

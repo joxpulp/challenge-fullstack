@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { isAdmin } from '../middlewares/auth';
 import { productExist } from '../middlewares/productExist';
-import { productController } from '../controllers/products';
 import { validate } from '../middlewares/validate';
 import { addProduct, editProduct } from '../helpers/yup';
+import { productController } from '../controllers/products';
 
 /**
  * @swagger
@@ -53,7 +53,7 @@ import { addProduct, editProduct } from '../helpers/yup';
  *                thumbnail:  https://http2.mlstatic.com/D_NQ_NP_958291-MLA40333873535_012020-O.jpg 
  *                thumbnail_id:  PRODUCTS/axhw979mt7m83r8rkihx
  *                price:  10
- *     NoProductsError:
+ *     ProductsError:
  *       type: object
  *       properties: 
  *         error:
@@ -98,6 +98,13 @@ import { addProduct, editProduct } from '../helpers/yup';
  *                thumbnail: https://todosobrecamisetas.com/wp-content/uploads/tercera-camiseta-adidas-boca-juniors-2021-22-1.jpg 
  *                thumbnail_id: PRODUCTS/cyth979mt7m83r8rkis1
  *                price: 120
+ *     ProductError:
+ *       type: object
+ *       properties: 
+ *         error:
+ *           type: string
+ *           description: Error message
+ *           example: This product does not exist in db or was deleted
  *     AddProductBody:
  *       type: object
  *       properties: 
@@ -239,20 +246,6 @@ import { addProduct, editProduct } from '../helpers/yup';
  *           type: String
  *           description: Success message
  *           example: Product Deleted 
- *     AdminError:
- *       type: object
- *       properties:
- *         error:
- *           type: String
- *           description: Error message
- *           example: Not authorized, login with admin privilegies
- *     ProductError:
- *       type: object
- *       properties: 
- *         error:
- *           type: string
- *           description: Error message
- *           example: This product does not exist in db or was deleted
  * 
  */
 
@@ -260,7 +253,7 @@ const router = Router();
 
 /**
  * @swagger
- * /api/products/list:
+ * /products/list:
  *   get:
  *     summary: List all products in db
  *     tags:
@@ -277,13 +270,13 @@ const router = Router();
  *         content:
  *           application/json:
  *             schema: 
- *               $ref: '#/components/schemas/NoProductsError'
+ *               $ref: '#/components/schemas/ProductsError'
  *
  */
 
 /**
  * @swagger
- * /api/products/list/{id}:
+ * /products/list/{id}:
  *   get:
  *     summary: Get product by id
  *     parameters:
@@ -314,7 +307,7 @@ router.get('/list/:id?', productExist, productController.getProduct);
 
 /**
  * @swagger
- * /api/products/add:
+ * /products/add:
  *   post:
  *     summary: Add a new product (user must be logged in and with ADMIN role to access this route)
  *     tags:
@@ -355,7 +348,7 @@ router.post(
 
 /**
  * @swagger
- * /api/products/update/{id}:
+ * /products/update/{id}:
  *   patch:
  *     summary: Update a product (user must be logged in and with ADMIN role to access this route)
  *     parameters:
@@ -409,7 +402,7 @@ router.patch(
 /**
  * @swagger
  * 
- * /api/products/delete/{id}:
+ * /products/delete/{id}:
  *   delete:
  *     summary: Delete a product from db (user must be logged in and with ADMIN role to access this route)
  *     parameters:

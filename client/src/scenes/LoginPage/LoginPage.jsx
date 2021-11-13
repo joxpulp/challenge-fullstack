@@ -5,14 +5,12 @@ import { login } from '../../reducers/auth/authReducer';
 import { clearErrorMsg, clearSuccessMsg } from '../../reducers/ui/uiReducer';
 import { Form, Formik } from 'formik';
 import { loginValidation } from '../../helpers/yup';
-import { Box } from '../../components/Box/Box';
-import { Button } from '../../components/Button/Button';
+import Button from '../../components/Button/Button';
 import { Title } from '../../components/Title/Title';
 import { Text } from '../../components/Text/Text';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
 import Input from '../../components/Input/Input';
-import { ImpulseSpinner } from 'react-spinners-kit';
 
 function LoginPage() {
 	const history = useHistory();
@@ -31,7 +29,11 @@ function LoginPage() {
 			alignItems='center'
 			justifyContent='center'
 			width='100%'
-			my='50px'	
+			my='50px'
+			flexDirection='column'
+			initial={{ opacity: 0, x: '-90%' }}
+			animate={{ opacity: 1, x: 0 }}
+			exit={{ opacity: 0, x: '-90%' }}
 		>
 			<Section
 				bg='white'
@@ -40,9 +42,6 @@ function LoginPage() {
 				alignItems='center'
 				boxShadow='0px 0px 25px 10px #F6F4FD'
 				p='10px'
-				initial={{ opacity: 0, x: '-90%' }}
-				animate={{ opacity: 1, x: 0 }}
-				exit={{ opacity: 0, x: '-90%' }}
 			>
 				<Formik
 					initialValues={{
@@ -84,31 +83,13 @@ function LoginPage() {
 							type='password'
 							placeholder='Password'
 						/>
-						<Box width='100%' justifyContent='center' mt='20px'>
-							<Button
-								bg='black'
-								color='white'
-								type='submit'
-								mr='10px'
-								disabled={loading}
-							>
-								{loading ? (
-									<ImpulseSpinner frontColor='#ffff' backColor='#666666' />
-								) : (
-									'Login'
-								)}
-							</Button>
-							<Button
-								onClick={handleClickSignup}
-								type='button'
-								disabled={loading}
-							>
-								Signup
-							</Button>
-						</Box>
+						<Button>Login</Button>
 					</Form>
 				</Formik>
 			</Section>
+			<Text m='30px' cursor='pointer' onClick={handleClickSignup}>
+				Or create an account
+			</Text>
 		</Main>
 	);
 }

@@ -37,12 +37,12 @@ export const signup = createAsyncThunk(
 	}
 );
 
-export const isLogged = createAsyncThunk(
-	'auth/isLogged',
+export const isLoggedIn = createAsyncThunk(
+	'auth/isLoggedIn',
 	async (_, { rejectWithValue }) => {
 		try {
-			const { data: isLogged } = await apiCommerce.get('/api/auth/islogged');
-			return isLogged;
+			const { data: isLoggedIn } = await apiCommerce.get('/api/auth/isloggedin');
+			return isLoggedIn;
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data);
 		}
@@ -66,7 +66,7 @@ export const editUser = createAsyncThunk(
 
 const initialState = {
 	userData: JSON.parse(localStorage.getItem('userData')) || {},
-	logged: false,
+	loggedIn: false,
 };
 
 const authSlice = createSlice({
@@ -84,34 +84,34 @@ const authSlice = createSlice({
 				return {
 					...state,
 					userData: action.payload.userData,
-					logged: action.payload.logged,
+					loggedIn: action.payload.loggedIn,
 				};
 			})
 			.addCase(logout.fulfilled, (state, action) => {
 				return {
 					...state,
 					userData: {},
-					logged: action.payload.logged,
+					loggedIn: action.payload.loggedIn,
 				};
 			})
 			.addCase(logout.rejected, (state, action) => {
 				return {
 					...state,
 					userData: {},
-					logged: false,
+					loggedIn: false,
 				};
 			})
-			.addCase(isLogged.fulfilled, (state, action) => {
+			.addCase(isLoggedIn.fulfilled, (state, action) => {
 				return {
 					...state,
-					logged: action.payload.logged,
+					loggedIn: action.payload.loggedIn,
 				};
 			})
-			.addCase(isLogged.rejected, (state, action) => {
+			.addCase(isLoggedIn.rejected, (state, action) => {
 				return {
 					...state,
 					userData: {},
-					logged: action.payload.logged,
+					loggedIn: action.payload.loggedIn,
 				};
 			})
 			.addCase(editUser.fulfilled, (state, action) => {

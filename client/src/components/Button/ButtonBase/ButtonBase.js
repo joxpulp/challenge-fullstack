@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { space, color, typography, layout, flexbox, position } from 'styled-system';
 import { motion } from 'framer-motion';
 
-export const Button = styled(motion.button)`
+export const ButtonBase = styled(motion.button)`
 	${space}
 	${color}
 	${typography}

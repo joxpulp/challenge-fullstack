@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, Redirect } from 'react-router-dom';
 import { Box } from '../../components/Box/Box';
-import { Button } from '../../components/Button/Button';
 import { Image } from '../../components/Image/Image';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
@@ -12,6 +11,7 @@ import { addProductCart } from '../../reducers/cart/cartReducer';
 import { AnimatePresence } from 'framer-motion';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
+import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
 
 function ProductPage() {
 	const { id } = useParams();
@@ -90,15 +90,15 @@ function ProductPage() {
 								</Text>
 								<Text fontSize='12px'>{product.description}</Text>
 								<Box mt='20px'>
-									<Button
+									<ButtonBase
 										onClick={handleCart}
 										mr='10px'
 										bg='black'
 										color='white'
 									>
 										Add to cart
-									</Button>
-									<Button onClick={() => history.push('/')}>Go Back</Button>
+									</ButtonBase>
+									<ButtonBase onClick={() => history.push('/')}>Go Back</ButtonBase>
 								</Box>
 							</Box>
 						</Section>

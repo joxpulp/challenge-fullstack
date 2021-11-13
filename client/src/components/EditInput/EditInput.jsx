@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { useField } from 'formik';
 import { Box } from '../Box/Box';
 import { InputBase } from '../Input/InputBase/InputBase';
-import { Button } from '../Button/Button';
 import { Title } from '../Title/Title';
 import { Text } from '../Text/Text';
+import { ButtonBase } from '../Button/ButtonBase/ButtonBase';
 
 function EditInput({ onCancel, currentValue, width, ...props }) {
 	const [field, meta] = useField(props);
@@ -41,9 +41,9 @@ function EditInput({ onCancel, currentValue, width, ...props }) {
 						<Title color='#9b9b9b'>{currentValue}</Title>
 					</Box>
 				)}
-				<Button ml='10px' width='30px' onClick={handleClick} type='button'>
+				<ButtonBase ml='10px' width='30px' onClick={handleClick} type='button'>
 					{edit ? 'Cancel' : 'Edit'}
-				</Button>
+				</ButtonBase>
 			</Box>
 			{meta.touched && meta.error && <Text color='red'>{meta.error}</Text>}
 		</Box>

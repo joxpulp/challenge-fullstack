@@ -1,11 +1,11 @@
-import { cartModel } from './cart';
-import { PurchaseI } from './interfaces';
-import { cart } from './schemas/cartschema';
 import { purchase } from './schemas/purchaseschema';
+import { cart } from './schemas/cartschema';
+import { PurchaseI } from './interfaces';
 
 class Purchase {
 	async get(userId: string): Promise<PurchaseI[]> {
 		const getPurchases = await purchase.findOne({ userId });
+
 		const outputGet: PurchaseI[] = [];
 		if (getPurchases) {
 			outputGet.push(getPurchases);

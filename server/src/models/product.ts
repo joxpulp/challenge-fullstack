@@ -1,6 +1,5 @@
 import { products } from './schemas/productschema';
 import { NewProductI, ProductI } from './interfaces';
-import { cartModel } from './cart';
 import { cart } from './schemas/cartschema';
 
 class Product {
@@ -11,7 +10,7 @@ class Product {
 			const singleProduct = await products.findById(id);
 			if (singleProduct) outputGet.push(singleProduct);
 		} else {
-			outputGet = await products.find();
+			outputGet = await products.find({}, null, { sort: '-_id' });
 		}
 		return outputGet;
 	}

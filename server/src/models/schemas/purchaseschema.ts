@@ -17,6 +17,7 @@ const purchaseProductSchema = new Schema<ProductI>(
 			min: [100, `El valor es {VALUE}, debe ser como minimo 100`],
 			max: [3000000, `El valor es {VALUE}, debe ser como maximo 5000`],
 		},
+		quantity: { type: Number, required: true },
 	},
 	{ versionKey: false }
 );

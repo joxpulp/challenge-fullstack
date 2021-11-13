@@ -18,7 +18,7 @@ function Header() {
 	} = useContext(ThemeContext);
 
 	const dispatch = useDispatch();
-	const { userData, logged } = useSelector((state) => state.auth);
+	const { userData, loggedIn } = useSelector((state) => state.auth);
 	const { cartData, totalItems } = useSelector((state) => state.cart);
 	const { userMenu } = useSelector((state) => state.ui);
 
@@ -66,11 +66,11 @@ function Header() {
 					<Link to='/cart'>
 						<Box alignItems='center' mr='20px' onClick={handleUserMenu}>
 							<Image mr='5px' src={cart} />
-							<Text>{logged && cartData.length !== 0 && totalItems}</Text>
+							<Text>{loggedIn && cartData.length !== 0 && totalItems}</Text>
 						</Box>
 					</Link>
 					<Box height='100%' alignItems='center'>
-						{logged ? (
+						{loggedIn ? (
 							<Box onClick={() => dispatch(setUserMenu(!userMenu))}>
 								<Image
 									borderRadius='100%'

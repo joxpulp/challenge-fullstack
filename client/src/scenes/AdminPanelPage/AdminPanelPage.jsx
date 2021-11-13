@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getProducts } from '../../reducers/products/productsReducer';
-import { Box } from '../../components/Box/Box';
 import { Title } from '../../components/Title/Title';
-import { Button } from '../../components/Button/Button';
+// import { Button } from '../../components/Button/Button';
 import MainBase from '../../components/MainBase/MainBase';
 import DescriptionSection from '../../components/DescriptionSection/DescriptionSection';
 import GridSection from '../../components/GridSection/GridSection';
 import AdProductCard from '../AdProductCard/AdProductCard';
+import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
 
 function AdminPanelPage() {
 	const history = useHistory();
@@ -24,9 +24,9 @@ function AdminPanelPage() {
 		<MainBase>
 			<DescriptionSection>
 				<Title mb='20px'>Admin Panel (Add, Edit and Delete Products)</Title>
-				<Button onClick={() => history.push('/adminpanel/add')} width='150px'>
+				<ButtonBase onClick={() => history.push('/adminpanel/add')} width='150px'>
 					Add Product
-				</Button>
+				</ButtonBase>
 			</DescriptionSection>
 			<GridSection>
 				{products.map((product, index) => (

@@ -2,37 +2,41 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../reducers/auth/authReducer';
-import { clearErrorMsg, clearSuccessMsg } from '../../reducers/ui/uiReducer';
+import { clearErrorMsg } from '../../reducers/ui/uiReducer';
 import { Form, Formik } from 'formik';
 import { signupValidation } from '../../helpers/yup';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
-import { Box } from '../../components/Box/Box';
 import { Title } from '../../components/Title/Title';
 import { Text } from '../../components/Text/Text';
-import { Button } from '../../components/Button/Button';
+import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 
 function Signup() {
-
 	const history = useHistory();
 
 	const dispatch = useDispatch();
-	const { errorMsg, successMsg } = useSelector((state) => state.ui);
+	const { loading, errorMsg } = useSelector((state) => state.ui);
 
 	return (
-		<Main alignItems='center' justifyContent='center' width='100%' my='50px'>
+		<Main
+			overflow='hidden'
+			alignItems='center'
+			justifyContent='center'
+			flexDirection='column'
+			width='100%'
+			my='50px'
+			initial={{ opacity: 0, x: '80%' }}
+			animate={{ opacity: 1, x: 0 }}
+			exit={{ opacity: 0, x: '80%' }}
+		>
 			<Section
 				bg='white'
-				overflow='hidden'
 				width={['90%', '90%', '50%']}
 				height='850px'
 				alignItems='center'
 				boxShadow='0px 0px 25px 10px #F6F4FD'
 				p='10px'
-				initial={{ opacity: 0, x: '80%' }}
-				animate={{ opacity: 1, x: 0 }}
-				exit={{ opacity: 0, x: '80%' }}
 			>
 				<Formik
 					initialValues={{
@@ -45,10 +49,10 @@ function Signup() {
 						address: '',
 					}}
 					validationSchema={signupValidation}
-					onSubmit={(values) => {
-						dispatch(clearSuccessMsg());
+					onSubmit={(values, { resetForm }) => {
 						dispatch(clearErrorMsg());
 						dispatch(signup(values));
+						resetForm();
 					}}
 				>
 					<Form
@@ -66,17 +70,19 @@ function Signup() {
 								{errorMsg}
 							</Text>
 						)}
-						{successMsg && (
-							<Text m='20px' color='#29b669'>
-								{successMsg}
-							</Text>
-						)}
-						<Input id='email' name='email' type='email' placeholder='Email*' />
+						<Input
+							id='email'
+							name='email'
+							type='email'
+							placeholder='Email*'
+							disabled={loading}
+						/>
 						<Input
 							id='password'
 							name='password'
 							type='password'
 							placeholder='Password*'
+							disabled={loading}
 						/>
 						<Input id='name' name='name' type='text' placeholder='Name*' />
 						<Input
@@ -84,6 +90,7 @@ function Signup() {
 							name='lastname'
 							type='text'
 							placeholder='Lastname*'
+							disabled={loading}
 						/>
 						<Input id='age' name='age' type='number' placeholder='Age*' />
 						<Input
@@ -91,24 +98,22 @@ function Signup() {
 							name='cardId'
 							type='number'
 							placeholder='Card Id (DNI)*'
+							disabled={loading}
 						/>
 						<Input
 							id='address'
 							name='address'
 							type='text'
 							placeholder='Address*'
+							disabled={loading}
 						/>
-						<Box alignItems='center'>
-							<Button bg='black' color='white' mr='10px' type='submit'>
-								Signup
-							</Button>
-							<Button onClick={() => history.push('/login')}   type='button'>
-								Go Back
-							</Button>
-						</Box>
+						<Button>Sign Up</Button>
 					</Form>
 				</Formik>
 			</Section>
+			<Text m='30px' cursor='pointer' onClick={() => history.push('/login')}>
+				Or go to login
+			</Text>
 		</Main>
 	);
 }

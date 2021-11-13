@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text } from '../../components/Text/Text';
 import { Image } from '../../components/Image/Image';
-import { Button } from '../../components/Button/Button';
 import notfound from '../../services/svg/404.svg';
 import { useHistory } from 'react-router-dom';
 import { Section } from '../../components/Section/Section';
+import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
 
 function NotFoundPage() {
 	const history = useHistory();
@@ -26,14 +26,14 @@ function NotFoundPage() {
 				alt='404'
 			/>
 			<Text mb='20px'>Oops! Seems that this page does not exist</Text>
-			<Button
+			<ButtonBase
 				bg='black'
 				color='white'
 				width='125px'
 				onClick={() => history.push('/')}
 			>
 				Back to Shop
-			</Button>
+			</ButtonBase>
 		</Section>
 	);
 }

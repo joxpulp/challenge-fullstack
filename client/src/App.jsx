@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { isLogged, logout } from './reducers/auth/authReducer';
+import { isLoggedIn, logout } from './reducers/auth/authReducer';
 import { clearSuccessMsg } from './reducers/ui/uiReducer';
 import { AnimatePresence } from 'framer-motion';
 import GlobalStyle from './globalStyles/globalStyles';
@@ -27,12 +27,12 @@ import IdleTimer from 'react-idle-timer';
 function App() {
 	const idleRef = useRef(null);
 	const dispatch = useDispatch();
-	const { userData, logged } = useSelector((state) => state.auth);
+	const { userData, loggedIn } = useSelector((state) => state.auth);
 	const { successMsg } = useSelector((state) => state.ui);
 	const location = useLocation();
 
 	useEffect(() => {
-		dispatch(isLogged());
+		dispatch(isLoggedIn());
 	}, [dispatch]);
 
 	useEffect(() => {
@@ -62,16 +62,16 @@ function App() {
 					<Route path='/product/:id' component={ProductPage} />
 					<Route path='/about' component={AboutPage} />
 					<Route path='/contact' component={ContactPage} />
-					<PublicRoute isAuth={logged} path='/login' component={LoginPage} />
-					<PublicRoute isAuth={logged} path='/signup' component={SignupPage} />
+					<PublicRoute isAuth={loggedIn} path='/login' component={LoginPage} />
+					<PublicRoute isAuth={loggedIn} path='/signup' component={SignupPage} />
 					<PrivateRoute
-						isAuth={logged}
+						isAuth={loggedIn}
 						path='/profile'
 						component={EditUserPage}
 					/>
-					<PrivateRoute isAuth={logged} path='/cart' component={CartPage} />
+					<PrivateRoute isAuth={loggedIn} path='/cart' component={CartPage} />
 					<PrivateRoute
-						isAuth={logged}
+						isAuth={loggedIn}
 						path='/purchases'
 						component={PurchasesPage}
 					/>

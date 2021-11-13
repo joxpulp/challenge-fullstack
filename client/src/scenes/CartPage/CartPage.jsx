@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { ImpulseSpinner } from 'react-spinners-kit';
 import { Box } from '../../components/Box/Box';
-import { Button } from '../../components/Button/Button';
 import { Main } from '../../components/Main/Main';
 import NoResults from '../../components/NoResults/NoResults';
 import { Section } from '../../components/Section/Section';
@@ -11,12 +9,12 @@ import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 import { getCart } from '../../reducers/cart/cartReducer';
 import { purchase } from '../../reducers/purchase/purchaseReducer';
+import Button from '../../components/Button/Button';
 import CartCard from '../CartCard/CartCard';
 
 function CartScreenPage() {
 	const { cartData, total } = useSelector((state) => state.cart);
 	const { purchases } = useSelector((state) => state.purchase);
-	const { loading } = useSelector((state) => state.ui);
 
 	const dispatch = useDispatch();
 
@@ -85,18 +83,7 @@ function CartScreenPage() {
 							Order Summary
 						</Title>
 						<Title my='20px'>Total: ${total}</Title>
-						<Button
-							disabled={loading}
-							onClick={handlePurchase}
-							bg='black'
-							color='white'
-						>
-							{loading ? (
-								<ImpulseSpinner frontColor='#ffff' backColor='#666666' />
-							) : (
-								'Purchase'
-							)}
-						</Button>
+						<Button onClick={handlePurchase}>Purchase</Button>
 					</Box>
 				</Box>
 			</Section>

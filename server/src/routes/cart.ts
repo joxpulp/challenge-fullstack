@@ -82,6 +82,13 @@ import { cartController } from '../controllers/cart';
  *           type: String
  *           description: Timestamp (last update to the cart)
  *           example: 2021-11-12T13:32:57.758Z
+ *     CartError:
+ *       type: object
+ *       properties: 
+ *         error:
+ *           type: String
+ *           description: Error message
+ *           example: No cart created for this user, try to add some products
  *     ProductInCartResponse:
  *       type: object
  *       properties: 
@@ -131,7 +138,7 @@ import { cartController } from '../controllers/cart';
  *           type: string
  *           description: Error message
  *           example: This product does not exist in the cart or was deleted
- *     ProductAddToCartResponse:
+ *     AddProductToCartResponse:
  *       type: object
  *       properties: 
  *         productAdded:
@@ -173,7 +180,7 @@ import { cartController } from '../controllers/cart';
  *           type: String
  *           description: Success message
  *           example: Product added to the cart
- *     ProductDeleteFromCartResponse:
+ *     DeleteProductFromCartResponse:
  *       type: object
  *       properties: 
  *         deletedProduct:
@@ -219,31 +226,13 @@ import { cartController } from '../controllers/cart';
  *           type: String
  *           description: Success message
  *           example: Product deleted from cart
- *     AuthError:
- *       type: object
- *       properties:
- *         error:
- *           type: String
- *           description: Error message
- *           example: You are not logged in
- *         loggedIn:
- *           type: Boolean
- *           description: False because the user is not logged in
- *           example: false
- *     NoCartError:
- *       type: object
- *       properties: 
- *         error:
- *           type: String
- *           description: Error message
- *           example: No cart created for this user, try to add some products
  */
 
 const router = Router();
 
 /**
  * @swagger
- * /api/cart/list:
+ * /cart/list:
  *   get:
  *     summary: User's current cart
  *     tags:
@@ -268,13 +257,13 @@ const router = Router();
  *         content:
  *           application/json:
  *             schema: 
- *               $ref: '#/components/schemas/NoCartError'
+ *               $ref: '#/components/schemas/CartError'
  *
  */
 
 /**
  * @swagger
- * /api/cart/list/{id}:
+ * /cart/list/{id}:
  *   get:
  *     summary: User's product in cart
  *     parameters:
@@ -311,7 +300,7 @@ router.get('/list/:id?', isAuth, cartExist, cartController.getProducts);
 
 /**
  * @swagger
- * /api/cart/add/{id}:
+ * /cart/add/{id}:
  *   post:
  *     summary: Add product to the user's cart by passing a product id
  *     parameters:
@@ -328,7 +317,7 @@ router.get('/list/:id?', isAuth, cartExist, cartController.getProducts);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ProductAddToCartResponse'
+ *               $ref: '#/components/schemas/AddProductToCartResponse'
  *       401:
  *         description: Unathorized, if user is not logged in
  *         content:
@@ -348,7 +337,7 @@ router.post('/add/:id', isAuth, productExist, cartController.addProducts);
 
 /**
  * @swagger
- * /api/cart/delete/{id}:
+ * /cart/delete/{id}:
  *   delete:
  *     summary: Delete a product from the user's cart by passing a product id
  *     parameters:
@@ -365,7 +354,7 @@ router.post('/add/:id', isAuth, productExist, cartController.addProducts);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/ProductDeleteFromCartResponse'
+ *               $ref: '#/components/schemas/DeleteProductFromCartResponse'
  *       401:
  *         description: Unathorized, if user is not logged in
  *         content:

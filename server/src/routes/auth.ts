@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { authController } from '../controllers/auth';
 import { isAuth } from '../middlewares/auth';
-import { validate } from '../middlewares/validate';
 import { editUser, login, signup } from '../helpers/yup';
+import { validate } from '../middlewares/validate';
+import { authController } from '../controllers/auth';
 
 /**
  * @swagger
@@ -21,28 +21,6 @@ import { editUser, login, signup } from '../helpers/yup';
  *           description: User's password (min. 8 characters)
  *           example: bokitaforever
  *           required: true
- *     EditUser:
- *       type: object
- *       properties: 
- *         avatar:
- *           type: file
- *           format: binary
- *           description: User's avatar img (Only .png jpeg jpg)
- *         name:
- *           type: String
- *           description: User's name
- *         lastname:
- *           type: String
- *           description: User's description
- *         age:
- *           type: Number
- *           description: User's category
- *         cardId:
- *           type: Number
- *           description: User's cardId (DNI)
- *         address:
- *           type: String
- *           description: User's address
  *     LoginResponse:
  *       type: object
  *       properties: 
@@ -86,6 +64,28 @@ import { editUser, login, signup } from '../helpers/yup';
  *           type: Boolean
  *           description: True or false if user is logged in or not
  *           example: false
+ *     EditUser:
+ *       type: object
+ *       properties: 
+ *         avatar:
+ *           type: file
+ *           format: binary
+ *           description: User's avatar img (Only .png jpeg jpg)
+ *         name:
+ *           type: String
+ *           description: User's name
+ *         lastname:
+ *           type: String
+ *           description: User's description
+ *         age:
+ *           type: Number
+ *           description: User's category
+ *         cardId:
+ *           type: Number
+ *           description: User's cardId (DNI)
+ *         address:
+ *           type: String
+ *           description: User's address
  *     LogoutResponse:
  *       type: object
  *       properties:
@@ -157,6 +157,24 @@ import { editUser, login, signup } from '../helpers/yup';
  *           items:
  *             type: string   
  *             example: required field(except patch), invalid field etc...
+ *     AuthError:
+ *       type: object
+ *       properties:
+ *         error:
+ *           type: String
+ *           description: Error message
+ *           example: You are not logged in
+ *         loggedIn:
+ *           type: Boolean
+ *           description: False because the user is not logged in
+ *           example: false
+ *     AdminError:
+ *       type: object
+ *       properties:
+ *         error:
+ *           type: String
+ *           description: Error message
+ *           example: Not authorized, login with admin privilegies  
  */
 
 const router = Router();
@@ -164,7 +182,7 @@ const router = Router();
 
 /**
  * @swagger
- * /api/auth/login:
+ * /auth/login:
  *   post:
  *     summary: Login user
  *     tags:
@@ -207,7 +225,7 @@ router.post('/login', validate(login), authController.login);
 
 /**
  * @swagger
- * /api/auth/edituser:
+ * /auth/edituser:
  *   patch:
  *     summary: Update user fields
  *     tags:
@@ -247,7 +265,7 @@ router.patch(
 
 /**
  * @swagger
- * /api/auth/logout:
+ * /auth/logout:
  *   get:
  *     summary: Logout session
  *     tags:
@@ -271,7 +289,7 @@ router.get('/logout', authController.logout);
 
 /**
  * @swagger
- * /api/auth/signup:
+ * /auth/signup:
  *   post:
  *     summary: Signup a new user
  *     tags:
@@ -311,7 +329,7 @@ router.post('/signup', validate(signup), authController.signup);
 
 /**
  * @swagger
- * /api/auth/isloggedin:
+ * /auth/isloggedin:
  *   get:
  *     summary: Check if the user is logged in or not
  *     tags:
