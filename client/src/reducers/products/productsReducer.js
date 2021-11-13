@@ -28,11 +28,11 @@ export const addProduct = createAsyncThunk(
 	'products/addProduct',
 	async (body, { rejectWithValue }) => {
 		try {
-			await apiCommerce.post(`/api/products/add`, body);
-			const {
-				data: { products },
-			} = await apiCommerce.get('/api/products/list');
-			return products;
+			const { data: addedProduct } = await apiCommerce.post(
+				`/api/products/add`,
+				body
+			);
+			return addedProduct;
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data.error);
 		}
@@ -42,8 +42,11 @@ export const editProduct = createAsyncThunk(
 	'products/editProduct',
 	async (data, { rejectWithValue }) => {
 		try {
-			const {data: product} = await apiCommerce.patch(`/api/products/update/${data.id}`, data.formData);
-			return product;
+			const { data: updatedProduct } = await apiCommerce.patch(
+				`/api/products/update/${data.id}`,
+				data.formData
+			);
+			return updatedProduct;
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data.error);
 		}
@@ -107,18 +110,6 @@ const productSlice = createSlice({
 					product: [],
 				};
 			})
-			.addCase(addProduct.fulfilled, (state, action) => {
-				return {
-					...state,
-					products: action.payload,
-				};
-			})
-			.addCase(addProduct.rejected, (state, action) => {
-				return {
-					...state,
-					products: [],
-				};
-			})
 			.addCase(editProduct.fulfilled, (state, action) => {
 				return {
 					...state,
@@ -128,7 +119,7 @@ const productSlice = createSlice({
 			.addCase(editProduct.rejected, (state, action) => {
 				return {
 					...state,
-					products: [],
+					product: [],
 				};
 			})
 			.addCase(deleteProduct.fulfilled, (state, action) => {

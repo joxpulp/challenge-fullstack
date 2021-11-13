@@ -9,15 +9,12 @@ import {
 } from '../../reducers/products/productsReducer';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
-import { ImpulseSpinner } from 'react-spinners-kit';
-import { Box } from '../../components/Box/Box';
 import Button from '../../components/Button/Button';
 import EditImage from '../../components/EditImage/EditImage';
 import EditInput from '../../components/EditInput/EditInput';
 import EditTextarea from '../../components/EditTextarea/EditTextarea';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
-import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
 
 const AdProductEdit = () => {
 	const { id } = useParams();
@@ -25,14 +22,13 @@ const AdProductEdit = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const { product } = useSelector((state) => state.products);
-	const { loading } = useSelector((state) => state.ui);
 
 	useEffect(() => {
 		dispatch(getProductById(id));
 	}, [dispatch, id]);
 
 	return (
-		<Main alignItems='center' justifyContent='center' width='100%' my='50px'>
+		<Main alignItems='center' justifyContent='center' width='100%' my='50px' flexDirection='column'>
 			<Section
 				bg='white'
 				width={['90%', '90%', '70%']}
@@ -135,14 +131,14 @@ const AdProductEdit = () => {
 									/>
 								</>
 							))}
-							<Box alignItems='center'>
-								<Button>Save</Button>
-								<ButtonBase onClick={() => history.go(-1)}>Go Back</ButtonBase>
-							</Box>
+							<Button>Save</Button>
 						</Form>
 					)}
 				</Formik>
 			</Section>
+			<Text m='30px' cursor='pointer' onClick={() => history.go(-1)}>
+				Go Back
+			</Text>
 		</Main>
 	);
 };

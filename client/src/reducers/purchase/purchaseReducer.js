@@ -18,10 +18,8 @@ export const purchase = createAsyncThunk(
 	'order/purchase',
 	async (_, { rejectWithValue }) => {
 		try {
-			await apiCommerce.post(`/api/orders/purchase`);
-
-			const { data: purchases } = await apiCommerce.get('/api/orders/getpurchases');
-			return purchases;
+			const {data: { msg }} = await apiCommerce.post(`/api/orders/purchase`);
+			return msg
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data);
 		}

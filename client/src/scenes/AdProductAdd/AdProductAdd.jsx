@@ -7,15 +7,12 @@ import { addProduct } from '../../reducers/products/productsReducer';
 import { Main } from '../../components/Main/Main';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
-import { ImpulseSpinner } from 'react-spinners-kit';
 import { Section } from '../../components/Section/Section';
-import { Box } from '../../components/Box/Box';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
 import EditImage from '../../components/EditImage/EditImage';
 import Textarea from '../../components/Textarea/Textarea';
 import uploadphoto from '../../services/svg/uploadphoto.svg';
-import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
 
 const AdProductAdd = () => {
 	const history = useHistory();
@@ -23,7 +20,13 @@ const AdProductAdd = () => {
 	const { loading } = useSelector((state) => state.ui);
 
 	return (
-		<Main alignItems='center' justifyContent='center' width='100%' my='50px'>
+		<Main
+			alignItems='center'
+			justifyContent='center'
+			width='100%'
+			my='50px'
+			flexDirection='column'
+		>
 			<Section
 				bg='white'
 				width={['90%', '90%', '70%']}
@@ -44,7 +47,7 @@ const AdProductAdd = () => {
 						thumbnail: null,
 					}}
 					validationSchema={addProductValidation}
-					onSubmit={(values) => {
+					onSubmit={(values, { resetForm }) => {
 						const formData = new FormData();
 						values.name !== '' && formData.append('name', values.name);
 						values.description !== '' &&
@@ -53,8 +56,9 @@ const AdProductAdd = () => {
 							formData.append('category', values.category);
 						values.price !== '' && formData.append('price', values.price);
 						values.thumbnail && formData.append('thumbnail', values.thumbnail);
-						console.log(values);
+
 						dispatch(addProduct(formData));
+						resetForm();
 					}}
 				>
 					{({ values, setFieldValue }) => (
@@ -82,33 +86,42 @@ const AdProductAdd = () => {
 								onChange={(e) => setFieldValue('thumbnail', e.target.files[0])}
 								style={{ display: 'none' }}
 							/>
-							<Input id='name' name='name' type='text' placeholder='Name*' />
+							<Input
+								id='name'
+								name='name'
+								type='text'
+								placeholder='Name*'
+								disabled={loading}
+							/>
 							<Textarea
 								id='description'
 								name='description'
 								type='text'
 								placeholder='Description*'
+								disabled={loading}
 							/>
 							<Input
 								id='category'
 								name='category'
 								type='text'
 								placeholder='Category*'
+								disabled={loading}
 							/>
 							<Input
 								id='price'
 								name='price'
 								type='number'
 								placeholder='Price*'
+								disabled={loading}
 							/>
-							<Box alignItems='center'>
-								<Button>Add Product</Button>
-								<ButtonBase onClick={() => history.go(-1)}>Go Back</ButtonBase>
-							</Box>
+							<Button>Add Product</Button>
 						</Form>
 					)}
 				</Formik>
 			</Section>
+			<Text m='30px' cursor='pointer' onClick={() => history.go(-1)}>
+				Go Back
+			</Text>
 		</Main>
 	);
 };

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { editUser, login, logout, signup } from '../auth/authReducer';
 import { addProductCart, getCart, removeProductCart } from '../cart/cartReducer';
-import { getProductById } from '../products/productsReducer';
+import { addProduct, editProduct, getProductById } from '../products/productsReducer';
 import { getPurchase, purchase } from '../purchase/purchaseReducer';
 
 const initialState = {
@@ -53,6 +53,32 @@ const uiSlice = createSlice({
 					...state,
 					loading: false,
 					errorMsg: action.payload,
+				};
+			})
+			.addCase(addProduct.pending, (state, action) => {
+				return {
+					...state,
+					loading: true,
+				};
+			})
+			.addCase(addProduct.fulfilled, (state, action) => {
+				return {
+					...state,
+					loading: false,
+					successMsg: action.payload.msg
+				};
+			})
+			.addCase(editProduct.pending, (state, action) => {
+				return {
+					...state,
+					loading: true,
+				};
+			})
+			.addCase(editProduct.fulfilled, (state, action) => {
+				return {
+					...state,
+					loading: false,
+					successMsg: action.payload.msg
 				};
 			})
 			.addCase(login.pending, (state, action) => {
@@ -190,7 +216,7 @@ const uiSlice = createSlice({
 				return {
 					...state,
 					loading: false,
-					successMsg: 'Purchase Completed',
+					successMsg: action.payload.msg,
 				};
 			})
 			.addCase(purchase.rejected, (state, action) => {
