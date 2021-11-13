@@ -21,7 +21,7 @@ Start React App
 Build App
 
 ```bash
-  npm run dev
+  npm run build
 ```
 
 
