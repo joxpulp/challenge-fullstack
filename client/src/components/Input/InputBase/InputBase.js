@@ -20,9 +20,11 @@ export const InputBase = styled(motion.input)`
 		props.borderRadius ? props.borderRadius : '2px'};
 	transition: all 0.2s ease-in-out;
 	outline: none;
+	
 	&:focus {
 		box-shadow: 0px 0px 5px 2px rgb(29, 31, 39, 0.1);
 	}
+
 	&:invalid {
 		border: 1px solid #ff7d87;
 	}

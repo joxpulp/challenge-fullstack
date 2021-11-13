@@ -77,6 +77,7 @@ function Header() {
 									width='20px'
 									mr='10px'
 									src={userData.avatar}
+									alt='avatar'
 								/>
 								<ListItem>{userData.name}</ListItem>
 							</Box>

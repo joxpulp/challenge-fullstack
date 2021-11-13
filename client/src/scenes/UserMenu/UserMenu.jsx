@@ -33,6 +33,7 @@ const UserMenu = () => {
 			color='#e4e4e4'
 			height='160px'
 			zIndex={100}
+			onBlur={handleUserMenu}
 		>
 			<GroupList display='flex' flexDirection='column' alignItems='center'>
 				<Link to='/profile' onClick={handleUserMenu}>

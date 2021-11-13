@@ -1,7 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { editUser, login, logout, signup } from '../auth/authReducer';
-import { addProductCart, getCart, removeProductCart } from '../cart/cartReducer';
-import { addProduct, editProduct, getProductById } from '../products/productsReducer';
+import { editUser, isLoggedIn, login, logout, signup } from '../auth/authReducer';
+import {
+	addProductCart,
+	getCart,
+	removeProductCart,
+} from '../cart/cartReducer';
+import {
+	addProduct,
+	editProduct,
+	getProductById,
+} from '../products/productsReducer';
 import { getPurchase, purchase } from '../purchase/purchaseReducer';
 
 const initialState = {
@@ -48,13 +56,6 @@ const uiSlice = createSlice({
 					loading: false,
 				};
 			})
-			.addCase(getProductById.rejected, (state, action) => {
-				return {
-					...state,
-					loading: false,
-					errorMsg: action.payload,
-				};
-			})
 			.addCase(addProduct.pending, (state, action) => {
 				return {
 					...state,
@@ -65,7 +66,7 @@ const uiSlice = createSlice({
 				return {
 					...state,
 					loading: false,
-					successMsg: action.payload.msg
+					successMsg: action.payload.msg,
 				};
 			})
 			.addCase(editProduct.pending, (state, action) => {
@@ -78,7 +79,7 @@ const uiSlice = createSlice({
 				return {
 					...state,
 					loading: false,
-					successMsg: action.payload.msg
+					successMsg: action.payload.msg,
 				};
 			})
 			.addCase(login.pending, (state, action) => {
@@ -106,6 +107,18 @@ const uiSlice = createSlice({
 					userMenu: false,
 				};
 			})
+			.addCase(logout.rejected, (state, action) => {
+				return {
+					...state,
+					userMenu: false,
+				};
+			})
+			.addCase(isLoggedIn.rejected, (state, action) => {
+				return {
+					...state,
+					userMenu: false,
+				};
+			})
 			.addCase(editUser.pending, (state, action) => {
 				return {
 					...state,
@@ -113,12 +126,6 @@ const uiSlice = createSlice({
 				};
 			})
 			.addCase(editUser.fulfilled, (state, action) => {
-				return {
-					...state,
-					loading: false,
-				};
-			})
-			.addCase(editUser.rejected, (state, action) => {
 				return {
 					...state,
 					loading: false,
@@ -180,6 +187,18 @@ const uiSlice = createSlice({
 					...state,
 					loading: false,
 					errorMsg: action.payload.error,
+				};
+			})
+			.addCase(removeProductCart.pending, (state, action) => {
+				return {
+					...state,
+					loading: true,
+				};
+			})
+			.addCase(removeProductCart.fulfilled, (state, action) => {
+				return {
+					...state,
+					loading: false,
 				};
 			})
 			.addCase(removeProductCart.rejected, (state, action) => {
