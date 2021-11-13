@@ -2,7 +2,7 @@
 
 E-commerce Frontend Doc
 
-Frontend: page
+[React APP](https://hekitech.herokuapp.com/)
 
 ## Local Setup: 
 
@@ -13,6 +13,12 @@ Install dependencies
 ```
 
 Start React App
+
+```bash
+  npm run dev
+```
+
+Build App
 
 ```bash
   npm run dev
