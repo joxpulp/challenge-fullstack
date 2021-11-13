@@ -42,7 +42,7 @@ export const editProduct = createAsyncThunk(
 	'products/editProduct',
 	async (data, { rejectWithValue }) => {
 		try {
-			const {data: product} = await apiCommerce.put(`/api/products/update/${data.id}`, data.formData);
+			const {data: product} = await apiCommerce.patch(`/api/products/update/${data.id}`, data.formData);
 			return product;
 		} catch ({ response: { data } }) {
 			return rejectWithValue(data.error);

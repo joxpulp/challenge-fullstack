@@ -126,6 +126,7 @@ export const editUser = async (_id: string, newData: UpdateUserI) => {
 		cardId: 1,
 		address: 1,
 		avatar: 1,
+		isAdmin: 1
 	});
 	return findUpdated;
 };
