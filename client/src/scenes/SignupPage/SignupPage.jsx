@@ -84,7 +84,13 @@ function Signup() {
 							placeholder='Password*'
 							disabled={loading}
 						/>
-						<Input id='name' name='name' type='text' placeholder='Name*' />
+						<Input
+							id='name'
+							name='name'
+							type='text'
+							placeholder='Name*'
+							disabled={loading}
+						/>
 						<Input
 							id='lastname'
 							name='lastname'
@@ -92,7 +98,13 @@ function Signup() {
 							placeholder='Lastname*'
 							disabled={loading}
 						/>
-						<Input id='age' name='age' type='number' placeholder='Age*' />
+						<Input
+							id='age'
+							name='age'
+							type='number'
+							placeholder='Age*'
+							disabled={loading}
+						/>
 						<Input
 							id='cardId'
 							name='cardId'

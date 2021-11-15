@@ -11,7 +11,7 @@ import NoResults from '../../components/NoResults/NoResults';
 
 function PurchasesPage() {
 	const dispatch = useDispatch();
-	const { purchases } = useSelector((state) => state.purchase);
+	const { purchases, totalPaid } = useSelector((state) => state.purchase);
 
 	useEffect(() => {
 		dispatch(getPurchase());
@@ -25,7 +25,8 @@ function PurchasesPage() {
 		<MainBase>
 			<DescriptionSection>
 				<Title>Your Purchases</Title>
-				<Text>Your history of purchases in one place</Text>
+				<Text my='10px'>Your history of purchases in one place</Text>
+				<Text>Total Paid: USD {totalPaid}</Text>
 			</DescriptionSection>
 			<GridSection>
 				{purchases.map((product, index) => (
@@ -34,6 +35,7 @@ function PurchasesPage() {
 						name={product.name}
 						price={product.price}
 						thumbnail={product.thumbnail}
+						quantity={product.quantity}
 					/>
 				))}
 			</GridSection>

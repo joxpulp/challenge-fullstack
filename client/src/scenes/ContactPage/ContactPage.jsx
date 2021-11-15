@@ -13,7 +13,7 @@ function ContactPage() {
 		<MainBase>
 			<DescriptionSection>
 				<Title>Contact Us</Title>
-				<Text>We are here to help!</Text>
+				<Text my='10px'>We are here to help!</Text>
 			</DescriptionSection>
 			<Section
 				flexDirection={['column', 'column', 'row']}

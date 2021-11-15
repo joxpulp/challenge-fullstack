@@ -27,7 +27,7 @@ function ShopPage() {
 		<MainBase>
 			<DescriptionSection>
 				<Title>Shop Tech</Title>
-				<Text>
+				<Text my='10px'>
 					Everything you want, everything fresh and new be always updated with
 					latest releases
 				</Text>

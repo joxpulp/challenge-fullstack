@@ -12,10 +12,20 @@ function AboutPage() {
 		<MainBase>
 			<DescriptionSection>
 				<Title>About Us</Title>
-				<Text>Wanna know more about us?.. this is the page</Text>
+				<Text my='10px'>Wanna know more about us?.. this is the page</Text>
 			</DescriptionSection>
-			<Section flexDirection='column' py='54px' px={['20px', '20px', '145px']} alignItems='center'>
-				<Image width={['50%', '50%', '30%']} src={about} alt='about' mb='40px' />
+			<Section
+				flexDirection='column'
+				py='54px'
+				px={['20px', '20px', '145px']}
+				alignItems='center'
+			>
+				<Image
+					width={['50%', '50%', '30%']}
+					src={about}
+					alt='about'
+					mb='40px'
+				/>
 				<Text fontSize='20px'>
 					As a company, our goal is to improve people's lives, to contribute to
 					the development of our communities and the preservation of the
