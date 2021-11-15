@@ -24,14 +24,14 @@ const UserMenu = () => {
 	return (
 		<Box
 			position='absolute'
-			width={['100%', '100%', '120px']}
 			alignItems='center'
-			right={[0, 0, '110px']}
 			top={60}
+			right={[0, 0, '110px']}
+			width={['100%', '100%', '120px']}
+			height='160px'
 			justifyContent='center'
 			bg='#272727'
 			color='#e4e4e4'
-			height='160px'
 			initial={{ opacity: 0, x: '100%' }}
 			animate={{ opacity: 1, x: 0 }}
 			exit={{ opacity: 0, x: '100%' }}

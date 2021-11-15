@@ -6,11 +6,11 @@ import { Text } from '../Text/Text';
 import { TextareaBase } from '../Textarea/TexareaBase/TextareaBase';
 import { ButtonBase } from '../Button/ButtonBase/ButtonBase';
 
-function EditInput({ onCancel, currentValue, width, ...props }) {
+function EditTextarea({ onCancel, currentValue, width, ...props }) {
 	const [field, meta] = useField(props);
 	const [edit, setEdit] = useState(false);
 
-	const { userData } = useSelector((state) => state.auth);
+	const { successMsg } = useSelector((state) => state.ui);
 
 	const handleClick = () => {
 		setEdit(!edit);
@@ -19,7 +19,7 @@ function EditInput({ onCancel, currentValue, width, ...props }) {
 
 	useEffect(() => {
 		setEdit(false);
-	}, [userData]);
+	}, [successMsg]);
 
 	return (
 		<Box flexDirection='column' m='5px'>
@@ -48,4 +48,4 @@ function EditInput({ onCancel, currentValue, width, ...props }) {
 	);
 }
 
-export default EditInput;
+export default EditTextarea;

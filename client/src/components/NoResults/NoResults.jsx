@@ -10,6 +10,7 @@ function NoResults({children}) {
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				exit={{ opacity: 0 }}
+				width='100%'
 				height='100vh'
 				flexDirection='column'
 				alignItems='center'

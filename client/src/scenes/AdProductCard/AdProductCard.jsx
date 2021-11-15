@@ -1,14 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Box } from '../../components/Box/Box';
-// import { Button } from '../../components/Button/Button';
-import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
-import { Image } from '../../components/Image/Image';
 import {
 	clearProduct,
 	deleteProduct,
 } from '../../reducers/products/productsReducer';
+import { Box } from '../../components/Box/Box';
+import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
+import { Image } from '../../components/Image/Image';
 
 function AdProductCard({ thumbnail, id }) {
 	const history = useHistory();

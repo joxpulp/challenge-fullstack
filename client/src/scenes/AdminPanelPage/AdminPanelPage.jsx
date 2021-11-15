@@ -3,12 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getProducts } from '../../reducers/products/productsReducer';
 import { Title } from '../../components/Title/Title';
-// import { Button } from '../../components/Button/Button';
+import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
 import MainBase from '../../components/MainBase/MainBase';
 import DescriptionSection from '../../components/DescriptionSection/DescriptionSection';
 import GridSection from '../../components/GridSection/GridSection';
 import AdProductCard from '../AdProductCard/AdProductCard';
-import { ButtonBase } from '../../components/Button/ButtonBase/ButtonBase';
 
 function AdminPanelPage() {
 	const history = useHistory();
