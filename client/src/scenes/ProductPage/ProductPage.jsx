@@ -86,6 +86,9 @@ function ProductPage() {
 								<Title my='10px'>{product.name}</Title>
 								<Text mb='20px'>Price: USD {product.price}</Text>
 								<Text mb='10px' fontSize='12px'>
+									Category: {product.category}
+								</Text>
+								<Text mb='10px' fontSize='12px'>
 									Description:
 								</Text>
 								<Text fontSize='12px'>{product.description}</Text>
@@ -98,7 +101,9 @@ function ProductPage() {
 									>
 										Add to cart
 									</ButtonBase>
-									<ButtonBase onClick={() => history.push('/')}>Go Back</ButtonBase>
+									<ButtonBase onClick={() => history.push('/')}>
+										Go Back
+									</ButtonBase>
 								</Box>
 							</Box>
 						</Section>

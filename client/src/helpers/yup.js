@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+const mimeType = ['image/png', 'image/jpeg', 'image/jpg'];
+
 export const loginValidation = Yup.object({
 	email: Yup.string()
 		.email('The email address is invalid, try again')
@@ -40,6 +42,13 @@ export const editProfileValidation = Yup.object({
 	age: Yup.number().min(16, 'Your age must be 16 or more'),
 	cardId: Yup.string().matches(/^\d{8}$/, 'DNI must be 8 digits only'),
 	address: Yup.string().min(10, 'Address must at least 10 characters'),
+	avatar: Yup.mixed()
+		.nullable()
+		.test(
+			'fileType',
+			'File type not supported only .png .jpg .jpeg',
+			(value) => !value || (value && mimeType.includes(value.type))
+		),
 });
 
 export const addProductValidation = Yup.object({
@@ -56,6 +65,14 @@ export const addProductValidation = Yup.object({
 		.min(10, 'Min price is 10')
 		.max(30000, 'Max price is 30000')
 		.required('Product price is required'),
+	thumbnail: Yup.mixed()
+		.nullable()
+		.required('Thumbnail image is required')
+		.test(
+			'fileType',
+			'File type not supported only .png .jpg .jpeg',
+			(value) => value && mimeType.includes(value.type)
+		),
 });
 
 export const editProductValidation = Yup.object({
@@ -68,4 +85,11 @@ export const editProductValidation = Yup.object({
 	price: Yup.number()
 		.min(10, 'Min price is 10')
 		.max(30000, 'Max price is 30000'),
+	thumbnail: Yup.mixed()
+		.nullable()
+		.test(
+			'fileType',
+			'File type not supported only .png .jpg .jpeg',
+			(value) => !value || (value && mimeType.includes(value.type))
+		),
 });

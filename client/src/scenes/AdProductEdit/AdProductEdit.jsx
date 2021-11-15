@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Form, Formik } from 'formik';
+import { ErrorMessage, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { editProductValidation } from '../../helpers/yup';
@@ -98,6 +98,9 @@ const AdProductEdit = () => {
 										}
 										style={{ display: 'none' }}
 									/>
+									<ErrorMessage name='thumbnail'>
+										{(msg) => <Text color='red'>{msg}</Text>}
+									</ErrorMessage>
 									<EditInput
 										currentValue={product.name}
 										id='name'
@@ -121,7 +124,6 @@ const AdProductEdit = () => {
 										name='category'
 										type='text'
 										placeholder='category'
-										
 										onCancel={() => setFieldValue('category', '')}
 									/>
 									<EditInput

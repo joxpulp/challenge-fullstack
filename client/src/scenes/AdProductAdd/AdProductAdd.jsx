@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Formik } from 'formik';
+import { ErrorMessage, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { addProductValidation } from '../../helpers/yup';
@@ -30,7 +30,7 @@ const AdProductAdd = () => {
 			<Section
 				bg='white'
 				width={['90%', '90%', '70%']}
-				height='850px'
+				height='900px'
 				alignItems='center'
 				boxShadow='0px 0px 25px 10px #F6F4FD'
 				p='20px'
@@ -82,10 +82,14 @@ const AdProductAdd = () => {
 							/>
 							<input
 								id='thumbnail'
+								name='thumbnail'
 								type='file'
 								onChange={(e) => setFieldValue('thumbnail', e.target.files[0])}
-								style={{ display: 'none' }}
+								hidden
 							/>
+							<ErrorMessage name='thumbnail'>
+								{(msg) => <Text color='red'>{msg}</Text>}
+							</ErrorMessage>
 							<Input
 								id='name'
 								name='name'

@@ -23,7 +23,6 @@ import AdProductEdit from './scenes/AdProductEdit/AdProductEdit';
 import AdProductAdd from './scenes/AdProductAdd/AdProductAdd';
 import Popup from './components/Popup/Popup';
 import IdleTimer from 'react-idle-timer';
-import { getCart } from './reducers/cart/cartReducer';
 
 function App() {
 	const idleRef = useRef(null);

@@ -1,13 +1,12 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editUser } from '../../reducers/auth/authReducer';
-import { Form, Formik } from 'formik';
+import { ErrorMessage, Form, Formik } from 'formik';
 import Button from '../../components/Button/Button';
 import { Text } from '../../components/Text/Text';
 import { Title } from '../../components/Title/Title';
 import EditInput from '../../components/EditInput/EditInput';
 import EditImage from '../../components/EditImage/EditImage';
-import { ImpulseSpinner } from 'react-spinners-kit';
 import { editProfileValidation } from '../../helpers/yup';
 import { Main } from '../../components/Main/Main';
 import { Section } from '../../components/Section/Section';
@@ -15,7 +14,6 @@ import { Section } from '../../components/Section/Section';
 function EditUserPage() {
 	const dispatch = useDispatch();
 	const { userData } = useSelector((state) => state.auth);
-	const { loading } = useSelector((state) => state.ui);
 
 	return (
 		<Main alignItems='center' justifyContent='center' width='100%' my='50px'>
@@ -41,7 +39,7 @@ function EditUserPage() {
 						avatar: null,
 					}}
 					validationSchema={editProfileValidation}
-					onSubmit={(values) => {
+					onSubmit={(values, {resetForm}) => {
 						const formData = new FormData();
 						values.name !== '' && formData.append('name', values.name);
 						values.lastname !== '' &&
@@ -53,6 +51,7 @@ function EditUserPage() {
 						values.avatar && formData.append('avatar', values.avatar);
 
 						dispatch(editUser(formData));
+						resetForm();
 					}}
 				>
 					{({ values, setFieldValue }) => (
@@ -83,6 +82,9 @@ function EditUserPage() {
 								onChange={(e) => setFieldValue('avatar', e.target.files[0])}
 								style={{ display: 'none' }}
 							/>
+							<ErrorMessage name='avatar'>
+								{(msg) => <Text color='red'>{msg}</Text>}
+							</ErrorMessage>
 							<EditInput
 								currentValue={userData.name}
 								id='name'
