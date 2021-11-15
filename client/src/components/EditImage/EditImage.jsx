@@ -7,9 +7,7 @@ import { useSelector } from 'react-redux';
 function EditImage({ currentImage, file, label, onCancel }) {
 	const [previewImage, setPreviewImage] = useState(null);
 	const mimeType = ['image/png', 'image/jpeg', 'image/jpg'];
-
-	const { userData } = useSelector((state) => state.auth);
-	const { product } = useSelector((state) => state.products);
+	const { successMsg } = useSelector((state) => state.ui);
 
 	const reader = new FileReader();
 	file && reader.readAsDataURL(file);
@@ -24,7 +22,7 @@ function EditImage({ currentImage, file, label, onCancel }) {
 
 	useEffect(() => {
 		setPreviewImage(null);
-	}, [userData, product]);
+	}, [successMsg]);
 
 	return (
 		<Box position='relative'>

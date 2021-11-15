@@ -32,11 +32,10 @@ const UserMenu = () => {
 			bg='#272727'
 			color='#e4e4e4'
 			height='160px'
-			zIndex={100}
 			initial={{ opacity: 0, x: '100%' }}
 			animate={{ opacity: 1, x: 0 }}
 			exit={{ opacity: 0, x: '100%' }}
-			transition={{ease: 'easeInOut'}}
+			transition={{ ease: 'easeInOut' }}
 		>
 			<GroupList display='flex' flexDirection='column' alignItems='center'>
 				<ListItem mb='20px'>

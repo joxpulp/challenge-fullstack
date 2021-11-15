@@ -32,7 +32,7 @@ const AdProductEdit = () => {
 			alignItems='center'
 			justifyContent='center'
 			width='100%'
-			my='50px'
+			py='50px'
 			flexDirection='column'
 		>
 			<Section
@@ -66,6 +66,7 @@ const AdProductEdit = () => {
 						values.thumbnail && formData.append('thumbnail', values.thumbnail);
 
 						dispatch(editProduct({ id, formData }));
+						values.thumbnail = null
 					}}
 				>
 					{({ values, setFieldValue }) => (
@@ -96,7 +97,7 @@ const AdProductEdit = () => {
 										onChange={(e) =>
 											setFieldValue('thumbnail', e.target.files[0])
 										}
-										style={{ display: 'none' }}
+										hidden
 									/>
 									<ErrorMessage name='thumbnail'>
 										{(msg) => <Text color='red'>{msg}</Text>}

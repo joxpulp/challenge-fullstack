@@ -24,7 +24,7 @@ const AdProductAdd = () => {
 			alignItems='center'
 			justifyContent='center'
 			width='100%'
-			my='50px'
+			py='50px'
 			flexDirection='column'
 		>
 			<Section

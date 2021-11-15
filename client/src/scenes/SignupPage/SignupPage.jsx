@@ -25,7 +25,7 @@ function Signup() {
 			justifyContent='center'
 			flexDirection='column'
 			width='100%'
-			my='50px'
+			py='50px'
 			initial={{ opacity: 0, x: '80%' }}
 			animate={{ opacity: 1, x: 0 }}
 			exit={{ opacity: 0, x: '80%' }}

@@ -13,9 +13,14 @@ function MainBase({ children }) {
 			animate={{ opacity: 1 }}
 			exit={{ opacity: 0 }}
 			flexDirection='column'
+			width='100%'
 		>
 			{loading ? (
-				<Box height='80vh' alignItems='center' justifyContent='center'>
+				<Box
+					height='80vh'
+					alignItems='center'
+					justifyContent='center'
+				>
 					<CubeSpinner size={100} frontColor='#aaaaaa' />
 				</Box>
 			) : (

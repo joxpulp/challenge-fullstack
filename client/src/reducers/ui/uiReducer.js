@@ -7,6 +7,7 @@ import {
 } from '../cart/cartReducer';
 import {
 	addProduct,
+	deleteProduct,
 	editProduct,
 	getProductById,
 } from '../products/productsReducer';
@@ -82,6 +83,13 @@ const uiSlice = createSlice({
 					successMsg: action.payload.msg,
 				};
 			})
+			.addCase(deleteProduct.fulfilled, (state, action) => {
+				return {
+					...state,
+					loading: false,
+					successMsg: 'Product Deleted',
+				};
+			})
 			.addCase(login.pending, (state, action) => {
 				return {
 					...state,
@@ -129,6 +137,7 @@ const uiSlice = createSlice({
 				return {
 					...state,
 					loading: false,
+					successMsg: action.payload.msg
 				};
 			})
 			.addCase(signup.pending, (state, action) => {

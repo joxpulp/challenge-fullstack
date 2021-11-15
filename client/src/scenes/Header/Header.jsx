@@ -19,18 +19,20 @@ function Header() {
 	const handleMenu = () => {
 		setIsOpen(!isOpen);
 		dispatch(setUserMenu(false));
-	}
+	};
 
 	return (
 		<Box
-			position='relative'
 			as='header'
+			position='fixed'
+			width='100%'
 			height='60px'
 			alignItems='center'
 			px={['20px', '20px', '145px']}
 			bg={primary}
 			color='white'
 			borderBottom='1px solid white'
+			zIndex={1}
 		>
 			<Box onClick={handleMenu} display={['flex', 'flex', 'none']} mr='10px'>
 				{isOpen ? <FiX fontSize='25px' /> : <FiMenu fontSize='25px' />}

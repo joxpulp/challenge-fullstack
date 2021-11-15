@@ -23,6 +23,7 @@ import AdProductEdit from './scenes/AdProductEdit/AdProductEdit';
 import AdProductAdd from './scenes/AdProductAdd/AdProductAdd';
 import Popup from './components/Popup/Popup';
 import IdleTimer from 'react-idle-timer';
+import { Box } from './components/Box/Box';
 
 function App() {
 	const idleRef = useRef(null);
@@ -56,44 +57,54 @@ function App() {
 			<AnimatePresence exitBeforeEnter>
 				{successMsg && <Popup>{successMsg}</Popup>}
 			</AnimatePresence>
-			<AnimatePresence exitBeforeEnter>
-				<Switch location={location} key={location.pathname}>
-					<Route exact path='/' component={ShopPage} />
-					<Route path='/product/:id' component={ProductPage} />
-					<Route path='/about' component={AboutPage} />
-					<Route path='/contact' component={ContactPage} />
-					<PublicRoute isAuth={loggedIn} path='/login' component={LoginPage} />
-					<PublicRoute isAuth={loggedIn} path='/signup' component={SignupPage} />
-					<PrivateRoute
-						isAuth={loggedIn}
-						path='/profile'
-						component={EditUserPage}
-					/>
-					<PrivateRoute isAuth={loggedIn} path='/cart' component={CartPage} />
-					<PrivateRoute
-						isAuth={loggedIn}
-						path='/purchases'
-						component={PurchasesPage}
-					/>
-					<PrivateRoute
-						exact
-						isAuth={userData.isAdmin}
-						path='/adminpanel'
-						component={AdminPanelPage}
-					/>
-					<PrivateRoute
-						isAuth={userData.isAdmin}
-						path='/adminpanel/add'
-						component={AdProductAdd}
-					/>
-					<PrivateRoute
-						isAuth={userData.isAdmin}
-						path='/adminpanel/productedit/:id'
-						component={AdProductEdit}
-					/>
-					<Route path='*' component={NotFoundPage} />
-				</Switch>
-			</AnimatePresence>
+			<Box pt='60px' width='100%'>
+				<AnimatePresence exitBeforeEnter>
+					<Switch location={location} key={location.pathname}>
+						<Route exact path='/' component={ShopPage} />
+						<Route path='/product/:id' component={ProductPage} />
+						<Route path='/about' component={AboutPage} />
+						<Route path='/contact' component={ContactPage} />
+						<PublicRoute
+							isAuth={loggedIn}
+							path='/login'
+							component={LoginPage}
+						/>
+						<PublicRoute
+							isAuth={loggedIn}
+							path='/signup'
+							component={SignupPage}
+						/>
+						<PrivateRoute
+							isAuth={loggedIn}
+							path='/profile'
+							component={EditUserPage}
+						/>
+						<PrivateRoute isAuth={loggedIn} path='/cart' component={CartPage} />
+						<PrivateRoute
+							isAuth={loggedIn}
+							path='/purchases'
+							component={PurchasesPage}
+						/>
+						<PrivateRoute
+							exact
+							isAuth={userData.isAdmin}
+							path='/adminpanel'
+							component={AdminPanelPage}
+						/>
+						<PrivateRoute
+							isAuth={userData.isAdmin}
+							path='/adminpanel/add'
+							component={AdProductAdd}
+						/>
+						<PrivateRoute
+							isAuth={userData.isAdmin}
+							path='/adminpanel/productedit/:id'
+							component={AdProductEdit}
+						/>
+						<Route path='*' component={NotFoundPage} />
+					</Switch>
+				</AnimatePresence>
+			</Box>
 		</>
 	);
 }

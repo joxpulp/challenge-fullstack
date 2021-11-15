@@ -29,7 +29,7 @@ function LoginPage() {
 			alignItems='center'
 			justifyContent='center'
 			width='100%'
-			my='50px'
+			py='50px'
 			flexDirection='column'
 			initial={{ opacity: 0, x: '-90%' }}
 			animate={{ opacity: 1, x: 0 }}

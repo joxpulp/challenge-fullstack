@@ -10,9 +10,8 @@ import { ButtonBase } from '../Button/ButtonBase/ButtonBase';
 function EditInput({ onCancel, currentValue, width, ...props }) {
 	const [field, meta] = useField(props);
 	const [edit, setEdit] = useState(false);
-
-	const { userData } = useSelector((state) => state.auth);
-	const { product } = useSelector((state) => state.products);
+	
+	const { successMsg } = useSelector((state) => state.ui);
 
 	const handleClick = () => {
 		setEdit(!edit);
@@ -21,7 +20,7 @@ function EditInput({ onCancel, currentValue, width, ...props }) {
 
 	useEffect(() => {
 		setEdit(false);
-	}, [userData, product]);
+	}, [successMsg]);
 
 	return (
 		<Box flexDirection='column' m='5px'>
@@ -35,7 +34,7 @@ function EditInput({ onCancel, currentValue, width, ...props }) {
 						onClick={handleClick}
 						alignItems='center'
 						justifyContent='center'
-						width={ width ? width :'230px'}
+						width={width ? width : '230px'}
 						borderBottom='1px solid #C2C5E1'
 					>
 						<Title color='#9b9b9b'>{currentValue}</Title>

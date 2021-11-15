@@ -16,7 +16,7 @@ function EditUserPage() {
 	const { userData } = useSelector((state) => state.auth);
 
 	return (
-		<Main alignItems='center' justifyContent='center' width='100%' my='50px'>
+		<Main alignItems='center' justifyContent='center' width='100%' py='50px'>
 			<Section
 				bg='white'
 				width={['90%', '90%', '50%']}
@@ -39,7 +39,7 @@ function EditUserPage() {
 						avatar: null,
 					}}
 					validationSchema={editProfileValidation}
-					onSubmit={(values, {resetForm}) => {
+					onSubmit={(values) => {
 						const formData = new FormData();
 						values.name !== '' && formData.append('name', values.name);
 						values.lastname !== '' &&
@@ -51,7 +51,7 @@ function EditUserPage() {
 						values.avatar && formData.append('avatar', values.avatar);
 
 						dispatch(editUser(formData));
-						resetForm();
+						values.avatar = null;
 					}}
 				>
 					{({ values, setFieldValue }) => (
@@ -80,7 +80,7 @@ function EditUserPage() {
 								id='avatar'
 								type='file'
 								onChange={(e) => setFieldValue('avatar', e.target.files[0])}
-								style={{ display: 'none' }}
+								hidden
 							/>
 							<ErrorMessage name='avatar'>
 								{(msg) => <Text color='red'>{msg}</Text>}
