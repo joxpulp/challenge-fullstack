@@ -103,7 +103,7 @@ import { authController } from '../controllers/auth';
  *         error:
  *           type: String
  *           description: Error message
- *           example: The is no session started or is already logout
+ *           example: There is no session started or is already logout
  *     SignupBody:
  *       type: object
  *       properties:
@@ -148,7 +148,7 @@ import { authController } from '../controllers/auth';
  *         error:
  *           type: String
  *           description: Error message
- *           example: This email already exist, try with other option
+ *           example: This email or cardId already exist, try with other option
  *     ValidationErrors: 
  *       type: object
  *       properties:
@@ -213,7 +213,7 @@ const router = Router();
  *             schema:
  *               $ref: '#/components/schemas/LoginError'
  *       400:
- *         description: Bad Request, if fails validation
+ *         description: Bad Request, if field validation fails
  *         content:
  *           application/json:
  *             schema: 
@@ -249,7 +249,7 @@ router.post('/login', validate(login), authController.login);
  *                   type: String
  *                   example: User Updated
  *       400:
- *         description: Bad Request, if fails validation
+ *         description: Bad Request, if field validation fails
  *         content:
  *           application/json:
  *             schema: 
@@ -318,7 +318,7 @@ router.get('/logout', authController.logout);
  *             schema:
  *               $ref: '#/components/schemas/SignupError'
  *       400:
- *         description: Bad Request, if fails validation
+ *         description: Bad Request, if field validation fails
  *         content:
  *           application/json:
  *             schema: 

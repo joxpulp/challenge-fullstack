@@ -326,7 +326,7 @@ router.get('/list/:id?', productExist, productController.getProduct);
  *             schema:
  *               $ref: '#/components/schemas/AddProductResponse'
  *       400:
- *         description: Bad Request, if fails validation of a field
+ *         description: Bad Request, if field validation fails
  *         content:
  *           application/json:
  *             schema: 
@@ -372,7 +372,7 @@ router.post(
  *             schema:
  *               $ref: '#/components/schemas/UpdateProductResponse'
  *       400:
- *         description: Bad Request, if fails validation of a field
+ *         description: Bad Request, if field validation fails
  *         content:
  *           application/json:
  *             schema: 

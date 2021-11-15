@@ -62,7 +62,7 @@ class AuthController {
 
 		return res
 			.status(404)
-			.json({ error: 'The is no session started or is already logout' });
+			.json({ error: 'There is no session started or is already logout' });
 	}
 
 	async editUser(req: Request, res: Response) {

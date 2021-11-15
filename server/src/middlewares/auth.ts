@@ -52,7 +52,7 @@ const signupFunc = async (
 
 	if (user) {
 		return done(null, false, {
-			error: 'This email already exist, try with other option',
+			error: 'This email or cardId already exist, try with other option',
 		});
 	} else {
 		const randomAvatar = `https://avatars.dicebear.com/api/bottts/${Date.now()}.svg`;
