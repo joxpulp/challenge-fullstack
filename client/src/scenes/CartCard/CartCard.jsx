@@ -22,8 +22,8 @@ const CartCard = ({ name, price, thumbnail, productId, quantity }) => {
 				src={thumbnail}
 				alt='productImg'
 			/>
-			<Box mx='30px' flexDirection='column'>
-				<Title>{name}</Title>
+			<Box mx={['10px', '10px', '30px']} flexDirection='column'>
+				<Title fontSize={['16px', '16px', '24px']}>{name}</Title>
 				<Text my='15px'>USD {price}</Text>
 				<Text>Quantity: {quantity}</Text>
 			</Box>

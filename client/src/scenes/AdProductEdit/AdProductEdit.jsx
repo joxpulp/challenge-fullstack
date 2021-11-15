@@ -28,11 +28,17 @@ const AdProductEdit = () => {
 	}, [dispatch, id]);
 
 	return (
-		<Main alignItems='center' justifyContent='center' width='100%' my='50px' flexDirection='column'>
+		<Main
+			alignItems='center'
+			justifyContent='center'
+			width='100%'
+			my='50px'
+			flexDirection='column'
+		>
 			<Section
 				bg='white'
 				width={['90%', '90%', '70%']}
-				height='850px'
+				height='900px'
 				alignItems='center'
 				boxShadow='0px 0px 25px 10px #F6F4FD'
 				p='20px'
@@ -98,7 +104,6 @@ const AdProductEdit = () => {
 										name='name'
 										type='text'
 										placeholder='Name'
-										width='400px'
 										onCancel={() => setFieldValue('name', '')}
 									/>
 									<EditTextarea
@@ -106,7 +111,6 @@ const AdProductEdit = () => {
 										id='description'
 										name='description'
 										type='text'
-										width='400px'
 										placeholder='Description'
 										onCancel={() => setFieldValue('description', '')}
 									/>
@@ -117,7 +121,7 @@ const AdProductEdit = () => {
 										name='category'
 										type='text'
 										placeholder='category'
-										width='400px'
+										
 										onCancel={() => setFieldValue('category', '')}
 									/>
 									<EditInput
@@ -126,7 +130,6 @@ const AdProductEdit = () => {
 										name='price'
 										type='number'
 										placeholder='Price'
-										width='400px'
 										onCancel={() => setFieldValue('price', '')}
 									/>
 								</>

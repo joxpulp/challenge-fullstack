@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { space, layout, flexbox, position } from 'styled-system';
+import { space, layout, flexbox, position, color } from 'styled-system';
 import { motion } from 'framer-motion';
 
 export const GroupList = styled(motion.ul)`
@@ -7,5 +7,7 @@ export const GroupList = styled(motion.ul)`
 	${layout}
 	${flexbox}
 	${position}
-	display:${(props) => (props.display ? props.display : 'flex')};
+	${color}
+	z-index: 100;
+	transition: all .2s ease-in-out;
 `;

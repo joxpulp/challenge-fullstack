@@ -33,7 +33,7 @@ function EditInput({ onCancel, currentValue, width, ...props }) {
 						onClick={handleClick}
 						alignItems='center'
 						justifyContent='center'
-						width={width ? width : '80%'}
+						width={width ? width : '230px'}
 						borderBottom='1px solid #C2C5E1'
 					>
 						<Text fontSize='13px' color='#9b9b9b'>{currentValue}</Text>

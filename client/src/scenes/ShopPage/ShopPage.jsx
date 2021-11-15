@@ -8,6 +8,7 @@ import DescriptionSection from '../../components/DescriptionSection/DescriptionS
 import GridSection from '../../components/GridSection/GridSection';
 import ProductCard from '../ProductCard/ProductCard';
 import NoResults from '../../components/NoResults/NoResults';
+import { getCart } from '../../reducers/cart/cartReducer';
 
 function ShopPage() {
 	const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function ShopPage() {
 
 	useEffect(() => {
 		dispatch(getProducts());
+		dispatch(getCart());
 	}, [dispatch]);
 
 	if (products.length === 0) {

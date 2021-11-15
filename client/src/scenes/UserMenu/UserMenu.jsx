@@ -24,28 +24,37 @@ const UserMenu = () => {
 	return (
 		<Box
 			position='absolute'
-			width='120px'
+			width={['100%', '100%', '120px']}
 			alignItems='center'
-			right={['10px', '10px', '110px']}
-			top='5'
+			right={[0, 0, '110px']}
+			top={60}
 			justifyContent='center'
-			bg='#1d1d1dfd'
+			bg='#272727'
 			color='#e4e4e4'
 			height='160px'
 			zIndex={100}
-			onBlur={handleUserMenu}
+			initial={{ opacity: 0, x: '100%' }}
+			animate={{ opacity: 1, x: 0 }}
+			exit={{ opacity: 0, x: '100%' }}
+			transition={{ease: 'easeInOut'}}
 		>
 			<GroupList display='flex' flexDirection='column' alignItems='center'>
-				<Link to='/profile' onClick={handleUserMenu}>
-					<ListItem mb='20px'>Edit User</ListItem>
-				</Link>
-				<Link to='/purchases' onClick={handleUserMenu}>
-					<ListItem mb='20px'>Purchases</ListItem>
-				</Link>
-				{userData.isAdmin && (
-					<Link to='/adminpanel' onClick={handleUserMenu}>
-						<ListItem mb='20px'>Admin Panel</ListItem>
+				<ListItem mb='20px'>
+					<Link to='/profile' onClick={handleUserMenu}>
+						Edit User
 					</Link>
+				</ListItem>
+				<ListItem mb='20px'>
+					<Link to='/purchases' onClick={handleUserMenu}>
+						Purchases
+					</Link>
+				</ListItem>
+				{userData.isAdmin && (
+					<ListItem mb='20px'>
+						<Link to='/adminpanel' onClick={handleUserMenu}>
+							Admin Panel
+						</Link>
+					</ListItem>
 				)}
 				<ListItem onClick={handleLogout}>Logout</ListItem>
 			</GroupList>
