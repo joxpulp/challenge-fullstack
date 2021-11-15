@@ -247,7 +247,7 @@ const router = Router();
  *               items:
  *                 $ref: '#/components/schemas/CartResponse'
  *       401:
- *         description: Unathorized, if user is not logged in
+ *         description: Unauthorized, if user is not logged in
  *         content:
  *           application/json:
  *             schema:
@@ -282,7 +282,7 @@ const router = Router();
  *             schema:
  *               $ref: '#/components/schemas/ProductInCartResponse'
  *       401:
- *         description: Unathorized, if user is not logged in
+ *         description: Unauthorized, if user is not logged in
  *         content:
  *           application/json:
  *             schema:
@@ -319,7 +319,7 @@ router.get('/list/:id?', isAuth, cartExist, cartController.getProducts);
  *             schema:
  *               $ref: '#/components/schemas/AddProductToCartResponse'
  *       401:
- *         description: Unathorized, if user is not logged in
+ *         description: Unauthorized, if user is not logged in
  *         content:
  *           application/json:
  *             schema:
@@ -356,7 +356,7 @@ router.post('/add/:id', isAuth, productExist, cartController.addProducts);
  *             schema:
  *               $ref: '#/components/schemas/DeleteProductFromCartResponse'
  *       401:
- *         description: Unathorized, if user is not logged in
+ *         description: Unauthorized, if user is not logged in
  *         content:
  *           application/json:
  *             schema:

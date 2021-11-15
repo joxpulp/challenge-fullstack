@@ -421,7 +421,7 @@ router.patch(
  *             schema:
  *               $ref: '#/components/schemas/ProductDeletedResponse'
  *       401:
- *         description: Unathorized, if user is not logged in
+ *         description: Unauthorized, if user is not logged in
  *         content:
  *           application/json:
  *             schema:

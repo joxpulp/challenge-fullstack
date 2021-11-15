@@ -106,7 +106,7 @@ const router = Router();
  *               items:
  *                 $ref: '#/components/schemas/PurchasesResponse'
  *       401:
- *         description: Unathorized, if user is not logged in
+ *         description: Unauthorized, if user is not logged in
  *         content:
  *           application/json:
  *             schema:
@@ -142,7 +142,7 @@ router.get('/getpurchases', isAuth, purchaseController.getProducts);
  *                   description: Success message
  *                   example: Purchase Completed
  *       401:
- *         description: Unathorized, if user is not logged in
+ *         description: Unauthorized, if user is not logged in
  *         content:
  *           application/json:
  *             schema:

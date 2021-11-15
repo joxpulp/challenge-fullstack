@@ -207,7 +207,7 @@ const router = Router();
  *                   type: Boolean
  *                   example: true
  *       401:
- *         description: Unathorized, if user fails to login or is not registered
+ *         description: Unauthorized, if user fails to login or is not registered
  *         content:
  *           application/json:
  *             schema:
@@ -278,7 +278,7 @@ router.patch(
  *             schema:
  *               $ref: '#/components/schemas/LogoutResponse'     
  *       404:
- *         description: Not Found, if there is no session
+ *         description: Not Found, if a session does not exist 
  *         content:
  *           application/json:
  *             schema:
