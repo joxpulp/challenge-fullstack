@@ -40,7 +40,7 @@ app.use(
 	session({
 		store: connectMongo.create({ mongoUrl: CONFIG.MONGO_URL }),
 		secret: CONFIG.SECRET,
-		cookie: { sameSite: true, secure: 'auto' },
+		cookie: { sameSite: false, secure: 'auto' },
 		saveUninitialized: false,
 		resave: true,
 	})
